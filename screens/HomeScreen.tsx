@@ -35,7 +35,7 @@ const todayPhotos = [
   'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=150&h=150&fit=crop',
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: { navigation: any }) => {
   const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -124,6 +124,9 @@ const HomeScreen = () => {
         return '未知';
     }
   };
+    const gotoMember = () => {
+      navigation.navigate('Member')
+    };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -137,11 +140,13 @@ const HomeScreen = () => {
         {/* Stats Cards */}
         <View style={styles.statsContainer}>
           <View style={styles.statCard}>
+            <TouchableOpacity onPress={gotoMember} >
             <View style={styles.statIconContainer}>
               <Users size={24} color="#3b82f6" />
             </View>
             <Text style={styles.statNumber}>28</Text>
             <Text style={styles.statLabel}>团队成员</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.statCard}>
             <View style={styles.statIconContainer}>
