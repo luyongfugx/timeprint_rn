@@ -27,7 +27,7 @@ interface CheckinRecord {
 const mockCheckinRecords: CheckinRecord[] = [
   {
     id: '1',
-    memberName: '张小明',
+    memberName: '张小',
     avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
     time: '09:00',
     location: '公司总部',
