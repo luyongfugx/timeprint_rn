@@ -7,7 +7,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons'; // 需要安装 react-native-vector-icons
 import { Users, Chrome as Home,Settings } from 'lucide-react-native';
 // 引入你创建的页面组件
 import HomeScreen from './screens/HomeScreen';
@@ -23,12 +22,11 @@ function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let icon;
-
             if (route.name === 'Home') {
               icon = focused ? <Home size={size} color={color} /> : <Home size={size} color={color} />;    
             } else if (route.name === 'Member') {
               icon = focused ? <Users size={size} color={color} /> : <Users size={size} color={color} />;
-            } else if (route.name === 'Profile') {
+            } else if (route.name === 'Setting') {
               icon = focused ? <Settings size={size} color={color} />  : <Settings size={size} color={color} />;
             }
 
@@ -42,7 +40,7 @@ function App() {
       >
         <Tab.Screen name="Home" component={HomeScreen} options={{ title: '首页' }} />
         <Tab.Screen name="Member" component={MembersManagement} options={{ title: '成员' }} />
-        <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: '我的' }} />
+        <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: '我的' }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
