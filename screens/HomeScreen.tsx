@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState,useEffect } from 'react';
 import {   View,
   Text,
   StyleSheet,
@@ -24,44 +25,8 @@ interface CheckinRecord {
   status: 'on-time' | 'late' | 'absent';
 }
 
-const mockCheckinRecords: CheckinRecord[] = [
-  {
-    id: '1',
-    memberName: '张小',
-    avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
-    time: '09:00',
-    location: '公司总部',
-    photos: [
-      'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=300&h=200&fit=crop',
-      'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
-      'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
-    ],
-    status: 'on-time',
-  },
-  {
-    id: '2',
-    memberName: '李小红',
-    avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop&crop=face',
-    time: '09:15',
-    location: '公司总部',
-    photos: [
-      'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
-      'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=300&h=200&fit=crop',
-    ],
-    status: 'late',
-  },
-  {
-    id: '3',
-    memberName: '王大强',
-    avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?w=100&h=100&fit=crop&crop=face',
-    time: '08:55',
-    location: '公司总部',
-    photos: [
-      'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
-    ],
-    status: 'on-time',
-  },
-];
+const API_URL = 'https://api.example.com/checkin-records'; // Replace with your actual API endpoint
+
 
 const todayPhotos = [
   'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=150&h=150&fit=crop',
@@ -71,6 +36,69 @@ const todayPhotos = [
 ];
 
 const HomeScreen = () => {
+  const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchCheckinRecords = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: CheckinRecord[] = await response.json();
+        setCheckinRecords(data);
+      } catch (err: unknown) {
+       // setError(err instanceof Error ? err.message : 'Failed to fetch check-in records');
+        // Fallback to mock data if API fails (remove in production)
+        setCheckinRecords([
+          {
+            id: '1',
+            memberName: '张小',
+            avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
+            time: '09:00',
+            location: '公司总部',
+            photos: [
+              'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=300&h=200&fit=crop',
+              'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
+              'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
+            ],
+            status: 'on-time',
+          },
+          {
+            id: '2',
+            memberName: '李小红',
+            avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop&crop=face',
+            time: '09:15',
+            location: '公司总部',
+            photos: [
+              'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
+              'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=300&h=200&fit=crop',
+            ],
+            status: 'late',
+          },
+          {
+            id: '3',
+            memberName: '王大强',
+            avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?w=100&h=100&fit=crop&crop=face',
+            time: '08:55',
+            location: '公司总部',
+            photos: [
+              'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
+            ],
+            status: 'on-time',
+          },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCheckinRecords();
+  }, []);
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'on-time':
@@ -157,7 +185,12 @@ const HomeScreen = () => {
             <Calendar size={20} color="#374151" />
             <Text style={styles.sectionTitle}>打卡记录</Text>
           </View>
-          {mockCheckinRecords.map((record) => (
+          {loading ? (
+            <Text>加载中...</Text>
+          ) : error ? (
+            <Text style={{ color: 'red' }}>{error}</Text>
+          ) : 
+            checkinRecords.map((record: CheckinRecord) => (
             <View key={record.id} style={styles.recordCard}>
               <View style={styles.recordHeader}>
                 <View style={styles.memberInfo}>
@@ -182,7 +215,7 @@ const HomeScreen = () => {
                 style={styles.photosContainer}
                 contentContainerStyle={styles.photosContent}
               >
-                {record.photos.map((photo, index) => (
+                {record.photos.map((photo: string, index: number) => (
                   <TouchableOpacity key={index} style={styles.photoWrapper}>
                     <Image source={{ uri: photo }} style={styles.checkinPhoto} />
                     {record.photos.length > 1 && (
