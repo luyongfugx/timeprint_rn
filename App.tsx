@@ -4,7 +4,7 @@
  *
  * @format
  */
-import * as React from 'react';
+import React, { useState,useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,11 +14,18 @@ import HomeScreen from './screens/HomeScreen';
 import MembersManagement from './screens/members';
 import ProfileScreen from './screens/ProfileScreen';
 import PhotoViewScreen from './screens/PhotoViewScreen';
+import { ActivityIndicator, View } from 'react-native';
+import { I18nextProvider,useTranslation } from 'react-i18next';
+import i18n from './i18n';
+import { initI18n } from './i18n';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
 function MainTabs() {
+  const { t } = useTranslation();
   return (
+ 
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -39,20 +46,50 @@ function MainTabs() {
           headerShown: false, // 隐藏 Tab 页面自身的头部
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} options={{ title: '首页' }} />
+        <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('home') }} />
         <Tab.Screen name="Member" component={MembersManagement} options={{ title: '成员' }} />
         <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: '我的' }} />
       </Tab.Navigator>
+
   );
 }
 function App() {
+  const [loading, setLoading] = useState(true);
+  // const { initLanguage } = useLanguageStore();
+
+  // useEffect(() => {
+  //   initLanguage().finally(() => setLoading(false));
+  // }, []);
+  // if (loading) {
+  //   return (
+  //     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  //       <ActivityIndicator size="large" />
+  //     </View>
+  //   );
+  // }
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    initI18n().then(() => setReady(true));
+  }, []);
+  if (!ready) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
   return (
-    <NavigationContainer>
-       <Stack.Navigator initialRouteName="Main">
-        <Stack.Screen name="PhotoView" component={PhotoViewScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+
+      <NavigationContainer>    
+        <I18nextProvider i18n={i18n}>
+        <Stack.Navigator initialRouteName="Main">
+          <Stack.Screen name="PhotoView" component={PhotoViewScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
+        </Stack.Navigator>
+        </I18nextProvider>
+      </NavigationContainer>
+
   );
 }
 
