@@ -15,15 +15,7 @@ import {
   Calendar,
   TrendingUp,
 } from 'lucide-react-native';
-interface CheckinRecord {
-  id: string;
-  memberName: string;
-  avatar: string;
-  time: string;
-  location: string;
-  photos: string[];
-  status: 'on-time' | 'late' | 'absent';
-}
+
 
 const API_URL = 'https://api.example.com/checkin-records'; // Replace with your actual API endpoint
 
@@ -36,7 +28,7 @@ const todayPhotos = [
 ];
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
-  const viewPhoto = (photoUrl: string) => {
+  const viewPhoto = (photoUrl: CheckinRecord) => {
     navigation.navigate('PhotoView', { photoUrl });
   };
   const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
@@ -227,7 +219,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   <TouchableOpacity 
                     key={index} 
                     style={styles.photoWrapper}
-                    onPress={() => viewPhoto(photo)}
+                    onPress={() => viewPhoto(record)}
                   >
                     <Image source={{ uri: photo }} style={styles.checkinPhoto} />
                     {record.photos.length > 1 && (

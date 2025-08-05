@@ -49,7 +49,7 @@ function App() {
   return (
     <NavigationContainer>
        <Stack.Navigator initialRouteName="Main">
-        <Stack.Screen name="PhotoView" component={PhotoViewScreen} />
+        <Stack.Screen name="PhotoView" component={PhotoViewScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
