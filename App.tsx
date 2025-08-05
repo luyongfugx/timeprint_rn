@@ -7,17 +7,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Users, Chrome as Home,Settings } from 'lucide-react-native';
 // 引入你创建的页面组件
 import HomeScreen from './screens/HomeScreen';
 import MembersManagement from './screens/members';
 import ProfileScreen from './screens/ProfileScreen';
+import PhotoViewScreen from './screens/PhotoViewScreen';
 
 const Tab = createBottomTabNavigator();
-
-function App() {
+const Stack = createNativeStackNavigator();
+function MainTabs() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -42,6 +43,15 @@ function App() {
         <Tab.Screen name="Member" component={MembersManagement} options={{ title: '成员' }} />
         <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: '我的' }} />
       </Tab.Navigator>
+  );
+}
+function App() {
+  return (
+    <NavigationContainer>
+       <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="PhotoView" component={PhotoViewScreen} />
+        <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

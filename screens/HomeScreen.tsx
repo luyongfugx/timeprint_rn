@@ -36,6 +36,9 @@ const todayPhotos = [
 ];
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
+  const viewPhoto = (photoUrl: string) => {
+    navigation.navigate('PhotoView', { photoUrl });
+  };
   const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -221,7 +224,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                 contentContainerStyle={styles.photosContent}
               >
                 {record.photos.map((photo: string, index: number) => (
-                  <TouchableOpacity key={index} style={styles.photoWrapper}>
+                  <TouchableOpacity 
+                    key={index} 
+                    style={styles.photoWrapper}
+                    onPress={() => viewPhoto(photo)}
+                  >
                     <Image source={{ uri: photo }} style={styles.checkinPhoto} />
                     {record.photos.length > 1 && (
                       <View style={styles.photoCounter}>
