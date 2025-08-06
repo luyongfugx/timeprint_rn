@@ -134,11 +134,13 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         {/* Stats Cards */}
         <View style={styles.statsContainer}>
-          <View style={styles.statCard}>
-            <TouchableOpacity onPress={gotoMember} >
+          <View style={styles.statCard} >
             <View style={styles.statIconContainer}>
+            <TouchableOpacity onPress={gotoMember} >
               <Users size={24} color="#3b82f6" />
+              </TouchableOpacity>
             </View>
+            <TouchableOpacity onPress={gotoMember} >
             <Text style={styles.statNumber}>28</Text>
             <Text style={styles.statLabel}>{t('teamMembers')}</Text>
             </TouchableOpacity>
@@ -295,6 +297,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 2,
+    justifyContent: 'center',
   },
   statIconContainer: {
     width: 48,
@@ -310,6 +313,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1f2937',
     marginBottom: 4,
+    textAlign: 'center',
   },
   statLabel: {
     fontSize: 12,
