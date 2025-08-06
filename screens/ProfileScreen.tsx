@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch } from 'react-native';
 import { ArrowBigLeft } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
+
 
 const ProfileScreen = () => {
+  const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>个人资料</Text>
+        <Text style={styles.headerTitle}>{t('profile')}</Text>
       </View>
 
       {/* 用户信息卡片 */}
@@ -17,27 +20,27 @@ const ProfileScreen = () => {
         </View>
         <View style={styles.userInfo}>
           <Text style={styles.userName}>卢勇福</Text>
-          <Text style={styles.levelTag}>3级·小有成就</Text>
+          <Text style={styles.levelTag}>{t('achievementLevel', { level: 3 })}</Text>
         </View>
         <TouchableOpacity style={styles.certificateButton}>
-          <Text style={styles.certificateText}>工作认证证书</Text>
-          <Text style={styles.certificateLink}>查看</Text>
+          <Text style={styles.certificateText}>{t('workCertificate')}</Text>
+          <Text style={styles.certificateLink}>{t('view')}</Text>
         </TouchableOpacity>
       </View>
 
       {/* 列表项 */}
-      <Item label="行业" />
-      <Item label="会员" right={<Text style={styles.vipTag}>VIP</Text>} rightText="查看VIP权益" />
-      <Item label="我的订单" rightText="可开具发票" />
+      <Item label={t('industry')} />
+      <Item label={t('member')} right={<Text style={styles.vipTag}>{t('vip')}</Text>} rightText={t('vipBenefits')} />
+      <Item label={t('myOrders')} rightText={t('invoiceAvailable')} />
 
-      <Item label="ID" rightText="4805280374" copy />
-      <Item label="手机号码" rightText="13811333363" linkText="更换" />
-      <Item label="微信绑定" rightText="已绑定" linkText="解绑" />
-      <Item label="注销账号" rightText="注销后无法恢复，请谨慎操作" />
+      <Item label={t('id')} rightText="4805280374" copy />
+      <Item label={t('phoneNumber')} rightText="13811333363" linkText={t('change')} />
+      <Item label={t('wechatBinding')} rightText={t('bound')} linkText={t('unbind')} />
+      <Item label={t('accountCancellation')} rightText={t('cancellationWarning')} />
 
       {/* 退出按钮 */}
       <TouchableOpacity style={styles.logoutBtn}>
-        <Text style={styles.logoutText}>退出登录</Text>
+        <Text style={styles.logoutText}>{t('logout')}</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -55,17 +58,19 @@ const Item = ({
   right?: React.ReactNode;
   copy?: boolean;
   linkText?: string;
-}) => (
+}) => {
+  const { t } = useTranslation()
+  return (
   <View style={styles.itemRow}>
     <Text style={styles.itemLabel}>{label}</Text>
     <View style={styles.itemRight}>
       {rightText && <Text style={styles.itemValue}>{rightText}</Text>}
       {right}
       {linkText && <Text style={styles.linkText}>{linkText}</Text>}
-      {copy && <Text style={styles.copyText}>复制</Text>}
+      {copy && <Text style={styles.copyText}>{t('copy')}</Text>}
     </View>
   </View>
-);
+)};
 
 const styles = StyleSheet.create({
   container: {
