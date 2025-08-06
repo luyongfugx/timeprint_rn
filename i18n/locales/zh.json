@@ -1,6 +1,18 @@
 {
-  "hello": "你好",
-  "home":"首页",
-  "welcome": "欢迎使用我们的应用",
-  "switch_language": "切换语言"
+  "home": "首页",
+  "me": "我的",
+  "member": "成员",
+  "on-time": "准时",
+  "late": "迟到",
+  "absent": "缺勤",
+  "unknown": "未知",
+  "teamCheckin": "团队打卡",
+  "todayIs": "今天是",
+  "teamMembers": "团队成员",
+  "checkedIn": "已打卡",
+  "attendanceRate": "出勤率",
+  "todaysPhotos": "今日照片",
+  "checkinRecords": "打卡记录",
+  "loading": "加载中...",
+  "headquarters": "公司总部"
 }

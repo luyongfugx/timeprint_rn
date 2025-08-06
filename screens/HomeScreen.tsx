@@ -15,7 +15,7 @@ import {
   Calendar,
   TrendingUp,
 } from 'lucide-react-native';
-
+import { useTranslation } from 'react-i18next';
 
 const API_URL = 'https://api.example.com/checkin-records'; // Replace with your actual API endpoint
 
@@ -34,7 +34,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+ const { t } = useTranslation();
   useEffect(() => {
     const fetchCheckinRecords = async () => {
       try {
@@ -54,7 +54,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             memberName: '张小',
             avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
             time: '09:00',
-            location: '公司总部',
+            location: t('headquarters'),
             photos: [
               'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=300&h=200&fit=crop',
               'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
@@ -110,13 +110,13 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'on-time':
-        return '准时';
+        return t('on-time');
       case 'late':
-        return '迟到';
+        return t('late');
       case 'absent':
-        return '缺勤';
+        return t('absent');
       default:
-        return '未知';
+        return t('unknown');
     }
   };
     const gotoMember = () => {
@@ -128,8 +128,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>团队打卡</Text>
-          <Text style={styles.subtitle}>今天是 {new Date().toLocaleDateString('zh-CN')}</Text>
+          <Text style={styles.title}>{t('teamCheckin')}</Text>
+          <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
         </View>
 
         {/* Stats Cards */}
@@ -140,7 +140,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               <Users size={24} color="#3b82f6" />
             </View>
             <Text style={styles.statNumber}>28</Text>
-            <Text style={styles.statLabel}>团队成员</Text>
+            <Text style={styles.statLabel}>{t('teamMembers')}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.statCard}>
@@ -148,14 +148,14 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               <Clock size={24} color="#10b981" />
             </View>
             <Text style={styles.statNumber}>25</Text>
-            <Text style={styles.statLabel}>已打卡</Text>
+            <Text style={styles.statLabel}>{t('checkedIn')}</Text>
           </View>
           <View style={styles.statCard}>
             <View style={styles.statIconContainer}>
               <TrendingUp size={24} color="#f59e0b" />
             </View>
             <Text style={styles.statNumber}>89%</Text>
-            <Text style={styles.statLabel}>出勤率</Text>
+            <Text style={styles.statLabel}>{t('attendanceRate')}</Text>
           </View>
         </View>
 
@@ -163,7 +163,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Camera size={20} color="#374151" />
-            <Text style={styles.sectionTitle}>今日照片</Text>
+            <Text style={styles.sectionTitle}>{t('todaysPhotos')}</Text>
           </View>
           <ScrollView 
             horizontal 
@@ -183,10 +183,10 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Calendar size={20} color="#374151" />
-            <Text style={styles.sectionTitle}>打卡记录</Text>
+            <Text style={styles.sectionTitle}>{t('checkinRecords')}</Text>
           </View>
           {loading ? (
-            <Text>加载中...</Text>
+            <Text>{t('loading')}</Text>
           ) : error ? (
             <Text style={{ color: 'red' }}>{error}</Text>
           ) : 

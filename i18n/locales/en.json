@@ -1,6 +1,18 @@
 {
-  "hello": "Hello",
-  "home":"home",
-  "welcome": "Welcome to our app",
-  "switch_language": "Switch Language"
+  "home": "Home",
+  "me": "Me",
+  "member": "Member",
+  "on-time": "onTime",
+  "late": "late",
+  "absent": "absent",
+  "unknown": "unknown",
+  "teamCheckin": "Team Check-in",
+  "todayIs": "Today is",
+  "teamMembers": "Team Members",
+  "checkedIn": "Checked In",
+  "attendanceRate": "Attendance Rate",
+  "todaysPhotos": "Today's Photos",
+  "checkinRecords": "Check-in Records",
+  "loading": "Loading...",
+  "headquarters": "Headquarters"
 }

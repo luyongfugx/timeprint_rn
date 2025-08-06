@@ -11,7 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Users, Chrome as Home,Settings } from 'lucide-react-native';
 // 引入你创建的页面组件
 import HomeScreen from './screens/HomeScreen';
-import MembersManagement from './screens/members';
+import MembersManagement from './screens/Members';
 import ProfileScreen from './screens/ProfileScreen';
 import PhotoViewScreen from './screens/PhotoViewScreen';
 import { ActivityIndicator, View } from 'react-native';
@@ -47,8 +47,8 @@ function MainTabs() {
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('home') }} />
-        <Tab.Screen name="Member" component={MembersManagement} options={{ title: '成员' }} />
-        <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: '我的' }} />
+        <Tab.Screen name="Member" component={MembersManagement} options={{ title: t('member') }} />
+        <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: t('me')  }} />
       </Tab.Navigator>
 
   );
