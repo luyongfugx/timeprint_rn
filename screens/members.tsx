@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -88,6 +89,7 @@ const mockMembers: TeamMember[] = [
 ];
 
 export default function MembersManagement() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMembers, setFilteredMembers] = useState(mockMembers);
 
@@ -118,13 +120,13 @@ export default function MembersManagement() {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'online':
-        return '在线';
+        return t('online');
       case 'away':
-        return '离开';
+        return t('away');
       case 'offline':
-        return '离线';
+        return t('offline');
       default:
-        return '未知';
+        return t('unknown');
     }
   };
 
@@ -132,8 +134,8 @@ export default function MembersManagement() {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.title}>成员管理</Text>
-        <Text style={styles.subtitle}>总共 {mockMembers.length} 名成员</Text>
+        <Text style={styles.title}>{t('membersManagement')}</Text>
+        <Text style={styles.subtitle}>{t('totalMembers', { count: mockMembers.length })}</Text>
       </View>
 
       {/* Search Bar */}
@@ -142,7 +144,7 @@ export default function MembersManagement() {
           <Search size={20} color="#9ca3af" />
           <TextInput
             style={styles.searchInput}
-            placeholder="搜索成员姓名、职位或部门"
+            placeholder={t('searchMembers')}
             value={searchQuery}
             onChangeText={handleSearch}
             placeholderTextColor="#9ca3af"
@@ -189,7 +191,7 @@ export default function MembersManagement() {
               <View style={styles.checkinInfo}>
                 <View style={styles.checkinItem}>
                   <Clock size={14} color="#6b7280" />
-                  <Text style={styles.checkinText}>上次打卡: {member.lastCheckinTime}</Text>
+                  <Text style={styles.checkinText}>{t('lastCheckin')}: {member.lastCheckinTime}</Text>
                 </View>
                 <View style={styles.checkinItem}>
                   <MapPin size={14} color="#6b7280" />

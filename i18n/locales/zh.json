@@ -14,5 +14,12 @@
   "todaysPhotos": "今日照片",
   "checkinRecords": "打卡记录",
   "loading": "加载中...",
-  "headquarters": "公司总部"
+  "headquarters": "公司总部",
+  "membersManagement": "成员管理",
+  "totalMembers": "共{{count}}位成员",
+  "searchMembers": "搜索成员",
+  "lastCheckin": "最后打卡",
+  "online": "在线",
+  "away": "离开",
+  "offline": "离线"
 }

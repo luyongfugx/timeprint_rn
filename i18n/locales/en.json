@@ -1,11 +1,11 @@
 {
-  "home": "Home",
+  "home":"Home",
   "me": "Me",
   "member": "Member",
-  "on-time": "onTime",
-  "late": "late",
-  "absent": "absent",
-  "unknown": "unknown",
+  "on-time":"onTime",
+  "late":"late",
+  "absent":"absent",
+  "unknown":"unknown",
   "teamCheckin": "Team Check-in",
   "todayIs": "Today is",
   "teamMembers": "Team Members",
@@ -14,5 +14,12 @@
   "todaysPhotos": "Today's Photos",
   "checkinRecords": "Check-in Records",
   "loading": "Loading...",
-  "headquarters": "Headquarters"
+  "headquarters": "Headquarters",
+  "membersManagement": "Members Management",
+  "totalMembers": "Total {{count}} members",
+  "searchMembers": "Search members",
+  "lastCheckin": "Last check-in",
+  "online": "Online",
+  "away": "Away",
+  "offline": "Offline"
 }
