@@ -1,11 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch, Alert } from 'react-native';
 import { ArrowBigLeft } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 
+import { supabase } from '../api/supabase';
 
 const ProfileScreen = () => {
   const { t } = useTranslation();
+  const handleLogin = async () => {
+    const email ="luyf"
+    const password ="luyf"
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+   Alert.alert(error?.message??"")
+  
+  };
+
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -22,7 +34,7 @@ const ProfileScreen = () => {
           <Text style={styles.userName}>卢勇福</Text>
           <Text style={styles.levelTag}>{t('achievementLevel', { level: 3 })}</Text>
         </View>
-        <TouchableOpacity style={styles.certificateButton}>
+        <TouchableOpacity style={styles.certificateButton}  onPress={handleLogin}>
           <Text style={styles.certificateText}>{t('workCertificate')}</Text>
           <Text style={styles.certificateLink}>{t('view')}</Text>
         </TouchableOpacity>
