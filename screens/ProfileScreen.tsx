@@ -4,19 +4,50 @@ import { ArrowBigLeft } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 
 import { supabase } from '../api/supabase';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const ProfileScreen = () => {
   const { t } = useTranslation();
   const handleLogin = async () => {
-    const email ="luyf"
-    const password ="luyf"
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-   Alert.alert(error?.message??"")
+  //   const email ="luyf"
+  //   const password ="luyf"
+
+  //   const { error } = await supabase.auth.signInWithPassword({
+  //     email,
+  //     password,
+  //   });
+  //  Alert.alert(error?.message??"")
+  GoogleSignin.configure({
+    scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+    webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',
+  })
+
+    try {
+      await GoogleSignin.hasPlayServices()
+      const userInfo = await GoogleSignin.signIn()
+      if (userInfo?.data?.idToken) {
+        const { data, error } = await supabase.auth.signInWithIdToken({
+          provider: 'google',
+          token: userInfo.data.idToken,
+        })
+        console.log(error, data)
+      } else {
+        throw new Error('no ID token present!')
+      }
+    } catch (error: any) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
+    }
   
   };
+
 
   return (
     <ScrollView style={styles.container}>
@@ -34,7 +65,7 @@ const ProfileScreen = () => {
           <Text style={styles.userName}>卢勇福</Text>
           <Text style={styles.levelTag}>{t('achievementLevel', { level: 3 })}</Text>
         </View>
-        <TouchableOpacity style={styles.certificateButton}  onPress={handleLogin}>
+        <TouchableOpacity style={styles.certificateButton} >
           <Text style={styles.certificateText}>{t('workCertificate')}</Text>
           <Text style={styles.certificateLink}>{t('view')}</Text>
         </TouchableOpacity>
@@ -51,7 +82,7 @@ const ProfileScreen = () => {
       <Item label={t('accountCancellation')} rightText={t('cancellationWarning')} />
 
       {/* 退出按钮 */}
-      <TouchableOpacity style={styles.logoutBtn}>
+      <TouchableOpacity style={styles.logoutBtn}  onPress={handleLogin}>
         <Text style={styles.logoutText}>{t('logout')}</Text>
       </TouchableOpacity>
     </ScrollView>
