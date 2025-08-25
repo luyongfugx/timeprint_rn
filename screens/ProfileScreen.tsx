@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch, Alert } from 'react-native';
 import { ArrowBigLeft } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
@@ -8,15 +8,32 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 
 const ProfileScreen = () => {
   const { t } = useTranslation();
-  const handleLogin = async () => {
-  //   const email ="luyf"
-  //   const password ="luyf"
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
-  //   const { error } = await supabase.auth.signInWithPassword({
-  //     email,
-  //     password,
-  //   });
-  //  Alert.alert(error?.message??"")
+  useEffect(() => {
+    // 检查当前登录状态
+    const checkAuthState = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsLoggedIn(!!session);
+      setUser(session?.user || null);
+    };
+
+    checkAuthState();
+
+    // 监听认证状态变化
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setIsLoggedIn(!!session);
+        console.log("onAuthStateChange" ,session)
+        setUser(session?.user || null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogin = async () => {
   GoogleSignin.configure({
     scopes: ['https://www.googleapis.com/auth/drive.readonly'],
     webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',
@@ -24,7 +41,10 @@ const ProfileScreen = () => {
 
     try {
       await GoogleSignin.hasPlayServices()
+      console.log("GoogleSignin hasPlayServicesaaaaa")
       const userInfo = await GoogleSignin.signIn()
+      console.log("GoogleSignin hasPlayServicesxxx",userInfo)
+
       if (userInfo?.data?.idToken) {
         const { data, error } = await supabase.auth.signInWithIdToken({
           provider: 'google',
@@ -35,6 +55,7 @@ const ProfileScreen = () => {
         throw new Error('no ID token present!')
       }
     } catch (error: any) {
+      console.log("GoogleSignin hasPlayServicesxxx error",error)
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -48,44 +69,68 @@ const ProfileScreen = () => {
   
   };
 
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Error signing out:', error);
+      }
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>{t('profile')}</Text>
-      </View>
-
-      {/* 用户信息卡片 */}
-      <View style={styles.profileCard}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>勇福</Text>
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>{t('profile')}</Text>
         </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.userName}>卢勇福</Text>
-          <Text style={styles.levelTag}>{t('achievementLevel', { level: 3 })}</Text>
-        </View>
-        <TouchableOpacity style={styles.certificateButton} >
-          <Text style={styles.certificateText}>{t('workCertificate')}</Text>
-          <Text style={styles.certificateLink}>{t('view')}</Text>
-        </TouchableOpacity>
-      </View>
 
-      {/* 列表项 */}
-      <Item label={t('industry')} />
-      <Item label={t('member')} right={<Text style={styles.vipTag}>{t('vip')}</Text>} rightText={t('vipBenefits')} />
-      <Item label={t('myOrders')} rightText={t('invoiceAvailable')} />
+        {/* 用户信息卡片 - 只在登录状态下显示 */}
+        {isLoggedIn && user && (
+          <View style={styles.profileCard}>
+            <View style={styles.avatar}>
+              <Text style={styles.avatarText}>
+                {user.user_metadata?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
+              </Text>
+            </View>
+            <View style={styles.userInfo}>
+              <Text style={styles.userName}>
+                {user.user_metadata?.name || user.email || t('user')}
+              </Text>
+              {/* <Text style={styles.levelTag}>{t('achievementLevel', { level: 3 })}</Text> */}
+            </View>
+            {/* <TouchableOpacity style={styles.certificateButton} >
+              <Text style={styles.certificateText}>{t('workCertificate')}</Text>
+              <Text style={styles.certificateLink}>{t('view')}</Text>
+            </TouchableOpacity> */}
+          </View>
+        )}
 
-      <Item label={t('id')} rightText="4805280374" copy />
-      <Item label={t('phoneNumber')} rightText="13811333363" linkText={t('change')} />
-      <Item label={t('wechatBinding')} rightText={t('bound')} linkText={t('unbind')} />
-      <Item label={t('accountCancellation')} rightText={t('cancellationWarning')} />
+        {/* 列表项 */}
+        {/* <Item label={t('industry')} />
+        <Item label={t('member')} right={<Text style={styles.vipTag}>{t('vip')}</Text>} rightText={t('vipBenefits')} />
+        <Item label={t('myOrders')} rightText={t('invoiceAvailable')} />
 
-      {/* 退出按钮 */}
-      <TouchableOpacity style={styles.logoutBtn}  onPress={handleLogin}>
-        <Text style={styles.logoutText}>{t('logout')}</Text>
+        <Item label={t('id')} rightText="4805280374" copy />
+        <Item label={t('phoneNumber')} rightText="13811333363" linkText={t('change')} />
+        <Item label={t('wechatBinding')} rightText={t('bound')} linkText={t('unbind')} />
+        <Item label={t('accountCancellation')} rightText={t('cancellationWarning')} /> */}
+      </ScrollView>
+
+      {/* 登录/退出按钮 - 放在底部 */}
+      <TouchableOpacity 
+        style={styles.bottomButton}  
+        onPress={isLoggedIn ? handleLogout : handleLogin}
+      >
+        <Text style={styles.bottomButtonText}>
+          {isLoggedIn ? t('logout') : t('login')}
+        </Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -119,6 +164,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f9f9f9',
     flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 100, // 为底部按钮留出空间
   },
   header: {
     flexDirection: 'row',
@@ -223,15 +274,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     borderRadius: 4,
   },
-  logoutBtn: {
+  bottomButton: {
+    position: 'absolute',
+    bottom: 30,
+    left: 16,
+    right: 16,
     backgroundColor: '#fff',
     paddingVertical: 16,
-    marginTop: 20,
     alignItems: 'center',
+    borderRadius: 8,
   },
-  logoutText: {
+  bottomButtonText: {
     color: '#E53935',
     fontSize: 16,
+    fontWeight: '600',
   },
 });
 

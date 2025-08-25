@@ -40,5 +40,7 @@
   "accountCancellation": "Account Cancellation",
   "cancellationWarning": "Cannot be recovered after cancellation, please proceed with caution",
   "logout": "Log Out",
+  "login": "Log In",
+  "user": "User",
   "copy": "Copy"
 }

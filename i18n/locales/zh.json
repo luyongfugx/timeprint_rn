@@ -40,5 +40,7 @@
   "accountCancellation": "注销账号",
   "cancellationWarning": "注销后无法恢复，请谨慎操作",
   "logout": "退出登录",
+  "login": "登录",
+  "user": "用户",
   "copy": "复制"
 }
