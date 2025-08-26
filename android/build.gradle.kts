@@ -12,7 +12,6 @@ buildscript {
         set("ndkVersion", "27.1.12297006")
         set("kotlinVersion", "2.1.20")
     }
-
     repositories {
         google()
         mavenCentral()
