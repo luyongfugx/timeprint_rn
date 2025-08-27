@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch, Alert, SafeAreaView, Platform } from 'react-native';
-import { ArrowBigLeft } from 'lucide-react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView,   Image, Alert, SafeAreaView, Platform } from 'react-native';
+import { User, LogOut, Mail, Shield } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 
 import { supabase } from '../api/supabase';
@@ -11,8 +11,12 @@ import Animated, {
   withSpring, 
   withTiming,
   useSharedValue,
-  interpolate
+  interpolate,
+  runOnJS,
+  FadeInUp,
+  FadeInDown
 } from 'react-native-reanimated';
+
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 
 const ProfileScreen = () => {
@@ -60,7 +64,9 @@ const ProfileScreen = () => {
       .onFinalize(() => {
         buttonScale.value = withSpring(1);
         if (!isLoading) {
-          handleLogin(provider);
+         
+          runOnJS(handleLogin)(provider); 
+         //  handleLogin(provider);
         }
       });
   };
@@ -71,7 +77,7 @@ const ProfileScreen = () => {
     })
     .onFinalize(() => {
       checkboxScale.value = withSpring(1);
-      setAgreedToTerms(!agreedToTerms);
+      runOnJS(setAgreedToTerms)(!agreedToTerms);
     });
 
   const buttonAnimatedStyle = useAnimatedStyle(() => ({
@@ -90,6 +96,15 @@ const ProfileScreen = () => {
       },
     ],
   }));
+
+  const signOutGesture = Gesture.Tap()
+  .onBegin(() => {
+    buttonScale.value = withSpring(0.95);
+  })
+  .onFinalize(() => {
+    buttonScale.value = withSpring(1);
+    runOnJS(handleLogout)();
+  });
 
 
 
@@ -146,6 +161,7 @@ const ProfileScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {!isLoggedIn && (
     <Animated.View style={[styles.content, fadeAnimatedStyle]}>
       <View style={styles.header}>
         <Text style={styles.title}>欢迎回来</Text>
@@ -199,7 +215,80 @@ const ProfileScreen = () => {
           </Animated.View>
         </GestureDetector>
       </View>
-    </Animated.View>
+    </Animated.View>)}
+    {isLoggedIn && user && (
+    <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Animated.View 
+          style={styles.header}
+          entering={FadeInUp.delay(200).springify()}
+        >
+          <View style={styles.avatarContainer}>
+            {user.avatar ? (
+              <Image source={{ uri: user.avatar }} style={styles.avatar} />
+            ) : (
+              <View style={styles.avatarPlaceholder}>
+                <View style={styles.avatar}>
+               <Text style={styles.avatarText}>
+                 {user.user_metadata?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
+              </Text>
+            </View>
+              </View>
+            )}
+            <View style={styles.providerBadge}>
+              <Text style={styles.providerText}>
+                {user.provider === 'google' ? 'G' : ''}
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.userName}>{user.name}</Text>
+          <Text style={styles.userEmail}>{user.email}</Text>
+        </Animated.View>
+  
+        <Animated.View 
+          style={styles.infoSection}
+          entering={FadeInUp.delay(400).springify()}
+        >
+          <View style={styles.infoCard}>
+            <View style={styles.infoItem}>
+              <View style={styles.iconContainer}>
+                <Mail size={20} color="#A16207" />
+              </View>
+              <View style={styles.infoContent}>
+                <Text style={styles.infoLabel}>昵称</Text>
+                <Text style={styles.infoValue}>{user.user_metadata?.name || user.email || t('user')}</Text>
+              </View>
+            </View>
+
+            <View style={styles.separator} />
+
+            {/* <View style={styles.infoItem}>
+              <View style={styles.iconContainer}>
+                <Shield size={20} color="#A16207" />
+              </View>
+              <View style={styles.infoContent}>
+                <Text style={styles.infoLabel}>账户类型</Text>
+                <Text style={styles.infoValue}>
+                  {user.provider === 'google' ? 'Google 账户' : 'Apple 账户'}
+                </Text>
+              </View>
+            </View> */}
+          </View>
+        </Animated.View>
+
+        <Animated.View 
+          style={styles.actionsSection}
+          entering={FadeInDown.delay(600).springify()}
+        >
+          <GestureDetector gesture={signOutGesture}>
+            <Animated.View style={buttonAnimatedStyle}>
+              <TouchableOpacity style={styles.signOutButton}>
+                <LogOut size={20} color="#DC2626" />
+                <Text style={styles.signOutText}>退出登录</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          </GestureDetector>
+        </Animated.View>
+      </ScrollView>)}
   </SafeAreaView>
     // <View style={styles.container}>
     //   <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
@@ -282,7 +371,12 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FEF3C7',
+    // backgroundColor: '#FEF3C7',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 24,
+    paddingTop: 24,
   },
   content: {
     flex: 1,
@@ -397,137 +491,146 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textDecorationLine: 'underline',
   },
-});
-
-const styles2 = StyleSheet.create({
-  container: {
-    backgroundColor: '#f9f9f9',
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 100, // 为底部按钮留出空间
-  },
-  header: {
-    flexDirection: 'row',
-    padding: 16,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginLeft: 8,
-  },
-  profileCard: {
-    backgroundColor: '#fff',
-    padding: 16,
-    flexDirection: 'column',
-    marginBottom: 8,
+  avatarContainer: {
+    position: 'relative',
+    marginBottom: 16,
   },
   avatar: {
-    backgroundColor: '#5B8EF2',
-    width: 48,
-    height: 48,
-    borderRadius: 8,
-    justifyContent: 'center',
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    borderWidth: 4,
+    borderColor: '#F59E0B',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   avatarText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 40,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    includeFontPadding: false,
   },
-  userInfo: {
-    marginTop: 8,
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#FED7AA',
+    borderWidth: 4,
+    borderColor: '#F59E0B',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  providerBadge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#F59E0B',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: '#FEF3C7',
+  },
+  providerText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
   userName: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#92400E',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  userEmail: {
     fontSize: 16,
+    color: '#A16207',
+    textAlign: 'center',
+  },
+  infoSection: {
+    marginBottom: 32,
+  },
+  infoCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  infoItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
+  iconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#FEF3C7',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  infoContent: {
+    flex: 1,
+  },
+  infoLabel: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 2,
+  },
+  infoValue: {
+    fontSize: 16,
+    color: '#111827',
     fontWeight: '500',
   },
-  levelTag: {
-    marginTop: 4,
-    fontSize: 12,
-    color: '#B07B00',
-    backgroundColor: '#FFF2D4',
-    alignSelf: 'flex-start',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
+  separator: {
+    height: 1,
+    backgroundColor: '#F3F4F6',
+    marginVertical: 8,
   },
-  certificateButton: {
-    marginTop: 12,
-    backgroundColor: '#4479f6',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10,
-    borderRadius: 6,
+  actionsSection: {
+    marginTop: 'auto',
+    paddingBottom: 32,
   },
-  certificateText: {
-    color: '#fff',
-    fontSize: 14,
-  },
-  certificateLink: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  itemRow: {
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  itemLabel: {
-    fontSize: 15,
-    color: '#333',
-  },
-  itemRight: {
+  signOutButton: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  itemValue: {
-    color: '#666',
-    fontSize: 14,
-    marginRight: 6,
-  },
-  copyText: {
-    color: '#007AFF',
-    fontSize: 14,
-  },
-  linkText: {
-    color: '#007AFF',
-    fontSize: 14,
-    marginLeft: 6,
-  },
-  vipTag: {
-    backgroundColor: '#FFDD99',
-    paddingHorizontal: 4,
-    paddingVertical: 2,
-    marginRight: 4,
-    fontSize: 12,
-    borderRadius: 4,
-  },
-  bottomButton: {
-    position: 'absolute',
-    bottom: 30,
-    left: 16,
-    right: 16,
-    backgroundColor: '#fff',
+    justifyContent: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
     paddingVertical: 16,
-    alignItems: 'center',
-    borderRadius: 8,
+    paddingHorizontal: 24,
+    borderWidth: 1,
+    borderColor: '#F87171',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  bottomButtonText: {
-    color: '#E53935',
+  signOutText: {
     fontSize: 16,
     fontWeight: '600',
+    color: '#DC2626',
+    marginLeft: 8,
   },
 });
+
+
 
 export default ProfileScreen;
