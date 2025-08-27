@@ -96,7 +96,16 @@ const ProfileScreen = () => {
       },
     ],
   }));
-
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Error signing out:', error);
+      }
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
   const signOutGesture = Gesture.Tap()
   .onBegin(() => {
     buttonScale.value = withSpring(0.95);
@@ -105,6 +114,7 @@ const ProfileScreen = () => {
     buttonScale.value = withSpring(1);
     runOnJS(handleLogout)();
   });
+
 
 
 
@@ -147,16 +157,6 @@ const ProfileScreen = () => {
   
   };
 
-  const handleLogout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        console.error('Error signing out:', error);
-      }
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
-  };
 
 
   return (
