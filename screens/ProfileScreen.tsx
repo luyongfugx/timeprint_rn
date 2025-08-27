@@ -93,7 +93,7 @@ const ProfileScreen = () => {
 
 
 
-  const handleLogin = async () => {
+  const handleLogin = async (provider: string) => {
     GoogleSignin.configure({
       scopes: ['https://www.googleapis.com/auth/drive.readonly'],
       webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',

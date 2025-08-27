@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Users, Chrome as Home,Settings } from 'lucide-react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 // 引入你创建的页面组件
 import HomeScreen from './screens/HomeScreen';
 import MembersManagement from './screens/Members';
@@ -80,7 +81,7 @@ function App() {
     );
   }
   return (
-
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>    
         <I18nextProvider i18n={i18n}>
         <Stack.Navigator initialRouteName="Main">
@@ -89,7 +90,7 @@ function App() {
         </Stack.Navigator>
         </I18nextProvider>
       </NavigationContainer>
-
+    </GestureHandlerRootView>
   );
 }
 
