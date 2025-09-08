@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 import { supabase } from '../api/supabase';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import LinearGradient from 'react-native-linear-gradient';
 import Animated, { 
   useAnimatedStyle, 
   withSpring, 
@@ -23,9 +22,10 @@ const ProfileScreen = () => {
   const { t } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
   const buttonScale = useSharedValue(1);
   const checkboxScale = useSharedValue(1);
   const fadeIn = useSharedValue(0);
@@ -290,83 +290,11 @@ const ProfileScreen = () => {
         </Animated.View>
       </ScrollView>)}
   </SafeAreaView>
-    // <View style={styles.container}>
-    //   <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-    //     {/* Header */}
-    //     <View style={styles.header}>
-    //       <Text style={styles.headerTitle}>{t('profile')}</Text>
-    //     </View>
-
-    //     {/* 用户信息卡片 - 只在登录状态下显示 */}
-    //     {isLoggedIn && user && (
-    //       <View style={styles.profileCard}>
-    //         <View style={styles.avatar}>
-    //           <Text style={styles.avatarText}>
-    //             {user.user_metadata?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
-    //           </Text>
-    //         </View>
-    //         <View style={styles.userInfo}>
-    //           <Text style={styles.userName}>
-    //             {user.user_metadata?.name || user.email || t('user')}
-    //           </Text>
-    //           {/* <Text style={styles.levelTag}>{t('achievementLevel', { level: 3 })}</Text> */}
-    //         </View>
-    //         {/* <TouchableOpacity style={styles.certificateButton} >
-    //           <Text style={styles.certificateText}>{t('workCertificate')}</Text>
-    //           <Text style={styles.certificateLink}>{t('view')}</Text>
-    //         </TouchableOpacity> */}
-    //       </View>
-    //     )}
-
-    //     {/* 列表项 */}
-    //     {/* <Item label={t('industry')} />
-    //     <Item label={t('member')} right={<Text style={styles.vipTag}>{t('vip')}</Text>} rightText={t('vipBenefits')} />
-    //     <Item label={t('myOrders')} rightText={t('invoiceAvailable')} />
-
-    //     <Item label={t('id')} rightText="4805280374" copy />
-    //     <Item label={t('phoneNumber')} rightText="13811333363" linkText={t('change')} />
-    //     <Item label={t('wechatBinding')} rightText={t('bound')} linkText={t('unbind')} />
-    //     <Item label={t('accountCancellation')} rightText={t('cancellationWarning')} /> */}
-    //   </ScrollView>
-
-    //   {/* 登录/退出按钮 - 放在底部 */}
-    //   <TouchableOpacity 
-    //     style={styles.bottomButton}  
-    //     onPress={isLoggedIn ? handleLogout : handleLogin}
-    //   >
-    //     <Text style={styles.bottomButtonText}>
-    //       {isLoggedIn ? t('logout') : t('login')}
-    //     </Text>
-    //   </TouchableOpacity>
-    // </View>
+    
   );
 };
 
-// const Item = ({
-//   label,
-//   rightText,
-//   right,
-//   copy,
-//   linkText,
-// }: {
-//   label: string;
-//   rightText?: string;
-//   right?: React.ReactNode;
-//   copy?: boolean;
-//   linkText?: string;
-// }) => {
-//   const { t } = useTranslation()
-//   return (
-//   <View style={styles.itemRow}>
-//     <Text style={styles.itemLabel}>{label}</Text>
-//     <View style={styles.itemRight}>
-//       {rightText && <Text style={styles.itemValue}>{rightText}</Text>}
-//       {right}
-//       {linkText && <Text style={styles.linkText}>{linkText}</Text>}
-//       {copy && <Text style={styles.copyText}>{t('copy')}</Text>}
-//     </View>
-//   </View>
-// )};
+
 
 const styles = StyleSheet.create({
   container: {
