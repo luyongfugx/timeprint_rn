@@ -16,8 +16,11 @@ import {
   TrendingUp,
 } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
+import { supabase } from '../api/supabase';
+import { getMembership } from '../api/teams/membership';
+import { getHomeData, homeData } from '../api/teams/home';
 
-const API_URL = 'https://api.example.com/checkin-records'; // Replace with your actual API endpoint
+const API_URL = 'http://192.168.3.165:3000/checkin-records'; // Replace with your actual API endpoint
 
 
 const todayPhotos = [
@@ -34,7 +37,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
- const { t } = useTranslation();
+  const { t } = useTranslation();
+  const [teamMembership,setTeamMembership] = useState<TeamMembership>();
   useEffect(() => {
     const fetchCheckinRecords = async () => {
       try {
@@ -92,6 +96,18 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     };
 
     fetchCheckinRecords();
+    const checkAuthState = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      const membership = await getMembership(session)
+      setTeamMembership(membership.teamMember)  
+      console.log(membership)
+      const homeData = await getHomeData(session)
+      console.log(homeData)
+
+    };
+
+    checkAuthState();
+
   }, []);
 
   const getStatusColor = (status: string) => {
@@ -128,7 +144,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>{t('teamCheckin')}</Text>
+          <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
           <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
         </View>
 
@@ -141,7 +157,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               </TouchableOpacity>
             </View>
             <TouchableOpacity onPress={gotoMember} >
-            <Text style={styles.statNumber}>28</Text>
+            <Text style={styles.statNumber}>{teamMembership ? teamMembership.teams.member_count : 0}</Text>
             <Text style={styles.statLabel}>{t('teamMembers')}</Text>
             </TouchableOpacity>
           </View>
@@ -441,5 +457,6 @@ const styles = StyleSheet.create({
   },
 });
 export default HomeScreen;
+
 
 
