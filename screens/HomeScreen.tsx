@@ -18,7 +18,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../api/supabase';
 import { getMembership } from '../api/teams/membership';
-import { getHomeData, homeData } from '../api/teams/home';
+import { getHomeData } from '../api/teams/home';
 
 const API_URL = 'http://192.168.3.165:3000/checkin-records'; // Replace with your actual API endpoint
 
@@ -139,13 +139,24 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       navigation.navigate('Member')
     };
 
+    const doCheckin = () => {
+      console.log('Checkin button pressed');
+      // 这里可以添加打卡逻辑，比如打开相机、导航到打卡页面等
+      // navigation.navigate('CheckinCamera');
+    };
+
   return (
     <SafeAreaView style={styles.container}>
-  <ScrollView showsVerticalScrollIndicator={false}>
+      <TouchableOpacity onPress={doCheckin} style={styles.cameraButton}>
+        <Camera size={24} color="#3b82f6" />
+      </TouchableOpacity>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
-          <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
+          <View style={styles.headerLeft}>
+            <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
+            <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
+          </View>
         </View>
 
         {/* Stats Cards */}
@@ -454,6 +465,26 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#ffffff',
     fontWeight: '600',
+  },
+  headerLeft: {
+    flex: 1,
+  },
+  cameraButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: '#f3f4f6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });
 export default HomeScreen;
