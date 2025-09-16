@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShadowDrawable">
+        <attr name="android:shadowColor" format="color" />
+        <attr name="android:shadowDx" format="float" />
+        <attr name="android:shadowDy" format="float" />
+        <attr name="android:shadowRadius" format="float" />
+    </declare-styleable>
+    <declare-styleable name="RotateLayout">
+        <attr name="angle" format="integer" />
+        <attr name="dragEnable" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="AsyncView">
+        <attr name="asyncId" format="reference" />
+        <attr name="asyncLayout" format="reference" />
+        <attr name="asyncInflatedId" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="DragAbleContainerView">
+        <attr name="bound_view" format="reference" />
+        <attr name="move_view" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="GpInputTextView">
+        <attr name="android:hint" format="string|reference"/>
+        <attr name="android:maxLines" format="integer"/>
+        <attr name="deleteEnable" format="boolean"/>
+        <attr name="subType" format="string"/>
+        <attr name="android:scrollbars">
+            <flag name="none" value="0x00000000" />
+            <flag name="horizontal" value="0x00000100" />
+            <flag name="vertical" value="0x00000200" />
+        </attr>
+        <attr name="enableClear" format="boolean"/>
+    </declare-styleable>
+    <attr name="state_timer_cancel" format="boolean"/>
+    <declare-styleable name="ScaleCircleView">
+        <attr name="circleSize" format="dimension" />
+        <attr name="showBorder" format="boolean" />
+        <attr name="circleText" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="borderColor" format="color" />
+    </declare-styleable>
+
+</resources>

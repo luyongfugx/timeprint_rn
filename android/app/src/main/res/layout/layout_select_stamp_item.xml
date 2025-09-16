@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_1"
+    android:paddingTop="@dimen/dp_5"
+    android:paddingHorizontal="@dimen/dp_5"
+    android:paddingBottom="@dimen/dp_0">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cover_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:padding="@dimen/dp_5"
+        app:layout_constraintDimensionRatio="H, 498:240"
+        android:background="@drawable/bg_watermark_cover"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/vm_name_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/editCover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:background="@drawable/bg_watermark_item_cover_in_edit"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/vm_name_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shareAndEdit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:visibility="visible"
+        android:background="@drawable/bg_watermark_item_cover_in_edit"
+        app:layout_constraintBottom_toTopOf="@+id/vm_name_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/wm_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/space"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_wm_edit"
+            android:layout_width="@dimen/dp_68"
+            android:layout_height="@dimen/dp_26"
+            app:autoSizeMaxTextSize="@dimen/textSize13"
+            app:autoSizeMinTextSize="@dimen/textSize6"
+            app:autoSizeStepGranularity="1dp"
+            app:autoSizeTextType="uniform"
+            android:layout_marginStart="3dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/i_edit"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:paddingHorizontal="@dimen/dp_8"
+            android:background="@drawable/bg_radius_4_0093ff_cc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/vm_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:textSize="@dimen/textSize14"
+        android:lines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cover_bg"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal">
+        <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.IconFontTextView
+            android:id="@+id/ratio_image"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:layout_marginRight="12dp"
+            android:textSize="@dimen/textSize16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/ratio_text"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:gravity="center"
+             />
+    </LinearLayout>
+    <View
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+</LinearLayout>

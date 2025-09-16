@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="overlay_color">#2e000000</color>
+    <color name="yellow_color">#f8d649</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#008375</color>
+    <color name="face_text">#FFD60A</color>
+
+
+    <color name="color_00b046">#00B046</color>
+    <color name="color_0061F3">#0061F3</color>
+    <color name="color_e7a600">#E7A600</color>
+    <color name="color_ed7219">#ED7219</color>
+    <color name="color_0075ff">#0075FF</color>
+    <color name="color_007AFF">#007AFF</color>
+
+    <color name="color_CCEAFF">#CCEAFF</color>
+    <color name="calendar_bg">#FFFFFF</color>
+    <color name="light_gray">#dbdbdb</color>
+    <color name="gray">#7e7e7e</color>
+    <color name="semi_gray">#979797</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="sheet_green">#74dda2</color>
+    <color name="blue_trans_10">#1A0093FF</color>
+    <color name="black_trans_5">#0D000000</color>
+    <color name="black_trans_10">#1A000000</color>
+    <color name="black_trans_20">#33000000</color>
+    <color name="black_trans_25">#40000000</color>
+    <color name="black_trans_30">#4d000000</color>
+    <color name="black_trans_35">#59000000</color>
+    <color name="black_trans_40">#66000000</color>
+    <color name="black_trans_5c">#6d6d6d</color>
+    <color name="black_trans_50">#80000000</color>
+    <color name="black_trans_60">#99000000</color>
+    <color name="black_trans_65">#a5000000</color>
+    <color name="black_trans_70">#b3000000</color>
+    <color name="black_trans_80">#CC000000</color>
+    <color name="black_trans_85">#d9000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_trans_90">#E6ffffff</color>
+    <color name="white_trans_85">#d9ffffff</color>
+    <color name="white_trans_80">#ccffffff</color>
+    <color name="white_trans_40">#66ffffff</color>
+    <color name="white_trans_20">#33FFFFFF</color>
+    <color name="white_trans_25">#40ffffff</color>
+    <color name="white_trans_30">#4DFFFFFF</color>
+    <color name="white_trans_15">#26FFFFFF</color>
+    <color name="white_trans_70">#b3ffffff</color>
+    <color name="white_trans_50">#80ffffff</color>
+    <color name="white_trans_60">#99ffffff</color>
+    <color name="white_trans_56">#8fffffff</color>
+    <color name="white_opt5">#0DFFFFFF</color>
+
+    <color name="blue_id120_header">#990527AF</color>
+
+    <color name="default_bg_color">#fff9a178</color>
+
+    <color name="color_babac3">#babac3</color>
+    <color name="color_sub_title">#83838C</color>
+    <color name="color_B2000000">#B2000000</color>
+    <color name="color_8e8e93">#8e8e93</color>
+    <color name="color_e1f1fa">#e1f1fa</color>
+    <color name="color_8e8e8e">#8e8e8e</color>
+    <color name="color_e8e8e8">#e8e8e8</color>
+    <color name="color_8e8e93_trans">#1f8e8e93</color>
+    <color name="color_2c0505">#2c0505</color>
+    <color name="color_c2c5cc">#c2c5cc</color>
+    <color name="color_72727c">#72727c</color>
+    <color name="color_bdc2c8">#bdc2c8</color>
+    <color name="color_707070">#707070</color>
+    <color name="color_dedede">#DEDEDE</color>
+    <color name="color_adb5c1">#adb5c1</color>
+    <color name="color_7f8690">#7f8690</color>
+    <color name="color_d9d9d9">#d9d9d9</color>
+    <color name="color_e6494c50">#e6494c50</color>
+    <color name="color_afafb6">#afafb6</color>
+    <color name="color_e6e9ed">#e6e9ed</color>
+    <color name="color_e0e0e0">#e0e0e0</color>
+    <color name="color_b0b2be">#b0b2be</color>
+    <color name="color_c9c9c9">#c9c9c9</color>
+    <color name="color_fffbc43f">#fffbc43f</color>
+    <color name="color_ffc233">#FFC233</color>
+    <color name="color_60_ffc233">#99FFC233</color>
+    <color name="color_60_0093ff">#990093ff</color>
+    <color name="color_ff004d">#ff004d</color>
+    <color name="color_44444">#444444</color>
+    <color name="color_44444a_trans_35">#a644444a</color>
+    <color name="color_C60F0F">#C60F0F</color>
+    <color name="color_B0A37E">#B0A37E</color>
+    <color name="color_B0B3B6">#B0B3B6</color>
+    <color name="color_E2DAAC">#E2DAAC</color>
+    <color name="color_ff9b7c">#ff9b7c</color>
+    <color name="color_ff5a8c">#ff5a8c</color>
+    <color name="color_4a4b53">#4a4b53</color>
+    <color name="color_4a4a4a">#4a4a4a</color>
+    <color name="color_0E8320">#0E8320</color>
+    <color name="color_E56000">#E56000</color>
+    <color name="color_303">#303030</color>
+    <color name="color_ff5">#ff5a8c</color>
+    <color name="color_eff">#eff2f4</color>
+    <color name="color_7a7">#7a7f85</color>
+    <color name="color_eff0">#eff0f3</color>
+    <color name="color_141">#141414</color>
+    <color name="primary_text_color">#0093FF</color>
+    <color name="primary_hint_text_color">#9AD2FF</color>
+    <color name="color_ffd9efff">#D9eFFF</color>
+
+    <color name="color_47484E">#47484E</color>
+    <color name="color_E6E9ED">#E6E9ED</color>
+    <color name="btg_global_text_blue">#ff3A9AF4</color>
+    <color name="red">#f00</color>
+    <color name="red_opt90">#e6ff0000</color>
+    <color name="red_map_icon">#F83931</color>
+
+    <color name="blue">#00f</color>
+    <color name="color_8d8">#8D8D93</color>
+    <color name="color_747">#FF47484E</color>
+    <color name="color_3b3">#BF3B3B43</color>
+    <color name="color_a3a3a3">#A3A3A3</color>
+    <color name="color_474">#FF47484E</color>
+    <color name="color_474_30">#4D47484E</color>
+    <color name="color_f0f">#FFF0F0F0</color>
+    <color name="color_efe">#FFEFEFF4</color>
+    <color name="color_d85">#FFD85757</color>
+    <color name="color_dfd">#FFDFDFE3</color>
+    <color name="color_cec">#FFCECFD4</color>
+    <color name="color_b0b">#FFB0B2BE</color>
+    <color name="color_efeff4">#ffefeff4</color>
+    <color name="color_de0">#de000000</color>
+    <color name="color_8a0">#8a000000</color>
+    <color name="color_50_white">#80FFFFFF</color>
+    <color name="color_300">#4D000000</color>
+    <color name="color_50">#80000000</color>
+    <color name="color_60">#99000000</color>
+    <color name="color_75">#BF000000</color>
+    <color name="color_009">#FF009688</color>
+    <color name="color_ffe">#FFFFEE5B</color>
+    <color name="color_002">#800023FF</color>
+    <color name="color_006">#ff006cff</color>
+    <color name="color_016afa">#016AFA</color>
+    <color name="color_013f94">#013F94</color>
+    <color name="color_023984">#023984</color>
+    <color name="color_01132d">#01132D</color>
+    <color name="color_000">#ff000000</color>
+    <color name="color_d1d">#ffd1d5da</color>
+    <color name="color_eb5">#ffeb524a</color>
+    <color name="color_eb5_opt5">#0ceb524a</color>
+    <color name="color_898">#ff898b91</color>
+    <color name="color_e6e">#ffe6e9ed</color>
+    <color name="color_e60">#ffe60d3b</color>
+    <color name="color_3e3">#ff3e3e41</color>
+    <color name="color_aea">#ffaeaeae</color>
+    <color name="color_333">#ff333333</color>
+    <color name="color_edf">#ffedf6ff</color>
+    <color name="color_004">#ff0043de</color>
+    <color name="color_bdb">#ffbdbdbd</color>
+    <color name="color_6f6">#fff6f6f9</color>
+    <color name="gray_dedede">#dedede</color>
+    <color name="color_808">#ff808185</color>
+    <color name="color_424">#ff424242</color>
+    <color name="color_25b">#ff25b372</color>
+    <color name="color_dcf">#ffdcf0ff</color>
+    <color name="color_85_efe">#d9efeff4</color>
+    <color name="color_e0e2eb">#e0e2eb</color>
+    <color name="color_c4">#c4c4c4</color>
+    <color name="color_0093ff">#0093ff</color>
+    <color name="color_EA4D3D">#EA4D3D</color>
+    <color name="color_0093ff_4d">#4d0093ff</color>
+    <color name="color_0093ff_opt2">#050093ff</color>
+    <color name="color_0093ff_opt40">#660093FF</color>
+    <color name="color_0093ff_opt10">#1A0093ff</color>
+    <color name="color_0093ff_opt16">#290093ff</color>
+    <color name="color_83838C">#83838C</color>
+    <color name="color_202020">#202020</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_666666_op34">#57666666</color>
+    <color name="color_e4e4e4">#E4E4E4</color>
+    <color name="color_4e4e60">#4E4E60</color>
+    <color name="color_08A800">#08A800</color>
+
+
+    <color name="dialog_hint">#ffaeaeae</color>
+    <color name="color_1a1a1a">#ff1a1a1a</color>
+
+    <color name="xplayer_theme_color">#FFFFFF</color>
+    <color name="xplayer_theme_color_translucent">#9939C5BB</color>
+    <color name="translucent">#88000000</color>
+    <color name="xplayer_background_color">#4D000000</color>
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_800">#179dff</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
+    <color name="color_ddd">#dddddd</color>
+    <color name="color_ecedee">#ecedee</color>
+    <color name="color_ececec">#ececec</color>
+    <color name="color_f2f3f7">#F2F3F7</color>
+    <color name="color_cfeafd">#CFEAFD</color>
+    <color name="list_divider">#C9CCD1</color>
+    <!--   具有警告性的颜色 红色-->
+    <color name="late_early_label">#EB524A</color>
+    <color name="navigation">#FAFAFA</color>
+    <color name="gray_line">#e1e1e6</color>
+    <color name="color_fbf">#fbfbfb</color>
+    <color name="color_494C50">#494C50</color>
+    <color name="color_D5D9DF">#D5D9DF</color>
+    <color name="water_background">#7F8690</color>
+    <color name="water_invalid_overlay">#B2FFFFFF</color>
+    <color name="view_divider">#DADDE2</color>
+    <color name="color_221F1F">#42221f1f</color>
+    <color name="second_title_color">#333333</color>
+    <color name="second_white_color">#F3F7FA</color>
+    <color name="color_5a5a5a">#5A5A5A</color>
+    <color name="color_3C3C3C">#3C3C3C</color>
+    <color name="color_6f7074">#6f7074</color>
+    <color name="color_818592F">#FF818592</color>
+    <color name="button_forbid">#FFF0F0F0</color>
+    <color name="button_text_forbid">#FF5A5A5A</color>
+    <color name="primary_title_color">#FF000000</color>
+    <color name="primary_sub_title_color">#FF4A4A4A</color>
+    <color name="window_background">#FFEFEFF4</color>
+    <color name="clock_title">#FF4D4E4E</color>
+    <color name="color_7f7f88">#7F7F88</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_22_opt60">#99222222</color>
+    <color name="color_22_opt80">#CC222222</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_fff4e8">#FFF4E8</color>
+    <color name="color_ff8000">#FF8000</color>
+    <color name="color_c0c">#C0C0C0</color>
+    <color name="color_5b616b">#5B616B</color>
+    <color name="color_615F5F">#615F5F</color>
+    <color name="color_05b67e">#05B67E</color>
+    <color name="color_9b9">#FF9B9B9B</color>
+    <color name="color_ff6451">#FF6451</color>
+    <color name="color_d3">#D3D3D3</color>
+    <color name="color_CC212224">#CC212224</color>
+    <color name="color_9a9a9a">#9A9A9A</color>
+    <color name="color_f5">#F5F5F5</color>
+    <color name="color_cc">#CCCCCC</color>
+    <color name="color_f1">#F1F1F1</color>
+    <color name="color_3b3b3c">#3B3B3C</color>
+    <color name="color_3b3b3c_opt60">#993B3B3C</color>
+    <color name="green_499f84">#499F84</color>
+    <color name="color_3072f6">#3072F6</color>
+    <color name="color_03BF6D">#03BF6D</color>
+    <color name="color_FF6669">#FF6669</color>
+    <color name="color_F3F3F3">#F3F3F3</color>
+    <color name="color_F3F7FF">#F3F7FF</color>
+    <color name="color_2479ED">#2479ED</color>
+    <color name="color_E5E5E5">#E5E5E5</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="color_ef">#EFEFEF</color>
+    <color name="color_f6">#F6F6F6</color>
+    <color name="color_101D37">#101D37</color>
+    <color name="color_FF5252">#FF5252</color>
+    <color name="color_FFC9C9">#FFC9C9</color>
+    <color name="color_FFF0F0">#FFF0F0</color>
+    <color name="color_EDEDED">#EDEDED</color>
+    <color name="color_EBEBED">#EBEBED</color>
+    <color name="color_E2E2E2">#E2E2E2</color>
+    <color name="color_9A6515">#9A6515</color>
+    <color name="color_FA5741">#FA5741</color>
+    <color name="color_F8">#F8F8F8</color>
+    <color name="color_F6">#F6F6F6</color>
+    <color name="color_E9">#E9E9E9</color>
+    <color name="textShadow">#88000000</color>
+    <color name="color_07C561">#07C561</color>
+    <color name="color_07C160">#07C160</color>
+    <color name="color_ff3c32">#FF3C32</color>
+    <color name="color_ffdddd">#FFDDDD</color>
+    <color name="color_33">#333333</color>
+    <color name="page_background">#F2F3F5</color>
+    <color name="card_background">#F8F8F8</color>
+
+    <color name="divider">#DEDEDE</color>
+    <color name="divider_d8">#D8D8D8</color>
+
+    <color name="divider_wide">#F8F8F8</color>
+
+    <color name="text_primary">#222222</color>
+
+    <color name="text_secondary">#777777</color>
+
+    <color name="text_hint">#999999</color>
+
+    <color name="text_hint_secondary">#CCCCCC</color>
+
+    <color name="text_red">#FA5741</color>
+    <color name="text_orange">#FF8000</color>
+    <color name="primary_blue">#0093FF</color>
+
+    <color name="secondary_blue">#E2F2FF</color>
+
+    <color name="primary_yellow">#FFDF0F</color>
+
+    <color name="link">#406480</color>
+
+    <color name="alter_red">#EB524A</color>
+
+    <color name="button_orange">#FFAD0F</color>
+
+    <color name="button_green">#25B372</color>
+
+    <color name="shadow_black">#19000000</color>
+
+    <color name="color_ffa">#ffad0f</color>
+
+    <color name="color_e8f5ff">#E8F5FF</color>
+
+    <color name="color_6d4b24">#6D4B24</color>
+
+    <color name="color_406480">#406480</color>
+    <color name="color_FFFCF7">#FFFCF7</color>
+    <color name="color_6D4B24">#6D4B24</color>
+    <color name="color_ff2479ed">#FF2479ED</color>
+    <color name="color_f1f9ff">#F1F9FF</color>
+    <color name="color_555555">#555555</color>
+    <color name="color_8c8">#8c8c8c</color>
+    <color name="color_404">#404040</color>
+    <color name="color_288_70">#b32888A6</color>
+    <color name="color_98c">#98C5D2</color>
+    <color name="color_ed1f1f">#ED1F1F</color>
+    <color name="color_348D71">#348D71</color>
+    <color name="splash_bottom_color">#FFE660</color>
+    <color name="splash_bottom_text_color">#FF000000</color>
+
+    <color name="color_calendar_vip_text">#FF87563B</color>
+    <color name="color_calendar_vip_button">#FFB97F26</color>
+
+    <color name="color_00b880">#00B880</color>
+    <color name="color_ff9330">#FF9330</color>
+    <color name="color_ff7a00">#FF7A00</color>
+    <color name="color_28bc80">#28BC80</color>
+    <color name="color_FFC803">#FFC803</color>
+    <color name="color_614011">#614011</color>
+    <color name="color_9A6516">#9A6516</color>
+    <color name="color_d12020">#D12020</color>
+    <color name="color_ce192f">#CE192F</color>
+    <color name="color_0fffffff">#0FFFFFFF</color>
+    <color name="color_6C4A20">#6C4A20</color>
+    <color name="color_8F632C">#8F632C</color>
+    <color name="color_87563B">#87563b</color>
+    <color name="color_AA6F15">#AA6F15</color>
+
+    <color name="color_b20060f0">#B20060F0</color>
+    <color name="color_006be0">#006be0</color>
+    <color name="color_1C1C1E">#1C1C1E</color>
+    <color name="color_FEC532">#FEC532</color>
+    <color name="color_5F6369">#5F6369</color>
+    <color name="color_0093FF_20_trans">#330093FF</color>
+
+    <color name="color_d0021b">#D0021B</color>
+    <color name="color_c1c1c1">#C1C1C1</color>
+    <color name="color_cae2ff">#CAE2FF</color>
+    <color name="gray_e7e7e7">#E7E7E7</color>
+
+    <color name="color_B8B8B8">#B8B8B8</color>
+    <color name="color_7B7B7B">#7B7B7B</color>
+    <color name="color_5B6A91">#5B6A91</color>
+
+    <color name="color_eff7fd">#EFF7FD</color>
+
+    <color name="color_fcf9e8">#FCF9E8</color>
+    <color name="color_f4f4f4">#F4F4F4</color>
+    <color name="color_f2f7ff">#F2F7FF</color>
+    <color name="color_effaec">#EFFAEC</color>
+    <color name="color_fff0f1">#FFF0F1</color>
+    <color name="color_cf9d47">#CF9D47</color>
+    <color name="color_444444">#444444</color>
+    <color name="color_4D4D4D">#4D4D4D</color>
+    <color name="color_e6e6e6">#E6E6E6</color>
+    <color name="color_7b8aa3">#7B8AA3</color>
+    <color name="color_608255">#608255</color>
+    <color name="color_c16e70">#C16E70</color>
+    <color name="color_8B6449">#8B6449</color>
+    <color name="color_f5f5f5">#E5f5f5f5</color>
+    <color name="color_959695">#959695</color>
+    <color name="customer_map_green">#44AA57</color>
+    <color name="customer_map_red">#CE3222</color>
+    <color name="customer_map_blue">#0084E5</color>
+    <color name="color_80">#80000000</color>
+    <color name="color_20">#20000000</color>
+    <color name="color_004b92">#004B92</color>
+    <color name="color_229cd7">#229CD7</color>
+
+    <color name="color_00bff3">#00bff3</color>
+    <color name="color_3e54b9">#3e54b9</color>
+    <color name="color_59357c">#59357c</color>
+    <color name="color_89191b">#89191b</color>
+    <color name="color_154978">#154978</color>
+    <color name="color_table_cell">#F6F6FA</color>
+
+    <color name="color_0060F4">#0060F4</color>
+    <color name="text_ultraweak">#999999</color>
+    <color name="text_highlight">#0093ff</color>
+    <color name="text_error">#EA4D3D</color>
+    <color name="text_weak">#848484</color>
+    <color name="fill_blue">#ebf6ff</color>
+    <color name="bg_weak">#f5f5f5</color>
+    <color name="bg_white">#ffffff</color>
+    <color name="border_weak">#ececec</color>
+    <color name="border_blue">#0093ff</color>
+    <color name="border_medium">#dedede</color>
+    <color name="border_ultrastrong">#222222</color>
+    <color name="horizontalDividerColor">#e6e9ed</color>
+    <color name="horizontalDividerColor1">#ffe6e9ed</color>
+    <color name="bg_default">#F0F0F0</color>
+    <color name="text_white">#ffffff</color>
+    <color name="btnprimary_normal">#0060F4</color>
+    <color name="text_medium">#666666</color>
+    <color name="white_alpha_100">#00ffffff</color>
+
+    <color name="color_primary">#FFF57C00</color>
+    <color name="color_primary_dark">#FFD76D00</color>
+    <color name="color_accent">@color/color_primary</color>
+
+    <color name="pressed_item_foreground">#08000000</color>
+    <color name="activated_item_foreground">#44888888</color>
+    <color name="divider_grey">#55808080</color>
+    <color name="gradient_grey_start">#CC000000</color>
+    <color name="dark_grey">#FF333333</color>
+    <color name="bottom_tabs_light_background">#FFF1F1F1</color>
+    <color name="disabled_text_color_highlight">#00FFFFFF</color>
+
+    <color name="hint_white">#99FFFFFF</color>
+    <color name="hint_black">#66000000</color>
+    <color name="light_grey_stroke">#40FFFFFF</color>
+
+    <!-- Color Customization -->
+    <color name="theme_light_text_color">@color/md_grey_800_dark</color>
+    <color name="theme_light_background_color">@color/md_grey_white</color>
+    <color name="theme_dark_text_color">@color/md_grey_200</color>
+    <color name="theme_dark_background_color">@color/md_grey_800_dark</color>
+    <color name="theme_solarized_background_color">@color/md_indigo_900_dark</color>
+    <color name="theme_solarized_text_color">@color/md_amber_700</color>
+    <color name="theme_solarized_primary_color">@color/md_indigo_900</color>
+    <color name="theme_dark_red_primary_color">@color/md_red_700</color>
+
+    <!-- Default values -->
+    <color name="default_text_color">@color/theme_dark_text_color</color>
+    <color name="default_background_color">@color/theme_dark_background_color</color>
+    <color name="default_primary_color">@color/color_primary</color>
+    <color name="default_app_icon_color">@color/color_primary</color>
+    <color name="default_accent_color">@color/color_primary</color>
+    <color name="default_widget_bg_color">#AA000000</color>
+    <color name="default_widget_text_color">@color/color_primary</color>
+
+    <!-- SwitchCompat -->
+    <color name="thumb_deactivated">#FFECECEC</color>
+    <color name="track_deactivated">#FFB2B2B2</color>
+
+    <!-- Radiobutton -->
+    <color name="radiobutton_disabled">#FF757575</color>
+
+    <!-- Primary colors -->
+    <color name="md_amber">#FFC107</color>
+    <color name="md_blue">#2196F3</color>
+    <color name="md_blue_grey">#607D8B</color>
+    <color name="md_brown">#795548</color>
+    <color name="md_cyan">#00BCD4</color>
+    <color name="md_deep_orange">#FF5722</color>
+    <color name="md_deep_purple">#673AB7</color>
+    <color name="md_green">#4CAF50</color>
+    <color name="md_grey">#9E9E9E</color>
+    <color name="md_indigo">#3F51B5</color>
+    <color name="md_light_blue">#03A9F4</color>
+    <color name="md_light_green">#8BC34A</color>
+    <color name="md_lime">#CDDC39</color>
+    <color name="md_orange">#FF9800</color>
+    <color name="md_pink">#E91E63</color>
+    <color name="md_purple">#9C27B0</color>
+    <color name="md_red">#F44336</color>
+    <color name="md_teal">#009688</color>
+    <color name="md_yellow">#FFEB3B</color>
+
+    <color name="md_amber_100">#FFECB3</color>
+    <color name="md_amber_200">#FFE082</color>
+    <color name="md_amber_300">#FFD54F</color>
+    <color name="md_amber_400">#FFCA28</color>
+    <color name="md_amber_500">#FFC107</color>
+    <color name="md_amber_600">#FFB300</color>
+    <color name="md_amber_700">#FFA000</color>
+    <color name="md_amber_800">#FF8F00</color>
+    <color name="md_amber_900">#FF6F00</color>
+
+    <color name="md_amber_100_dark">#FFE28A</color>
+    <color name="md_amber_200_dark">#FFD659</color>
+    <color name="md_amber_300_dark">#FFCC26</color>
+    <color name="md_amber_400_dark">#FFC100</color>
+    <color name="md_amber_500_dark">#DEA700</color>
+    <color name="md_amber_600_dark">#D79700</color>
+    <color name="md_amber_700_dark">#D78700</color>
+    <color name="md_amber_800_dark">#D77800</color>
+    <color name="md_amber_900_dark">#D75D00</color>
+
+    <color name="md_blue_100">#BBDEFB</color>
+    <color name="md_blue_200">#90CAF9</color>
+    <color name="md_blue_300">#64B5F6</color>
+    <color name="md_blue_400">#42A5F5</color>
+    <color name="md_blue_500">#2196F3</color>
+    <color name="md_blue_600">#1E88E5</color>
+    <color name="md_blue_700">#1976D2</color>
+    <color name="md_blue_800">#1565C0</color>
+    <color name="md_blue_900">#0D47A1</color>
+
+    <color name="md_blue_100_dark">#94CCF9</color>
+    <color name="md_blue_200_dark">#69B8F7</color>
+    <color name="md_blue_300_dark">#3DA2F4</color>
+    <color name="md_blue_400_dark">#1A92F3</color>
+    <color name="md_blue_500_dark">#0B82E0</color>
+    <color name="md_blue_600_dark">#1673C4</color>
+    <color name="md_blue_700_dark">#1462AE</color>
+    <color name="md_blue_800_dark">#11529B</color>
+    <color name="md_blue_900_dark">#09367B</color>
+
+    <color name="md_blue_grey_100">#CFD8DC</color>
+    <color name="md_blue_grey_200">#B0BBC5</color>
+    <color name="md_blue_grey_300">#90A4AE</color>
+    <color name="md_blue_grey_400">#78909C</color>
+    <color name="md_blue_grey_500">#607D8B</color>
+    <color name="md_blue_grey_600">#546E7A</color>
+    <color name="md_blue_grey_700">#455A64</color>
+    <color name="md_blue_grey_800">#37474F</color>
+    <color name="md_blue_grey_900">#263238</color>
+
+    <color name="md_blue_grey_100_dark">#B8C5CB</color>
+    <color name="md_blue_grey_200_dark">#99A7B4</color>
+    <color name="md_blue_grey_300_dark">#78919D</color>
+    <color name="md_blue_grey_400_dark">#647C88</color>
+    <color name="md_blue_grey_500_dark">#4F6873</color>
+    <color name="md_blue_grey_600_dark">#445962</color>
+    <color name="md_blue_grey_700_dark">#34454C</color>
+    <color name="md_blue_grey_800_dark">#263237</color>
+    <color name="md_blue_grey_900_dark">#151C1F</color>
+
+    <color name="md_brown_100">#D7CCC8</color>
+    <color name="md_brown_200">#BCAAA4</color>
+    <color name="md_brown_300">#A1887F</color>
+    <color name="md_brown_400">#8D6E63</color>
+    <color name="md_brown_500">#795548</color>
+    <color name="md_brown_600">#6D4C41</color>
+    <color name="md_brown_700">#5D4037</color>
+    <color name="md_brown_800">#4E342E</color>
+    <color name="md_brown_900">#3E2723</color>
+
+    <color name="md_brown_100_dark">#C6B7B1</color>
+    <color name="md_brown_200_dark">#AB958D</color>
+    <color name="md_brown_300_dark">#8F7369</color>
+    <color name="md_brown_400_dark">#755B52</color>
+    <color name="md_brown_500_dark">#5F4339</color>
+    <color name="md_brown_600_dark">#533A31</color>
+    <color name="md_brown_700_dark">#432E28</color>
+    <color name="md_brown_800_dark">#34231F</color>
+    <color name="md_brown_900_dark">#241714</color>
+
+    <color name="md_cyan_100">#B2EBF2</color>
+    <color name="md_cyan_200">#80DEEA</color>
+    <color name="md_cyan_300">#4DD0E1</color>
+    <color name="md_cyan_400">#26C6DA</color>
+    <color name="md_cyan_500">#00BCD4</color>
+    <color name="md_cyan_600">#00ACC1</color>
+    <color name="md_cyan_700">#0097A7</color>
+    <color name="md_cyan_800">#00838F</color>
+    <color name="md_cyan_900">#006064</color>
+
+    <color name="md_cyan_100_dark">#90E3ED</color>
+    <color name="md_cyan_200_dark">#5DD5E5</color>
+    <color name="md_cyan_300_dark">#2AC7DB</color>
+    <color name="md_cyan_400_dark">#1FA7B8</color>
+    <color name="md_cyan_500_dark">#0098AB</color>
+    <color name="md_cyan_600_dark">#008898</color>
+    <color name="md_cyan_700_dark">#00727E</color>
+    <color name="md_cyan_800_dark">#005E66</color>
+    <color name="md_cyan_900_dark">#00393B</color>
+
+    <color name="md_deep_orange_100">#FFCCBC</color>
+    <color name="md_deep_orange_200">#FFAB91</color>
+    <color name="md_deep_orange_300">#FF8A65</color>
+    <color name="md_deep_orange_400">#FF7043</color>
+    <color name="md_deep_orange_500">#FF5722</color>
+    <color name="md_deep_orange_600">#F4511E</color>
+    <color name="md_deep_orange_700">#E64A19</color>
+    <color name="md_deep_orange_800">#D84315</color>
+    <color name="md_deep_orange_900">#BF360C</color>
+
+    <color name="md_deep_orange_100_dark">#FFAD93</color>
+    <color name="md_deep_orange_200_dark">#FF8C68</color>
+    <color name="md_deep_orange_300_dark">#FF6B3C</color>
+    <color name="md_deep_orange_400_dark">#FF511A</color>
+    <color name="md_deep_orange_500_dark">#F93C00</color>
+    <color name="md_deep_orange_600_dark">#DF3D0A</color>
+    <color name="md_deep_orange_700_dark">#C13E14</color>
+    <color name="md_deep_orange_800_dark">#B33710</color>
+    <color name="md_deep_orange_900_dark">#992B09</color>
+
+    <color name="md_deep_purple_100">#D1C4E9</color>
+    <color name="md_deep_purple_200">#B39DDB</color>
+    <color name="md_deep_purple_300">#9575CD</color>
+    <color name="md_deep_purple_400">#7E57C2</color>
+    <color name="md_deep_purple_500">#673AB7</color>
+    <color name="md_deep_purple_600">#5E35B1</color>
+    <color name="md_deep_purple_700">#512DA8</color>
+    <color name="md_deep_purple_800">#4527A0</color>
+    <color name="md_deep_purple_900">#311B92</color>
+
+    <color name="md_deep_purple_100_dark">#BAA6DE</color>
+    <color name="md_deep_purple_200_dark">#9C7FD0</color>
+    <color name="md_deep_purple_300_dark">#7E56C2</color>
+    <color name="md_deep_purple_400_dark">#693FB0</color>
+    <color name="md_deep_purple_500_dark">#563098</color>
+    <color name="md_deep_purple_600_dark">#4E2B92</color>
+    <color name="md_deep_purple_700_dark">#412488</color>
+    <color name="md_deep_purple_800_dark">#371F7F</color>
+    <color name="md_deep_purple_900_dark">#251470</color>
+
+    <color name="md_green_100">#C8E6C9</color>
+    <color name="md_green_200">#A5D6A7</color>
+    <color name="md_green_300">#81C784</color>
+    <color name="md_green_400">#66BB6A</color>
+    <color name="md_green_500">#4CAF50</color>
+    <color name="md_green_600">#43A047</color>
+    <color name="md_green_700">#388E3C</color>
+    <color name="md_green_800">#2E7D32</color>
+    <color name="md_green_900">#1B5E20</color>
+
+    <color name="md_green_100_dark">#ACDAAE</color>
+    <color name="md_green_200_dark">#89CA8D</color>
+    <color name="md_green_300_dark">#65BB69</color>
+    <color name="md_green_400_dark">#4CAC51</color>
+    <color name="md_green_500_dark">#409343</color>
+    <color name="md_green_600_dark">#37833A</color>
+    <color name="md_green_700_dark">#2C7130</color>
+    <color name="md_green_800_dark">#235F26</color>
+    <color name="md_green_900_dark">#113E15</color>
+
+    <color name="md_grey_white">#FFFFFF</color>
+    <color name="md_grey_200">#EEEEEE</color>
+    <color name="md_grey_300">#E0E0E0</color>
+    <color name="md_grey_400">#BDBDBD</color>
+    <color name="md_grey_500">#9E9E9E</color>
+    <color name="md_grey_600">#757575</color>
+    <color name="md_grey_700">#616161</color>
+    <color name="md_grey_800">#424242</color>
+    <color name="md_grey_black">#000000</color>
+
+    <color name="md_grey_white_dark">#DFDFDF</color>
+    <color name="md_grey_200_dark">#DADADA</color>
+    <color name="md_grey_300_dark">#CCCCCC</color>
+    <color name="md_grey_400_dark">#A9A9A9</color>
+    <color name="md_grey_500_dark">#8A8A8A</color>
+    <color name="md_grey_600_dark">#606060</color>
+    <color name="md_grey_700_dark">#4C4C4C</color>
+    <color name="md_grey_800_dark">#2D2D2D</color>
+    <color name="md_grey_black_dark">#000000</color>
+
+    <color name="md_indigo_100">#C5CAE9</color>
+    <color name="md_indigo_200">#9FA8DA</color>
+    <color name="md_indigo_300">#7986CB</color>
+    <color name="md_indigo_400">#5C6BC0</color>
+    <color name="md_indigo_500">#3F51B5</color>
+    <color name="md_indigo_600">#3949AB</color>
+    <color name="md_indigo_700">#303F9F</color>
+    <color name="md_indigo_800">#283593</color>
+    <color name="md_indigo_900">#1A237E</color>
+
+    <color name="md_indigo_100_dark">#A8AFDE</color>
+    <color name="md_indigo_200_dark">#828ECF</color>
+    <color name="md_indigo_300_dark">#5B6CC0</color>
+    <color name="md_indigo_400_dark">#4354B0</color>
+    <color name="md_indigo_500_dark">#344497</color>
+    <color name="md_indigo_600_dark">#2E3C8C</color>
+    <color name="md_indigo_700_dark">#263380</color>
+    <color name="md_indigo_800_dark">#1F2973</color>
+    <color name="md_indigo_900_dark">#12195C</color>
+
+    <color name="md_light_blue_100">#B3E5FC</color>
+    <color name="md_light_blue_200">#81D4fA</color>
+    <color name="md_light_blue_300">#4fC3F7</color>
+    <color name="md_light_blue_400">#29B6FC</color>
+    <color name="md_light_blue_500">#03A9F4</color>
+    <color name="md_light_blue_600">#039BE5</color>
+    <color name="md_light_blue_700">#0288D1</color>
+    <color name="md_light_blue_800">#0277BD</color>
+    <color name="md_light_blue_900">#01579B</color>
+
+    <color name="md_light_blue_100_dark">#8BD8FB</color>
+    <color name="md_light_blue_200_dark">#59C7F9</color>
+    <color name="md_light_blue_300_dark">#27B6F6</color>
+    <color name="md_light_blue_400_dark">#02A7F9</color>
+    <color name="md_light_blue_500_dark">#028DCC</color>
+    <color name="md_light_blue_600_dark">#0280BD</color>
+    <color name="md_light_blue_700_dark">#016EA9</color>
+    <color name="md_light_blue_800_dark">#015E95</color>
+    <color name="md_light_blue_900_dark">#004072</color>
+
+    <color name="md_light_green_100">#DCEDC8</color>
+    <color name="md_light_green_200">#C5E1A5</color>
+    <color name="md_light_green_300">#AED581</color>
+    <color name="md_light_green_400">#9CCC65</color>
+    <color name="md_light_green_500">#8BC34A</color>
+    <color name="md_light_green_600">#7CB342</color>
+    <color name="md_light_green_700">#689F38</color>
+    <color name="md_light_green_800">#558B2F</color>
+    <color name="md_light_green_900">#33691E</color>
+
+    <color name="md_light_green_100_dark">#C9E3A9</color>
+    <color name="md_light_green_200_dark">#B2D787</color>
+    <color name="md_light_green_300_dark">#9BCB62</color>
+    <color name="md_light_green_400_dark">#89C246</color>
+    <color name="md_light_green_500_dark">#76AC38</color>
+    <color name="md_light_green_600_dark">#679537</color>
+    <color name="md_light_green_700_dark">#54812D</color>
+    <color name="md_light_green_800_dark">#426C24</color>
+    <color name="md_light_green_900_dark">#234915</color>
+
+    <color name="md_lime_100">#F0F4C3</color>
+    <color name="md_lime_200">#E6EE9C</color>
+    <color name="md_lime_300">#DCE775</color>
+    <color name="md_lime_400">#D4E157</color>
+    <color name="md_lime_500">#CDDC39</color>
+    <color name="md_lime_600">#C0CA33</color>
+    <color name="md_lime_700">#A4B42B</color>
+    <color name="md_lime_800">#9E9D24</color>
+    <color name="md_lime_900">#827717</color>
+
+    <color name="md_lime_100_dark">#E8EEA0</color>
+    <color name="md_lime_200_dark">#DEE879</color>
+    <color name="md_lime_300_dark">#D3E152</color>
+    <color name="md_lime_400_dark">#CBDB34</color>
+    <color name="md_lime_500_dark">#BAC923</color>
+    <color name="md_lime_600_dark">#A2AA2A</color>
+    <color name="md_lime_700_dark">#869323</color>
+    <color name="md_lime_800_dark">#7D7D1C</color>
+    <color name="md_lime_900_dark">#5F5710</color>
+
+    <color name="md_orange_100">#FFE0B2</color>
+    <color name="md_orange_200">#FFCC80</color>
+    <color name="md_orange_300">#FFB74D</color>
+    <color name="md_orange_400">#FFA726</color>
+    <color name="md_orange_500">#FF9800</color>
+    <color name="md_orange_600">#FB8C00</color>
+    <color name="md_orange_700">#F57C00</color>
+    <color name="md_orange_800">#EF6C00</color>
+    <color name="md_orange_900">#E65100</color>
+
+    <color name="md_orange_100_dark">#FFD089</color>
+    <color name="md_orange_200_dark">#FFBC57</color>
+    <color name="md_orange_300_dark">#FFA724</color>
+    <color name="md_orange_400_dark">#FD9600</color>
+    <color name="md_orange_500_dark">#D78000</color>
+    <color name="md_orange_600_dark">#D37600</color>
+    <color name="md_orange_700_dark">#CD6800</color>
+    <color name="md_orange_800_dark">#C65A00</color>
+    <color name="md_orange_900_dark">#BD4200</color>
+
+    <color name="md_pink_100">#F8BBD0</color>
+    <color name="md_pink_200">#F48FB1</color>
+    <color name="md_pink_300">#F06292</color>
+    <color name="md_pink_400">#EC407A</color>
+    <color name="md_pink_500">#E91E63</color>
+    <color name="md_pink_600">#D81B60</color>
+    <color name="md_pink_700">#C2185B</color>
+    <color name="md_pink_800">#AD1457</color>
+    <color name="md_pink_900">#880E4F</color>
+
+    <color name="md_pink_100_dark">#F596B7</color>
+    <color name="md_pink_200_dark">#F16998</color>
+    <color name="md_pink_300_dark">#ED3C78</color>
+    <color name="md_pink_400_dark">#E91A60</color>
+    <color name="md_pink_500_dark">#CB1352</color>
+    <color name="md_pink_600_dark">#B4154F</color>
+    <color name="md_pink_700_dark">#9E134A</color>
+    <color name="md_pink_800_dark">#880F44</color>
+    <color name="md_pink_900_dark">#630A3A</color>
+
+    <color name="md_purple_100">#E1BEE7</color>
+    <color name="md_purple_200">#CE93D8</color>
+    <color name="md_purple_300">#BA68C8</color>
+    <color name="md_purple_400">#AB47BC</color>
+    <color name="md_purple_500">#9C27B0</color>
+    <color name="md_purple_600">#8E24AA</color>
+    <color name="md_purple_700">#7B1FA2</color>
+    <color name="md_purple_800">#6A1B9A</color>
+    <color name="md_purple_900">#4A148C</color>
+
+    <color name="md_purple_100_dark">#D3A0DC</color>
+    <color name="md_purple_200_dark">#C175CD</color>
+    <color name="md_purple_300_dark">#AC4ABD</color>
+    <color name="md_purple_400_dark">#913AA0</color>
+    <color name="md_purple_500_dark">#7F1F8F</color>
+    <color name="md_purple_600_dark">#711C88</color>
+    <color name="md_purple_700_dark">#611880</color>
+    <color name="md_purple_800_dark">#521477</color>
+    <color name="md_purple_900_dark">#370E68</color>
+
+    <color name="md_red_100">#FFCDD2</color>
+    <color name="md_red_200">#EF9A9A</color>
+    <color name="md_red_300">#E57373</color>
+    <color name="md_red_400">#EF5350</color>
+    <color name="md_red_500">#F44336</color>
+    <color name="md_red_600">#E53935</color>
+    <color name="md_red_700">#D32F2F</color>
+    <color name="md_red_800">#C62828</color>
+    <color name="md_red_900">#B71C1C</color>
+
+    <color name="md_red_100_dark">#FFA4AE</color>
+    <color name="md_red_200_dark">#EA7777</color>
+    <color name="md_red_300_dark">#DF5050</color>
+    <color name="md_red_400_dark">#EC2E2A</color>
+    <color name="md_red_500_dark">#F21F0F</color>
+    <color name="md_red_600_dark">#D61F1A</color>
+    <color name="md_red_700_dark">#B32525</color>
+    <color name="md_red_800_dark">#A42020</color>
+    <color name="md_red_900_dark">#941616</color>
+
+    <color name="md_teal_100">#B2DFDB</color>
+    <color name="md_teal_200">#80CBC4</color>
+    <color name="md_teal_300">#4DB6AC</color>
+    <color name="md_teal_400">#26A69A</color>
+    <color name="md_teal_500">#009688</color>
+    <color name="md_teal_600">#00897B</color>
+    <color name="md_teal_700">#00796B</color>
+    <color name="md_teal_800">#00695C</color>
+    <color name="md_teal_900">#004D40</color>
+
+    <color name="md_teal_100_dark">#95D3CE</color>
+    <color name="md_teal_200_dark">#63BFB7</color>
+    <color name="md_teal_300_dark">#3F9B92</color>
+    <color name="md_teal_400_dark">#1E857C</color>
+    <color name="md_teal_500_dark">#006D63</color>
+    <color name="md_teal_600_dark">#006056</color>
+    <color name="md_teal_700_dark">#005047</color>
+    <color name="md_teal_800_dark">#004038</color>
+    <color name="md_teal_900_dark">#00241E</color>
+
+    <color name="md_yellow_100">#FFF9C4</color>
+    <color name="md_yellow_200">#FFF590</color>
+    <color name="md_yellow_300">#FFF176</color>
+    <color name="md_yellow_400">#FFEE58</color>
+    <color name="md_yellow_500">#FFEB3B</color>
+    <color name="md_yellow_600">#FDD835</color>
+    <color name="md_yellow_700">#FBC02D</color>
+    <color name="md_yellow_800">#F9A825</color>
+    <color name="md_yellow_900">#F57F17</color>
+
+    <color name="md_yellow_100_dark">#FFF59B</color>
+    <color name="md_yellow_200_dark">#FFF267</color>
+    <color name="md_yellow_300_dark">#FFED4D</color>
+    <color name="md_yellow_400_dark">#FFEA2F</color>
+    <color name="md_yellow_500_dark">#FFE712</color>
+    <color name="md_yellow_600_dark">#FDD10B</color>
+    <color name="md_yellow_700_dark">#FBB504</color>
+    <color name="md_yellow_800_dark">#EF9606</color>
+    <color name="md_yellow_900_dark">#DA6B09</color>
+
+</resources>

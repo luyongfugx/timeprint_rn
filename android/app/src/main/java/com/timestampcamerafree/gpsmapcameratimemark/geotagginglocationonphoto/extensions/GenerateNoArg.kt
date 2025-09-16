@@ -1,0 +1,4 @@
+package com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions
+
+@Target(AnnotationTarget.CLASS)
+annotation class GenerateNoArg

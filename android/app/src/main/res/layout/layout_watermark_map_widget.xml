@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mapViewContainer"
+        android:orientation="horizontal"
+        android:layout_width="@dimen/dp_86"
+        android:layout_height="@dimen/dp_86"
+        android:padding="@dimen/dp_3"
+        android:background="@drawable/bg_radius_4_ffffff"
+        >
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            map:mapType="normal"
+            map:uiCompass="false"
+            map:uiRotateGestures="false"
+            map:uiScrollGestures="false"
+            map:uiTiltGestures="false"
+            map:uiZoomControls="false"
+            map:uiZoomGestures="false"
+            map:uiMapToolbar="false"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/mapImageView"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:scaleType="centerCrop"
+            android:background="@color/transparent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

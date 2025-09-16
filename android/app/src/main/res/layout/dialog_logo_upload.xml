@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_radius_10_top_ff"
+    android:clickable="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_56"
+        android:background="@drawable/bg_radius_10_top_ff"
+        app:layout_constraintTop_toTopOf="@id/backIv"
+        >
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backIv"
+        android:layout_width="@dimen/dp_56"
+        android:layout_height="@dimen/dp_56"
+        android:src="@drawable/ic_chevron_left_vector"
+        android:tint="@color/black"
+        android:layout_centerVertical="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_56"
+        android:text="@string/k_add_logo"
+        android:lineHeight="@dimen/dp_56"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:textSize="@dimen/dp_17"
+        app:layout_constraintStart_toEndOf="@+id/backIv"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_2"
+        android:background="#0a000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backIv"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_radius_10_top_ff"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_240"
+                android:gravity="center_horizontal"
+                android:background="@color/white" >
+            <RelativeLayout
+                android:id="@+id/upload_logo"
+                android:layout_width="@dimen/dp_120"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_marginBottom="@dimen/dp_80"
+                android:layout_height="@dimen/dp_120"
+                android:gravity="center"
+                android:background="@drawable/bg_radius_5_ebebed" >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="47dp"
+                    android:layout_height="@dimen/dp_60"
+                    android:src="@drawable/ic_camera_vector"
+                    android:tint="@color/light_blue_400" />
+            </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/dp_80"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:text="@string/k_choose_from_album"
+                android:textColor="@color/light_blue_400"
+                android:textSize="@dimen/dp_20" />
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_180"
+                android:gravity="center_horizontal"
+                android:background="@color/white" >
+                <RelativeLayout
+                    android:id="@+id/search_logo"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:gravity="center"
+                    android:background="@drawable/bg_radius_5_ebebed" >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="47dp"
+                        android:layout_height="@dimen/dp_60"
+                        android:src="@drawable/ic_search_vector"
+                        android:tint="@color/light_blue_400" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:text="@string/k_choose_from_web"
+                android:textColor="@color/light_blue_400"
+                android:textSize="@dimen/dp_20" />
+
+        </FrameLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

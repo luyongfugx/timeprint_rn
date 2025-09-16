@@ -1,0 +1,36 @@
+package com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.models
+
+    enum class IconFontType(val unicode: String) {
+        BTN_REFRESH("\uE604"),
+        BTN_ALBUM("\uE627"),
+        BTN_RATIO_FULL("\uE641"),
+        BTN_RATIO_1X1("\uE693"),
+        BTN_RATIO_3X4("\uE694"),
+        BTN_RATIO_9X16("\uE695"),
+        BTN_COUNTDOWN("\uE663"),
+        BTN_SETTING("\uE631"),
+        BTN_FLASH_CLOSE("\uE786"),
+        BTN_FLASH_AUTO("\uE714"),
+        BTN_FLASH_OPEN("\uE6DA"),
+        BTN_CLOSE("\uE614"),
+        BTN_ADD_LOGO("\uE640"),
+        BTN_NEXT("\uE6A2"),
+
+        BTN_BACK("\uE63E"),
+        BTN_TEMPLATE("\uE666"),
+        BTN_ADD_ITEM("\uE62C"),
+        BTN_FLASHLIGHT("\uEA2B"),
+        BTN_NIGHMODE("\uE686"),
+        ALBUM_SHARE("\uE608"),
+        ALBUM_DELETE("\uE66D"),
+        ALBUM_WATERMARK("\uE723"),
+        ALBUM_EDIT("\uE616"),
+        ALBUM_MORE("\uE679"),
+        CAM_FOCUS("\uE605"),
+        ICON_SEARCH("\uE623"),
+        ICON_LOCATION("\uE612"),
+        ICON_CHOOSE("\uE610"),
+        ICON_CAMERA1("\uE624"),
+        ICON_CAMERA2("\uE634"),
+        ICON_CAMERA3("\uE63D");
+    }

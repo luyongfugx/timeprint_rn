@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="MissingDefaultResource">
+    <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.GpImageView
+        android:id="@+id/logo_image"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.GpImageView>
+</layout>

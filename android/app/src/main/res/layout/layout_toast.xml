@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/tv_alter_message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_20"
+    android:layout_marginEnd="@dimen/dp_20"
+    android:textStyle="bold"
+    android:background="@drawable/bg_radius_4_toast_bg"
+    android:ellipsize="end"
+    android:maxLines="2"
+    android:gravity="center_horizontal"
+    android:paddingStart="@dimen/dp_16"
+    android:paddingTop="@dimen/dp_11"
+    android:paddingEnd="@dimen/dp_16"
+    android:paddingBottom="@dimen/dp_11"
+    android:textColor="#ffffff"
+    android:textSize="@dimen/dp_16"
+    tools:text="..." />
+</androidx.appcompat.widget.LinearLayoutCompat>

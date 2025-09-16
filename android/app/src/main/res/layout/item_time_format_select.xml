@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_56"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_56"
+        android:orientation="horizontal"
+        android:paddingVertical="13dp"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:background="@drawable/bg_radius_10_top_ff">
+
+        <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_30"
+        android:layout_weight="1"
+            android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/check_view"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_30"
+        android:tint="@color/color_0093ff"
+        android:src="@drawable/ic_check_vector"
+        android:visibility="gone" />
+
+        <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.GpSwitch
+            android:id="@+id/switch_view"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_10"
+            android:background="@drawable/switch_selector"
+            android:visibility="gone"
+            app:thumbTint="@color/transparent"
+            app:trackTint="@color/transparent" />
+    </LinearLayout>
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_2"
+        android:background="@color/horizontalDividerColor"
+        />
+</LinearLayout>
+
+

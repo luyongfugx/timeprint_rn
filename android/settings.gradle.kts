@@ -1,5 +1,20 @@
 pluginManagement {
     includeBuild("../node_modules/@react-native/gradle-plugin")
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven {setUrl("https://maven.aliyun.com/repository/jcenter")}
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+        maven {setUrl("https://maven.aliyun.com/repository/jcenter")}
+        maven { setUrl("https://jitpack.io") }
+    }
 }
 
 plugins {
@@ -14,3 +29,6 @@ configure<com.facebook.react.ReactSettingsExtension> {
 rootProject.name = "com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto"
 include(":app")
 includeBuild("../node_modules/@react-native/gradle-plugin")
+
+
+
