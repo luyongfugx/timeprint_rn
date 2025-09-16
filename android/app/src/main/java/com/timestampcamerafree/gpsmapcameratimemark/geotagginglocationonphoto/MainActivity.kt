@@ -1,4 +1,4 @@
-package com.timeprint_rn
+package com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

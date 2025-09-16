@@ -10,6 +10,7 @@ configure<com.facebook.react.ReactSettingsExtension> {
     autolinkLibrariesFromCommand()
 }
 
-rootProject.name = "timeprint_rn"
+//rootProject.name = "timeprint_rn"
+rootProject.name = "com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto"
 include(":app")
 includeBuild("../node_modules/@react-native/gradle-plugin")

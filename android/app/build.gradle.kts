@@ -96,7 +96,6 @@ android {
         versionCode = project.libs.versions.app.version.versionCode.get().toInt()
         vectorDrawables.useSupportLibrary = true
     }
-//    namespace "com.timeprint_rn"
 //    defaultConfig {
 //        applicationId "com.timeprint_rn"
 //        minSdk = rootProject.extra["minSdkVersion"] as Int
