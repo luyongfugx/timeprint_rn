@@ -5,7 +5,9 @@ import {   View,
   StyleSheet,
   ScrollView,
   Image,
-  TouchableOpacity } from 'react-native';
+  TouchableOpacity,
+  Alert } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Users,
@@ -19,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { supabase } from '../api/supabase';
 import { getMembership } from '../api/teams/membership';
 import { getHomeData } from '../api/teams/home';
+import { doCheckIn } from '../api/teams/checkin';
 
 const API_URL = 'http://192.168.3.165:3000/checkin-records'; // Replace with your actual API endpoint
 
@@ -139,10 +142,69 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       navigation.navigate('Member')
     };
 
-    const doCheckin = () => {
-      console.log('Checkin button pressed');
-      // 这里可以添加打卡逻辑，比如打开相机、导航到打卡页面等
-      // navigation.navigate('CheckinCamera');
+    const doCheckin = async () => {
+      try {
+        // 打开图片库选择图片
+        const result = await launchImageLibrary({
+          mediaType: 'photo',
+          quality: 0.8,
+          includeBase64: true,
+        });
+
+        if (result.didCancel) {
+          console.log('User cancelled image picker');
+          return;
+        }
+
+        if (result.errorCode) {
+          Alert.alert('错误', `选择图片时出错: ${result.errorMessage}`);
+          return;
+        }
+
+        if (!result.assets || result.assets.length === 0) {
+          Alert.alert('错误', '未选择图片');
+          return;
+        }
+
+        const image = result.assets[0];
+        
+        if (!image.base64) {
+          Alert.alert('错误', '无法获取图片数据');
+          return;
+        }
+
+        // 获取当前用户会话
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          Alert.alert('错误', '用户未登录');
+          return;
+        }
+
+        // 准备上传数据
+        const checkinData = {
+          image: image.base64,
+          fileName: image.fileName || `checkin_${Date.now()}.jpg`,
+          mimeType: image.type || 'image/jpeg',
+          userId: session.user.id,
+          teamId: teamMembership?.teams.id,
+          timestamp: new Date().toISOString(),
+        };
+        // 调用API上传图片
+        const response = await  doCheckIn(session,checkinData)
+
+
+
+        // 刷新打卡记录
+        // const fetchResponse = await fetch(API_URL);
+        // if (fetchResponse.ok) {
+        //   const data: CheckinRecord[] = await fetchResponse.json();
+        //   setCheckinRecords(data);
+        // }
+
+      } catch (error) {
+        console.error('Checkin error:', error);
+        Alert.alert('错误', `打卡失败: ${error instanceof Error ? error.message : '未知错误'}`);
+      }
     };
 
   return (
