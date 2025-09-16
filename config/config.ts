@@ -13,9 +13,9 @@ export const USE_SCOPE_LIMIT_TOKEN_CREDENTIAL: boolean = false;
 // 腾讯云永久密钥 SecretID
 //var  secretId = "AKIDbP0PwMcVFnESUJuISUM4ZrwqY6UhhZFi"; //用户的 SecretId，建议使用子账号密钥，授权遵循最小权限指引，降低使用风险。子账号密钥获取可参见 https://cloud.tencent.com/document/product/598/37140
 //var secretKey = "K0VotlQs79yazBA1rUeeR1NYWGn7E6nH"; 
-export const COS_SECRET_ID: string = 'AKIDbP0PwMcVFnESUJuISUM4ZrwqY6UhhZFi'  
+// export const COS_SECRET_ID: string = 'AKIDbP0PwMcVFnESUJuISUM4ZrwqY6UhhZFi'  
 // 腾讯云永久密钥 SecretKey
-export const COS_SECRET_KEY: string = 'K0VotlQs79yazBA1rUeeR1NYWGn7E6nH'  
+// export const COS_SECRET_KEY: string = 'K0VotlQs79yazBA1rUeeR1NYWGn7E6nH'  
 // 存储桶所在地域
 export const PERSIST_BUCKET_REGION: string = 'ap-singapore'
 export const BUCKET = "timeprint-team-1330977225"
