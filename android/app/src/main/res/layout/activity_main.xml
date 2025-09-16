@@ -9,24 +9,24 @@
     android:animateLayoutChanges="true"
     >
 
-   <RelativeLayout
-       android:id="@+id/preview_view_container"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       tools:ignore="MissingConstraints">
-       <androidx.camera.view.PreviewView
-           android:id="@+id/preview_view"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           />
-       <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.implementations.GpGICameraPreviewView
-           android:id="@+id/gl_preview_view"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           />
+    <RelativeLayout
+        android:id="@+id/preview_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:ignore="MissingConstraints">
+        <androidx.camera.view.PreviewView
+            android:id="@+id/preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.implementations.GpGICameraPreviewView
+            android:id="@+id/gl_preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
 
-   </RelativeLayout>
+    </RelativeLayout>
 
 
     <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.dragableview.DragAbleContainerView
@@ -75,26 +75,26 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     />
-                    <TextView
-                        android:id="@+id/text_100_true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_gray"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/textSize8"
-                        android:text="@string/k_brand_real_time"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        />
+                <TextView
+                    android:id="@+id/text_100_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textSize8"
+                    android:text="@string/k_brand_real_time"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    />
             </LinearLayout>
-<!--            <ImageView-->
-<!--                android:id="@+id/officialLogo"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                >-->
-<!--            </ImageView>-->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/officialLogo"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                >-->
+            <!--            </ImageView>-->
         </com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.RotateLayout>
 
         <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.RotateLayout
@@ -105,10 +105,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:dragEnable="false"
             >
-<!--            <View-->
-<!--                android:id="@+id/mapWidget"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"></View>-->
+            <!--            <View-->
+            <!--                android:id="@+id/mapWidget"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"></View>-->
             <com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.MapWidget
                 android:id="@+id/mapWidget"
                 android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
             app:textColor="@android:color/white"
             app:textSize="@dimen/textSize12sp"
             app:borderColor="@android:color/white"
-          />
+            />
         <RelativeLayout
             android:id="@+id/watermark_select_btn_container"
             android:layout_width="wrap_content"
@@ -263,9 +263,9 @@
             android:id="@+id/layout_top"
             layout="@layout/layout_top" />
 
-<!--        <include-->
-<!--            android:id="@+id/layout_flash"-->
-<!--            layout="@layout/layout_flash" />-->
+        <!--        <include-->
+        <!--            android:id="@+id/layout_flash"-->
+        <!--            layout="@layout/layout_flash" />-->
 
         <include
             android:id="@+id/layout_timer"
@@ -366,16 +366,34 @@
         app:layout_constraintVertical_bias="1" />
 
 
-    <ImageView
-        android:id="@+id/toggle_camera"
-        android:layout_width="@dimen/large_icon_size"
+    <LinearLayout
+        android:id="@+id/bottom_right_layout"
+        android:layout_width="0dp"
         android:layout_height="@dimen/large_icon_size"
-        android:padding="@dimen/normal_margin"
-        android:src="@mipmap/refresh_button"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="@id/shutter"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/shutter"
-        app:layout_constraintTop_toTopOf="@id/shutter" />
+        app:layout_constraintTop_toTopOf="@id/shutter">
+        <ImageView
+            android:id="@+id/toggle_camera"
+            android:layout_width="@dimen/large_icon_size"
+            android:layout_height="match_parent"
+            android:padding="@dimen/normal_margin"
+
+            android:src="@mipmap/refresh_button" />
+
+        <ImageView
+            android:id="@+id/group"
+            android:layout_width="@dimen/large_icon_size"
+            android:layout_height="match_parent"
+            android:padding="@dimen/bigger_margin"
+
+            android:src="@drawable/group" />
+    </LinearLayout>
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -442,7 +460,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/dp_12"
                 android:padding="2dp"
-             />
+                />
         </LinearLayout>
 
 

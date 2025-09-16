@@ -56,6 +56,7 @@ import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.ac
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.doShowFlashOptions
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.doShowImageSizes
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.doShowTimerOptions
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.goGroupActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.initModeSwitcher
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.isInPhotoMode
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ext.launchSettings
@@ -963,7 +964,9 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
         timerText.setFactory { layoutInflater.inflate(R.layout.timer_text, null) }
         toggleCamera.setOnClickListener { mPreview!!.toggleFrontBackCamera() }
         lastPhotoVideoPreview.setOnClickListener { showLastMediaPreview() }
-
+        group.setOnClickListener {
+            goGroupActivity()
+        }
         layoutTop.apply {
             toggleFlash.setOnClickListener {
                 mPreview!!.handleFlashlightClick()

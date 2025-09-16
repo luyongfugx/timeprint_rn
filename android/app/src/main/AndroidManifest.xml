@@ -1,28 +1,147 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.USE_FINGERPRINT"
+        tools:node="remove" />
 
     <application
-      android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.MainApplication"
-      android:label="Timeprint"
-      android:icon="@mipmap/ic_launcher"
+        android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.App"
+        android:allowBackup="true"
+        android:appCategory="image"
+        android:icon="@mipmap/tp_app_icon"
+        android:label="Timeprint"
         android:localeConfig="@xml/locale_config"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/tp_app_icon"
-      android:allowBackup="false"
-      android:theme="@style/AppTheme"
-      android:supportsRtl="true">
-      <activity
-        android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.MainActivity"
+        android:enableOnBackInvokedCallback="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDF9nlpxkIz9Z1wweu8Zgty_1dU9LigPpA" />
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SplashActivity"
+            android:exported="false"
+            android:theme="@style/SplashTheme2" />
 
-        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-        android:launchMode="singleTask"
-        android:windowSoftInputMode="adjustResize"
-        android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-      </activity>
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:showOnLockScreen="true"
+            android:theme="@style/FullScreenTheme">
+
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ContactActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.GalleryActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.MultiShareActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SettingsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.RNGroupActivity"
+            android:exported="true" />
+
+
+        <receiver
+            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.receivers.HardwareShutterReceiver"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="android.intent.action.CAMERA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+
+
+        <activity-alias
+            android:name=".activities.SplashActivity.Orange"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/tp_app_icon"
+            android:roundIcon="@mipmap/tp_app_icon"
+            android:targetActivity="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
     </application>
 </manifest>

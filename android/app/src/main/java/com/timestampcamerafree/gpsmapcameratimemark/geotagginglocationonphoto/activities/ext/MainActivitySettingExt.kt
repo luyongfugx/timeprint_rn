@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.R
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ContactActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.MainActivity
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.RNGroupActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SaveFolderActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SettingsActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.config
@@ -104,6 +105,10 @@ fun MainActivity.goSaveFolderActivity() {
 }
 fun MainActivity.goContactActivity() {
     val intent = Intent(this, ContactActivity::class.java)
+    startActivity(intent)
+}
+fun MainActivity.goGroupActivity() {
+    val intent = Intent(this, RNGroupActivity::class.java)
     startActivity(intent)
 }
 fun MainActivity.saveOriginPhoto() {
