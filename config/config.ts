@@ -11,8 +11,8 @@ export const USE_SESSION_TOKEN_CREDENTIAL: boolean = true
 // 是否使用范围限制的临时密钥请求 COS
 export const USE_SCOPE_LIMIT_TOKEN_CREDENTIAL: boolean = false;
 // 腾讯云永久密钥 SecretID
-//var  secretId = "AKIDbP0PwMcVFnESUJuISUM4ZrwqY6UhhZFi"; //用户的 SecretId，建议使用子账号密钥，授权遵循最小权限指引，降低使用风险。子账号密钥获取可参见 https://cloud.tencent.com/document/product/598/37140
-//var secretKey = "K0VotlQs79yazBA1rUeeR1NYWGn7E6nH"; 
+//var  aaaasecretIdxxxxx = "AKIDbP0PwMcVFnESUJuISUM4ZrwqY6Uhh ZFi dsfasdfdasf"; //用户的 SecretId，建议使用子账号密钥，授权遵循最小权限指引，降低使用风险。子账号密钥获取可参见 https://cloud.tencent.com/document/product/598/37140
+//var aaaaasecretKeyxxxx = "K0VotlQs79yazBA1rUeeR1NYWGn7E6nH sdfasfsaf"; 
 // export const COS_SECRET_ID: string = 'AKIDbP0PwMcVFnESUJuISUM4ZrwqY6UhhZFi'  
 // 腾讯云永久密钥 SecretKey
 // export const COS_SECRET_KEY: string = 'K0VotlQs79yazBA1rUeeR1NYWGn7E6nH'  
