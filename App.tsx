@@ -13,7 +13,7 @@ import HomeScreen from './screens/HomeScreen';
 import MembersManagement from './screens/Members';
 import ProfileScreen from './screens/ProfileScreen';
 import PhotoViewScreen from './screens/PhotoViewScreen';
-import { ActivityIndicator, View,TouchableOpacity, Platform, StyleSheet,Text,Alert  } from 'react-native';
+import { ActivityIndicator,BackHandler, View,TouchableOpacity, Platform, StyleSheet,Text,Alert,   Image } from 'react-native';
 import { I18nextProvider,useTranslation } from 'react-i18next';
 import i18n from './i18n';
 import { initI18n } from './i18n';
@@ -171,6 +171,9 @@ function App() {
   const checkboxAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: checkboxScale.value }],
   }));
+  const handleBack = () => {
+    BackHandler.exitApp();
+  };
 
   const fadeAnimatedStyle = useAnimatedStyle(() => ({
     opacity: fadeIn.value,
@@ -190,8 +193,21 @@ function App() {
     );
   }
 
+
   return (
+    
     <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.navBar}>
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+          {/* 可以换成你自己的返回图标 */}
+          <Image
+            source={require('./assets/border_close_grey.webp')} // 你需要提供这个图标
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+      <Text style={styles.title}>title</Text>
+      <View style={styles.rightPlaceholder} />
+      </View>
          {!isLoggedIn && (
       <View style={styles.content}>
       <View style={styles.header}>
@@ -260,6 +276,8 @@ function App() {
     </GestureHandlerRootView>
   );
 }
+const NAV_BAR_HEIGHT = 56;
+const TAB_BAR_HEIGHT = 56;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -281,11 +299,20 @@ const styles = StyleSheet.create({
     marginBottom: 48,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#92400E',
     marginBottom: 8,
     textAlign: 'center',
+  },
+  navBar: {
+    height: NAV_BAR_HEIGHT,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    borderBottomWidth: 0.5,
+    borderColor: '#DDD',
   },
   subtitle: {
     fontSize: 16,
@@ -521,6 +548,19 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#DC2626',
     marginLeft: 8,
+  },
+  rightPlaceholder: {
+    width: 32, // 占位符保持居中
+  },
+  backButton: {
+    padding: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
   },
 });
 export default App;
