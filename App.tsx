@@ -82,21 +82,34 @@ function App() {
   const fadeIn = useSharedValue(0);
 
   useEffect(() => {
-    // 检查当前登录状态
+    // 检查当前登录状态 - 使用 AuthBridge.getSession
     const checkAuthState = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      console.log("session",session)
-      setIsLoggedIn(!!session);
-      setUser(session?.user || null);
-      setIsLoading(false)
+      try {
+        const sessionString = await AuthBridge.getSession();
+        if (sessionString) {
+          const session = JSON.parse(sessionString);
+          console.log("session from AuthBridge", session);
+          setIsLoggedIn(!!session);
+          setUser(session?.user || null);
+        } else {
+          setIsLoggedIn(false);
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Error getting session from AuthBridge:", error);
+        setIsLoggedIn(false);
+        setUser(null);
+      }
+      setIsLoading(false);
     };
     checkAuthState();
+    
     // 监听认证状态变化
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         setIsLoggedIn(!!session);
         setUser(session?.user || null);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     );
     initI18n().then(() => setReady(true));

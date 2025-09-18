@@ -36,10 +36,18 @@ const ProfileScreen = () => {
     fadeIn.value = withTiming(1, { duration: 800 });
     // 检查当前登录状态
     const checkAuthState = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setIsLoggedIn(!!session);
-      setUser(session?.user || null);
+      const sessionString = await AuthBridge.getSession();
+      if (sessionString) {
+        const session = JSON.parse(sessionString);
+        console.log("session from AuthBridge", session);
+        setIsLoggedIn(!!session);
+        setUser(session?.user || null);
+      } else {
+        setIsLoggedIn(false);
+        setUser(null);
+      }
     };
+
 
     checkAuthState();
 
@@ -131,18 +139,14 @@ const ProfileScreen = () => {
     try {
       await GoogleSignin.hasPlayServices()
       const userInfo = await GoogleSignin.signIn()
-      console.log("GoogleSignin hasPlayServicesxxx",userInfo)
-
       if (userInfo?.data?.idToken) {
         const { data, error } = await supabase.auth.signInWithIdToken({
           provider: 'google',
           token: userInfo.data.idToken,
         })
-        console.log(error, data)
         const { data: sessionData } = await supabase.auth.getSession();
         if (sessionData.session) {
           AuthBridge.saveSession(JSON.stringify(sessionData.session));
-          console.log("✅ Session saved to native:", sessionData.session);
         }
       } else {
         throw new Error('no ID token present!')
