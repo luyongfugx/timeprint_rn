@@ -16,6 +16,7 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.rn.AuthBridgePackage
 
 class App : Application() , ReactApplication {
 
@@ -40,6 +41,8 @@ class App : Application() , ReactApplication {
                 PackageList(this).packages.apply {
                     // Packages that cannot be autolinked yet can be added manually here, for example:
                     // add(MyReactNativePackage())
+                    //登录包
+                    add(AuthBridgePackage())
                 }
 
             override fun getJSMainModuleName(): String = "index"

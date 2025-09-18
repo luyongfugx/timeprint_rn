@@ -6,7 +6,11 @@ import {   View,
   ScrollView,
   Image,
   TouchableOpacity,
+  NativeModules,
   Alert } from 'react-native';
+
+
+
 import { launchImageLibrary } from 'react-native-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
@@ -22,6 +26,8 @@ import { supabase } from '../api/supabase';
 import { getMembership } from '../api/teams/membership';
 import { getHomeData } from '../api/teams/home';
 import { doCheckIn } from '../api/teams/checkin';
+
+const { AuthBridge } = NativeModules;
 
 const API_URL = 'http://192.168.3.165:3000/checkin-records'; // Replace with your actual API endpoint
 
@@ -178,6 +184,10 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         if (!session) {
           Alert.alert('错误', '用户未登录');
           return;
+        }
+        else { //保存一下,native那边可以取
+          AuthBridge.saveSession(JSON.stringify(session));
+          console.log("✅ Session saved to native:", session);
         }
 
         // 准备上传数据

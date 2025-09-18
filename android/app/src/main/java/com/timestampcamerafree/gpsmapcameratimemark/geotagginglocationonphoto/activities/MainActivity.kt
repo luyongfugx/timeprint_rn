@@ -2,6 +2,7 @@ package com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.a
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -354,6 +355,8 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
           // checkNewVersion()
             //获取official logo
            // getOfficialLogo()
+           //获取session
+            getSession()
         }
         // 初始化 logoContainer 的布局参数
         initFuncRunnable.run()
@@ -493,6 +496,20 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
         mPreview.apply {
            // Log.d(TAG,"mPreview setZoomRatio : ${scale}")
             mPreview?.setZoomRatio(scale)
+        }
+    }
+    fun getSession(){
+        val prefs = getSharedPreferences("supabase", Context.MODE_PRIVATE)
+        val sessionJson = prefs.getString("session", null)
+        if (sessionJson != null) {
+            val jsonObj = org.json.JSONObject(sessionJson)
+            val user = jsonObj.getJSONObject("user")
+            val email = user.getString("email")
+            val id = user.getString("id")
+            println("👤 Logged in user: $email ($id)")
+        }
+        else {
+            println("👤 Logged in user is null")
         }
     }
     private fun setScaleView(scale:Float){
