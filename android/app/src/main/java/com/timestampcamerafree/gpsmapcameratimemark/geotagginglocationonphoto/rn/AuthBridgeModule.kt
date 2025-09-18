@@ -13,6 +13,7 @@ class AuthBridgeModule(reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun saveSession(sessionJson: String) {
+        println("👤 Logged in saveSession : $sessionJson ")
         val prefs = reactApplicationContext.getSharedPreferences("supabase", Context.MODE_PRIVATE)
         prefs.edit().putString("session", sessionJson).apply()
     }

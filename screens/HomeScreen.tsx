@@ -185,11 +185,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           Alert.alert('错误', '用户未登录');
           return;
         }
-        else { //保存一下,native那边可以取
-          AuthBridge.saveSession(JSON.stringify(session));
-          console.log("✅ Session saved to native:", session);
-        }
-
+      
         // 准备上传数据
         const checkinData = {
           image: image.base64,

@@ -13,7 +13,7 @@ import HomeScreen from './screens/HomeScreen';
 import MembersManagement from './screens/Members';
 import ProfileScreen from './screens/ProfileScreen';
 import PhotoViewScreen from './screens/PhotoViewScreen';
-import { ActivityIndicator,BackHandler, View,TouchableOpacity, Platform, StyleSheet,Text,Alert,   Image } from 'react-native';
+import { NativeModules,ActivityIndicator,BackHandler, View,TouchableOpacity, Platform, StyleSheet,Text,Alert,   Image } from 'react-native';
 import { I18nextProvider,useTranslation } from 'react-i18next';
 import i18n from './i18n';
 import { initI18n } from './i18n';
@@ -35,7 +35,7 @@ import Animated, {
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
+const { AuthBridge } = NativeModules;
 function MainTabs() {
   const { t } = useTranslation();
 
@@ -124,6 +124,12 @@ function App() {
             token: userInfo.data.idToken,
           })
           console.log(error, data)
+
+          const { data: sessionData } = await supabase.auth.getSession();
+          if (sessionData.session) {
+            AuthBridge.saveSession(JSON.stringify(sessionData.session));
+            console.log("✅ Session saved to native:", sessionData.session);
+          }
         } else {
           throw new Error('no ID token present!')
         }

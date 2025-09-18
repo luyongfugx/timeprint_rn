@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView,   Image, Alert, SafeAreaView, Platform } from 'react-native';
+import { NativeModules,View, Text, StyleSheet, TouchableOpacity, ScrollView,   Image, Alert, SafeAreaView, Platform } from 'react-native';
 import { User, LogOut, Mail, Shield } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +17,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
-
+const { AuthBridge } = NativeModules;
 const ProfileScreen = () => {
   const { t } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -139,6 +139,11 @@ const ProfileScreen = () => {
           token: userInfo.data.idToken,
         })
         console.log(error, data)
+        const { data: sessionData } = await supabase.auth.getSession();
+        if (sessionData.session) {
+          AuthBridge.saveSession(JSON.stringify(sessionData.session));
+          console.log("✅ Session saved to native:", sessionData.session);
+        }
       } else {
         throw new Error('no ID token present!')
       }

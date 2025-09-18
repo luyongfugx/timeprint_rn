@@ -217,7 +217,7 @@ android {
 
     flavorDimensions.add("variants")
     productFlavors {
-        register("core")
+       register("core")
         register("fdroid")
         register("prepaid")
     }
