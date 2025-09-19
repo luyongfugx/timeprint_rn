@@ -215,12 +215,12 @@ android {
         }
     }
 
-    flavorDimensions.add("variants")
-    productFlavors {
-       register("core")
-        register("fdroid")
-        register("prepaid")
-    }
+    // flavorDimensions.add("variants")
+    // productFlavors {
+    //    register("core")
+    //    register("fdroid")
+    //     register("prepaid")
+    // }
 
     sourceSets {
         getByName("main").java.srcDirs("src/main/java")

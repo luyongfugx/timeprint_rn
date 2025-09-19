@@ -5,7 +5,7 @@ import React, { useState,useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Users, Chrome as Home,Settings } from 'lucide-react-native';
+import { Users, Chrome as Home,Settings, Camera } from 'lucide-react-native';
 import { GestureDetector, GestureHandlerRootView,Gesture } from 'react-native-gesture-handler';
 
 // 引入你创建的页面组件
@@ -88,7 +88,6 @@ function App() {
         const sessionString = await AuthBridge.getSession();
         if (sessionString) {
           const session = JSON.parse(sessionString);
-          console.log("session from AuthBridge", session);
           setIsLoggedIn(!!session);
           setUser(session?.user || null);
         } else {
@@ -96,6 +95,7 @@ function App() {
           setUser(null);
         }
       } catch (error) {
+
         console.error("Error getting session from AuthBridge:", error);
         setIsLoggedIn(false);
         setUser(null);
@@ -224,8 +224,11 @@ function App() {
             style={styles.backIcon}
           />
         </TouchableOpacity>
-      <Text style={styles.title}>title</Text>
-      <View style={styles.rightPlaceholder} />
+      <Text style={styles.title}>Group</Text>
+     
+        <TouchableOpacity onPress={handleBack} style={styles.cameraButton}>
+          <Camera size={24} color="#3b82f6" />
+        </TouchableOpacity>
       </View>
          {!isLoggedIn && (
       <View style={styles.content}>
@@ -320,7 +323,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#92400E',
+    color: 'white',
     marginBottom: 8,
     textAlign: 'center',
   },
@@ -577,9 +580,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backIcon: {
-    width: 24,
-    height: 24,
+    width: 32,
+    height: 32,
     resizeMode: 'contain',
+    color:"white"
+  },
+  cameraButton: {
+    right: 20,
+    width: 32,
+    height: 32,
+    borderRadius:16,
+    backgroundColor: '#f3f4f6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });
 export default App;

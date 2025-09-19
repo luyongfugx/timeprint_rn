@@ -57,6 +57,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data: CheckinRecord[] = await response.json();
+        
         setCheckinRecords(data);
       } catch (err: unknown) {
        // setError(err instanceof Error ? err.message : 'Failed to fetch check-in records');
@@ -106,16 +107,22 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
     fetchCheckinRecords();
     const checkAuthState = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      const membership = await getMembership(session)
-      setTeamMembership(membership.teamMember)  
-      console.log(membership)
-      const homeData = await getHomeData(session)
-      console.log(homeData)
+      const sessionString = await AuthBridge.getSession();
+      if (sessionString) {
+          console.log("sessionString:",sessionString)
+          const session = JSON.parse(sessionString);
+          console.log("session:",session)
+          const membership = await getMembership(session)
+          setTeamMembership(membership.teamMember)  
+          var jsonStr = JSON.stringify(membership.teamMember)
+          await  AuthBridge.saveTeamInfo(jsonStr)
+          const homeData = await getHomeData(session)
+          console.log(homeData)
 
+      }
     };
 
-    checkAuthState();
+     checkAuthState();
 
   }, []);
 
@@ -148,76 +155,10 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       navigation.navigate('Member')
     };
 
-    const doCheckin = async () => {
-      try {
-        // 打开图片库选择图片
-        const result = await launchImageLibrary({
-          mediaType: 'photo',
-          quality: 0.8,
-          includeBase64: true,
-        });
 
-        if (result.didCancel) {
-          console.log('User cancelled image picker');
-          return;
-        }
-
-        if (result.errorCode) {
-          Alert.alert('错误', `选择图片时出错: ${result.errorMessage}`);
-          return;
-        }
-
-        if (!result.assets || result.assets.length === 0) {
-          Alert.alert('错误', '未选择图片');
-          return;
-        }
-
-        const image = result.assets[0];
-        
-        if (!image.base64) {
-          Alert.alert('错误', '无法获取图片数据');
-          return;
-        }
-
-        // 获取当前用户会话
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
-          Alert.alert('错误', '用户未登录');
-          return;
-        }
-      
-        // 准备上传数据
-        const checkinData = {
-          image: image.base64,
-          fileName: image.fileName || `checkin_${Date.now()}.jpg`,
-          mimeType: image.type || 'image/jpeg',
-          userId: session.user.id,
-          teamId: teamMembership?.teams.id,
-          timestamp: new Date().toISOString(),
-        };
-        // 调用API上传图片
-        const response = await  doCheckIn(session,checkinData)
-
-
-
-        // 刷新打卡记录
-        // const fetchResponse = await fetch(API_URL);
-        // if (fetchResponse.ok) {
-        //   const data: CheckinRecord[] = await fetchResponse.json();
-        //   setCheckinRecords(data);
-        // }
-
-      } catch (error) {
-        console.error('Checkin error:', error);
-        Alert.alert('错误', `打卡失败: ${error instanceof Error ? error.message : '未知错误'}`);
-      }
-    };
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={doCheckin} style={styles.cameraButton}>
-        <Camera size={24} color="#3b82f6" />
-      </TouchableOpacity>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>

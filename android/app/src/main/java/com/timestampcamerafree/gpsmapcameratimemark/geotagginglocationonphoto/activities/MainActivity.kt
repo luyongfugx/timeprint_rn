@@ -356,7 +356,7 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
             //获取official logo
            // getOfficialLogo()
            //获取session
-            getSession()
+//            this.getSession()
         }
         // 初始化 logoContainer 的布局参数
         initFuncRunnable.run()
@@ -498,20 +498,21 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
             mPreview?.setZoomRatio(scale)
         }
     }
-    fun getSession(){
-        val prefs = getSharedPreferences("supabase", Context.MODE_PRIVATE)
-        val sessionJson = prefs.getString("session", null)
-        if (sessionJson != null) {
-            val jsonObj = org.json.JSONObject(sessionJson)
-            val user = jsonObj.getJSONObject("user")
-            val email = user.getString("email")
-            val id = user.getString("id")
-            println("👤 Logged in user: $email ($id)")
-        }
-        else {
-            println("👤 Logged in user is null")
-        }
-    }
+//    fun getSession(): String? {
+//        val prefs = getSharedPreferences("supabase", Context.MODE_PRIVATE)
+//        val sessionJson = prefs.getString("session", null)
+//        return sessionJson
+////        if (sessionJson != null) {
+////            val jsonObj = org.json.JSONObject(sessionJson)
+////            val user = jsonObj.getJSONObject("user")
+////            val email = user.getString("email")
+////            val id = user.getString("id")
+////            println("👤 Logged in user: $email ($id)")
+////        }
+////        else {
+////            println("👤 Logged in user is null")
+////        }
+//    }
     private fun setScaleView(scale:Float){
         var showScale = scale
         //如果小于一，统一显示成0.6

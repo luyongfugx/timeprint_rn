@@ -20,6 +20,7 @@ import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.Ap
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.helpers.AnalyticsManager
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.helpers.Config
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.services.ServiceConfig
+import io.reactivex.rxjava3.internal.operators.single.SingleDoOnSuccess
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
@@ -38,6 +39,9 @@ object TencentCOSUtils {
     // 替换为你的 AppId、Region 和 Bucket
     private const val REGION = "ap-singapore" // 例如: ap-beijing
     private const val BUCKET = "timeprintandroid-1330977225"
+
+
+    private const val TEAM_BUCKET = "timeprint-team-1330977225"
 
     private var cosXmlService: CosXmlService? = null
     private var transferManager: TransferManager? = null
@@ -84,6 +88,47 @@ object TencentCOSUtils {
      * @param progressListener 上传进度监听器 (可选)
      * @param resultListener   上传结果监听器
      */
+
+
+    fun uploadTeamFile(
+        context: Context,
+        uri: Uri,
+        cosPath: String,
+        onSuccess: (accessUrl: String?) -> Unit
+    ) {
+        ensureInitialized(context)
+        Log.d(TAG, "uploadFile: putRequest: BUCKET: $TEAM_BUCKET  cosPath $cosPath  uri: ${uri}")
+        val putRequest = PutObjectRequest(TEAM_BUCKET, cosPath,uri)
+
+        var cosxmlUploadTask = transferManager?.upload(putRequest, "")
+        cosxmlUploadTask!!.setCosXmlResultListener(object : CosXmlResultListener {
+            override fun onSuccess(request: CosXmlRequest, result: CosXmlResult) {
+                val uploadResult =
+                    result as COSXMLUploadTaskResult
+                val accessUrl = uploadResult.accessUrl
+                Log.d(TAG, "uploadFile: onSuccess: $accessUrl")
+                onSuccess(accessUrl)
+            }
+
+            // 如果您使用 kotlin 语言来调用，请注意回调方法中的异常是可空的，否则不会回调 onFail 方法，即：
+            // clientException 的类型为 CosXmlClientException?，serviceException 的类型为 CosXmlServiceException?
+            override fun onFail(
+                request: CosXmlRequest,
+                clientException: CosXmlClientException?,
+                serviceException: CosXmlServiceException?
+            ) {
+                if (clientException != null) {
+                    Log.d(TAG, "uploadFile: clientException: ${clientException.toString()}")
+                    clientException.printStackTrace()
+                } else {
+                    serviceException!!.printStackTrace()
+                    Log.d(TAG, "uploadFile: serviceException: ${serviceException.toString()}")
+                }
+                onSuccess(null)
+            }
+        })
+    }
+
     fun uploadFile(
         context: Context,
         uri: Uri,

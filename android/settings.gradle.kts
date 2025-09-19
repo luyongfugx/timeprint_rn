@@ -28,6 +28,7 @@ configure<com.facebook.react.ReactSettingsExtension> {
 //rootProject.name = "timeprint_rn"
 rootProject.name = "com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto"
 include(":app")
+include(":core") // 確保這個模組被包含在內
 includeBuild("../node_modules/@react-native/gradle-plugin")
 
 

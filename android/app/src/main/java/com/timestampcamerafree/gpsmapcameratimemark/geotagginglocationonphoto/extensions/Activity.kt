@@ -85,6 +85,23 @@ fun Activity.launchViewIntent(url: String) {
         }
     }
 }
+fun Activity.getSession(): String? {
+    var namespace = "supabase"
+    val prefs = getSharedPreferences(namespace, Context.MODE_PRIVATE)
+    val sessionJson = prefs.getString("session", null)
+    return sessionJson
+}
+fun Activity.getTeamInfo(): String? {
+    var namespace = "supabase"
+    val prefs = getSharedPreferences(namespace, Context.MODE_PRIVATE)
+    val teamInfo = prefs.getString("teamInfo", null)
+    return teamInfo
+}
+
+fun Activity.doToast(content: String) {
+    toast(content)
+}
+
 //fun GpBaseSimpleActivity.isShowingSAFDialog(path: String): Boolean {
 //    return if ((!isRPlus() && isPathOnSD(path) && !isSDCardSetAsDefaultStorage() && (baseConfig.sdTreeUri.isEmpty() || !hasProperStoredTreeUri(false)))) {
 //        runOnUiThread {

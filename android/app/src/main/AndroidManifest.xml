@@ -37,7 +37,7 @@
         tools:node="remove" />
 
     <application
-        android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.App"
+        android:name=".App"
         android:allowBackup="true"
         android:appCategory="image"
         android:icon="@mipmap/tp_app_icon"
@@ -51,12 +51,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDF9nlpxkIz9Z1wweu8Zgty_1dU9LigPpA" />
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SplashActivity"
-            android:exported="false"
-            android:theme="@style/SplashTheme2" />
-
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme2" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:showOnLockScreen="true"
@@ -93,24 +97,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.ContactActivity"
+            android:name=".activities.ContactActivity"
             android:exported="true" />
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.GalleryActivity"
+            android:name=".activities.GalleryActivity"
             android:exported="true" />
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.MultiShareActivity"
+            android:name=".activities.MultiShareActivity"
             android:exported="true" />
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:exported="true" />
         <activity
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.RNGroupActivity"
+            android:name=".activities.RNGroupActivity"
             android:exported="true" />
 
 
         <receiver
-            android:name="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.receivers.HardwareShutterReceiver"
+            android:name=".receivers.HardwareShutterReceiver"
             android:exported="false">
 
             <intent-filter>
@@ -136,7 +140,7 @@
             android:exported="true"
             android:icon="@mipmap/tp_app_icon"
             android:roundIcon="@mipmap/tp_app_icon"
-            android:targetActivity="com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.SplashActivity">
+            android:targetActivity=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

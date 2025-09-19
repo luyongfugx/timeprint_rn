@@ -26,6 +26,9 @@ object GpHttpRequestApi {
     //接口时间
     private val TAG = "GpHttpRequestApi"
     private const val TIME_API_URL:String = "https://timeprint.aiboot.cloud/api/mask/timezone"
+    //团队接口
+    private const val GROUP_BASE_API_URL:String = "http://localhost:3000"
+
     fun realtime(lat:Double,lon:Double ,callback: (GPRealTimeModel?) -> Unit) {
 
 
@@ -226,4 +229,62 @@ object GpHttpRequestApi {
         val keyFactory = KeyFactory.getInstance("EC")
         return keyFactory.generatePrivate(keySpec)
     }
+
+    // 
+    fun checkIn(sessionJson: String,data:String, callback: (String?) -> Unit) {
+        try {
+            // 解析 JSON 字符串获取 session 对象
+            val session = Gson().fromJson(sessionJson, Map::class.java)
+            val accessToken = session["access_token"] as? String
+            
+            if (accessToken.isNullOrEmpty()) {
+                Log.e(TAG, "Not logged in: access token is null or empty")
+                callback(null)
+                return
+            }
+            
+            Log.d(TAG, "accessToken: $accessToken")
+            
+            val url = "$GROUP_BASE_API_URL/api/mobile/checkin"
+            Log.d(TAG, "API_BASE_URL: $url")
+            
+            val client = OkHttpClient()
+            val requestBody = data.toRequestBody("application/json".toMediaType())
+            val request = Request.Builder()
+                .url(url)
+                .header("Authorization", "Bearer $accessToken")
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .post(requestBody)
+                .build()
+                
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e(TAG, "getMembership request failed: ${e.message}")
+                    callback(null)
+                }
+                
+                override fun onResponse(call: Call, response: Response) {
+                    val responseBody = response.body?.string()
+                    if (response.isSuccessful && responseBody != null) {
+                        try {
+                            Log.d(TAG, "getMembership response data: $responseBody")
+                          //  val data = Gson().fromJson(responseBody, Any::class.java)
+                            callback(responseBody)
+                        } catch (e: Exception) {
+                            Log.e(TAG, "getMembership JSON parsing error: ${e.message}")
+                            callback(null)
+                        }
+                    } else {
+                        Log.e(TAG, "getMembership response failed: ${response.code} ${response.message}")
+                        callback(null)
+                    }
+                }
+            })
+        } catch (e: Exception) {
+            Log.e(TAG, "getMembership error: ${e.message}")
+            callback(null)
+        }
+    }
+    
 }

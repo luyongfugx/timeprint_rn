@@ -4,6 +4,7 @@ package com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.i
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.hardware.SensorManager
 import android.hardware.camera2.CameraCharacteristics
@@ -60,13 +61,17 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.load.ImageHeaderParser.UNKNOWN_ORIENTATION
+import com.google.gson.Gson
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.App
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.R
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.activities.MainActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.GpBaseSimpleActivity
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.checkLocationPermission
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.config
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.doToast
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.getFilenameFromPath
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.getSession
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.getTeamInfo
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.toAppFlashMode
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.toCameraSelector
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.toCameraXFlashMode
@@ -98,17 +103,23 @@ import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.mo
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.models.MediaOutput
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.models.MySize
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.models.ResolutionOption
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.models.TeamMembership
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.models.TimerModeOption
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.modelsdata.WatermarkBitmap
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.services.ServiceConfig
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GPAppUtils
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GpDateFormat
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GpHttpRequestApi
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GpTimeManager
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GpUiUtils
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.TencentCOSUtils
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.watermark.WatermarkManager
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.watermark.model.WatermarkID
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.watermark.model.WatermarkItemID
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.watermark.model.logo.LogoPosition
+import java.util.Date
 //import org.jetbrains.anko.toast
+
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -258,8 +269,8 @@ class GpGlCameraPreview (
             } catch (e: Exception) {
                 e.printStackTrace()
                 Log.d(TAG,"startCamera error ",e)
-                val errorMessage =  R.string.i_save_photo_failed
-               // activity.toast(errorMessage)
+                activity.doToast(GpUiUtils.getString(R.string.i_save_photo_failed))
+
             }
         }, mainExecutor)
     }
@@ -715,8 +726,9 @@ class GpGlCameraPreview (
     }
 
     override fun tryTakePicture() {
+
         if (imageCapture == null) {
-           // activity.toast(R.string.i_save_photo_failed)
+            activity.doToast(GpUiUtils.getString(R.string.i_save_photo_failed))
             return
         }
         val imageCapture = imageCapture
@@ -806,6 +818,39 @@ class GpGlCameraPreview (
             }
         }
     }
+    private fun doCheckIn(uri: Uri,cosPath:String){
+        Log.d(TAG, "doCheckIn CheckIn teamInfoJson data: $cosPath")
+        var teamInfoJson = activity.getTeamInfo();
+        val teamMembership = Gson().fromJson<TeamMembership>(teamInfoJson,TeamMembership::class.java)
+
+
+
+        Log.d(TAG, "CheckIn teamInfoJson data: $teamInfoJson")
+        var teamId = teamMembership.teamId
+        var newCosPath = "${teamId}/${cosPath}"
+        val sessionJson = activity.getSession()
+        if (sessionJson != null) {
+            TencentCOSUtils.uploadTeamFile(App.context, uri,newCosPath){
+                val accessUrl = it;
+                // 创建包含 teamId, accessUrl 和其他数据的 JSON 对象
+                val jsonObject = mapOf(
+                    "team_id" to teamId,
+                    "photo_url" to accessUrl,
+                    "latitude" to WatermarkManager.currentWaterMarkViewModel?.lat?.value,
+                    "longitude" to WatermarkManager.currentWaterMarkViewModel?.lng?.value,
+                    "location_name" to WatermarkManager.currentWaterMarkViewModel?.locationText?.value,
+//                    "created_at" to Date(GpTimeManager.getExactTime())
+                )
+                // 使用 Gson 将 JSON 对象转换为字符串
+                val jsonString = Gson().toJson(jsonObject)
+                Log.d(TAG, "CheckIn JSON data: $jsonString")
+                GpHttpRequestApi.checkIn(sessionJson,jsonString){
+                    Log.d(TAG, "checkIn callback jsonString: $jsonString")
+                }
+            }
+        }
+
+    }
     private fun uploadToTencentOss(uri: Uri){
         //后台运行
         ensureBackgroundThread {
@@ -837,7 +882,8 @@ class GpGlCameraPreview (
                 //是否获取时间错误
                 val statusText =  "${netWork}_${location}_${locationPermission}_${time}";
                 val  cosPath = "${countryCode}/${year}/${month}/${day}/vm_${WatermarkManager.selectWatermarkID}_${versionName}_${deviceId}_${statusText}_${userId}_${it.getFilenameFromPath()}.jpg"
-
+                val checkInPath = "${countryCode}/${year}/${month}/${day}/vm_${WatermarkManager.selectWatermarkID}_${versionName}_${deviceId}_${it.getFilenameFromPath()}.jpg"
+                doCheckIn(uri,checkInPath)
                 val bitmap = try {
                     val parcelFileDescriptor = App.context.contentResolver.openFileDescriptor(uri, "r")
                     val fileDescriptor = parcelFileDescriptor?.fileDescriptor
@@ -846,6 +892,7 @@ class GpGlCameraPreview (
                     null
                 }
                 bitmap?.let {
+
                     //压缩到10%
                     val inputStream = BitmapUtils.compressBitmap2InputStream(it, 10)
                     try {
