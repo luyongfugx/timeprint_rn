@@ -1,29 +1,28 @@
 /**
  * @format
  */
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Users, Chrome as Home,Settings, Camera } from 'lucide-react-native';
-import { GestureDetector, GestureHandlerRootView,Gesture } from 'react-native-gesture-handler';
+import { Users, Chrome as Home, Settings, Camera, X } from 'lucide-react-native';
+import { GestureDetector, GestureHandlerRootView, Gesture } from 'react-native-gesture-handler';
 
 // 引入你创建的页面组件
 import HomeScreen from './screens/HomeScreen';
 import MembersManagement from './screens/Members';
 import ProfileScreen from './screens/ProfileScreen';
 import PhotoViewScreen from './screens/PhotoViewScreen';
-import { NativeModules,ActivityIndicator,BackHandler, View,TouchableOpacity, Platform, StyleSheet,Text,Alert,   Image } from 'react-native';
-import { I18nextProvider,useTranslation } from 'react-i18next';
+import { NativeModules, ActivityIndicator, BackHandler, View, TouchableOpacity, Platform, StyleSheet, Text, Alert, Image } from 'react-native';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import i18n from './i18n';
 import { initI18n } from './i18n';
 import { supabase } from './api/supabase';
 // import { Text } from 'react-native-svg';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import Animated, { 
-  useAnimatedStyle, 
-  withSpring, 
-  withTiming,
+import Animated, {
+  useAnimatedStyle,
+  withSpring,
   useSharedValue,
   interpolate,
   runOnJS,
@@ -42,31 +41,31 @@ function MainTabs() {
 
 
   return (
- 
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let icon;
-            if (route.name === 'Home') {
-              icon = focused ? <Home size={size} color={color} /> : <Home size={size} color={color} />;    
-            } else if (route.name === 'Member') {
-              icon = focused ? <Users size={size} color={color} /> : <Users size={size} color={color} />;
-            } else if (route.name === 'Setting') {
-              icon = focused ? <Settings size={size} color={color} />  : <Settings size={size} color={color} />;
-            }
 
-            // You can return any component that you like here!
-            return icon;
-          },
-          tabBarActiveTintColor: 'tomato', // 选中时的 Tab 颜色
-          tabBarInactiveTintColor: 'gray', // 未选中时的 Tab 颜色
-          headerShown: false, // 隐藏 Tab 页面自身的头部
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('home') }} />
-        <Tab.Screen name="Member" component={MembersManagement} options={{ title: t('member') }} />
-        <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: t('me')  }} />
-      </Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let icon;
+          if (route.name === 'Home') {
+            icon = focused ? <Home size={size} color={color} /> : <Home size={size} color={color} />;
+          } else if (route.name === 'Member') {
+            icon = focused ? <Users size={size} color={color} /> : <Users size={size} color={color} />;
+          } else if (route.name === 'Setting') {
+            icon = focused ? <Settings size={size} color={color} /> : <Settings size={size} color={color} />;
+          }
+
+          // You can return any component that you like here!
+          return icon;
+        },
+        tabBarActiveTintColor: 'tomato', // 选中时的 Tab 颜色
+        tabBarInactiveTintColor: 'gray', // 未选中时的 Tab 颜色
+        headerShown: false, // 隐藏 Tab 页面自身的头部
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: t('home') }} />
+      <Tab.Screen name="Member" component={MembersManagement} options={{ title: t('member') }} />
+      <Tab.Screen name="Setting" component={ProfileScreen} options={{ title: t('me') }} />
+    </Tab.Navigator>
 
   );
 }
@@ -111,7 +110,7 @@ function App() {
       setIsLoading(false);
     };
     checkAuthState();
-    
+
     // 监听认证状态变化
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
@@ -124,65 +123,65 @@ function App() {
     return () => subscription.unsubscribe();
 
   }, []);
-    const handleLogin = async (provider: string) => {
-      GoogleSignin.configure({
-        scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-        webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',
-      })
-      if (!agreedToTerms) {
-        Alert.alert('提示', '请先阅读并同意用户协议');
-        return;
-      }
-  
-      try {
-        await GoogleSignin.hasPlayServices()
-        const userInfo = await GoogleSignin.signIn()
-        console.log("GoogleSignin hasPlayServicesxxx",userInfo)
-  
-        if (userInfo?.data?.idToken) {
-          const { data, error } = await supabase.auth.signInWithIdToken({
-            provider: 'google',
-            token: userInfo.data.idToken,
-          })
-          console.log(error, data)
+  const handleLogin = async (provider: string) => {
+    GoogleSignin.configure({
+      scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+      webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',
+    })
+    if (!agreedToTerms) {
+      Alert.alert('提示', '请先阅读并同意用户协议');
+      return;
+    }
 
-          const { data: sessionData } = await supabase.auth.getSession();
-          if (sessionData.session) {
-            AuthBridge.saveSession(JSON.stringify(sessionData.session));
-            console.log("✅ Session saved to native:", sessionData.session);
-          }
-        } else {
-          throw new Error('no ID token present!')
-        }
-      } catch (error: any) {
-        console.log("GoogleSignin hasPlayServicesxxx error",error)
-        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-          // user cancelled the login flow
-        } else if (error.code === statusCodes.IN_PROGRESS) {
-          // operation (e.g. sign in) is in progress already
-        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-          // play services not available or outdated
-        } else {
-          // some other error happened
-        }
-      }
-    
-    };
-  
-    const createButtonGesture = (provider: 'google' | 'apple') => {
-      return Gesture.Tap()
-        .onBegin(() => {
-          buttonScale.value = withSpring(0.95);
+    try {
+      await GoogleSignin.hasPlayServices()
+      const userInfo = await GoogleSignin.signIn()
+      console.log("GoogleSignin hasPlayServicesxxx", userInfo)
+
+      if (userInfo?.data?.idToken) {
+        const { data, error } = await supabase.auth.signInWithIdToken({
+          provider: 'google',
+          token: userInfo.data.idToken,
         })
-        .onFinalize(() => {
-          buttonScale.value = withSpring(1);
-          if (!isLoading) {
-            runOnJS(handleLogin)(provider); 
-           //  handleLogin(provider);
-          }
-        });
-    };
- const checkboxGesture = Gesture.Tap()
+        console.log(error, data)
+
+        const { data: sessionData } = await supabase.auth.getSession();
+        if (sessionData.session) {
+          AuthBridge.saveSession(JSON.stringify(sessionData.session));
+          console.log("✅ Session saved to native:", sessionData.session);
+        }
+      } else {
+        throw new Error('no ID token present!')
+      }
+    } catch (error: any) {
+      console.log("GoogleSignin hasPlayServicesxxx error", error)
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
+    }
+
+  };
+
+  const createButtonGesture = (provider: 'google' | 'apple') => {
+    return Gesture.Tap()
+      .onBegin(() => {
+        buttonScale.value = withSpring(0.95);
+      })
+      .onFinalize(() => {
+        buttonScale.value = withSpring(1);
+        if (!isLoading) {
+          runOnJS(handleLogin)(provider);
+          //  handleLogin(provider);
+        }
+      });
+  };
+  const checkboxGesture = Gesture.Tap()
     .onBegin(() => {
       checkboxScale.value = withSpring(0.9);
     })
@@ -222,87 +221,108 @@ function App() {
 
 
   return (
-    
+
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.navBar}>
-      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-          {/* 可以换成你自己的返回图标 */}
-          <Image
-            source={require('./assets/border_close_grey.webp')} // 你需要提供这个图标
-            style={styles.backIcon}
-          />
-        </TouchableOpacity>
-      <Text style={styles.title}>Group</Text>
-     
-        <TouchableOpacity onPress={handleBack} style={styles.cameraButton}>
-          <Camera size={24} color="#3b82f6" />
-        </TouchableOpacity>
-      </View>
-         {!isLoggedIn && (
-      <View style={styles.content}>
-      <View style={styles.header}>
-        <Text style={styles.title}>欢迎回来</Text>
-        <Text style={styles.subtitle}>请选择您喜欢的登录方式</Text>
-      </View>
 
-      <View style={styles.buttonContainer}>
-        <GestureDetector gesture={createButtonGesture('google')}>
-          <Animated.View style={buttonAnimatedStyle}>
-            <TouchableOpacity 
-              style={[styles.loginButton, styles.googleButton]}
-              disabled={isLoading}
-            >
-              <View style={styles.buttonContent}>
-                <Text style={styles.googleIcon}>G</Text>
-                <Text style={styles.buttonText}>使用 Google 登录</Text>
-              </View>
+      {!isLoggedIn && (
+        <>
+          <View style={styles.navBar}>
+            <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+              {/* 可以换成你自己的返回图标 */}
+              <Image
+                source={require('./assets/border_close_grey.webp')} // 你需要提供这个图标
+                style={styles.backIcon}
+              />
             </TouchableOpacity>
-          </Animated.View>
-        </GestureDetector>
-
-        {Platform.OS === 'ios' && (
-          <GestureDetector gesture={createButtonGesture('apple')}>
-            <Animated.View style={buttonAnimatedStyle}>
-              <TouchableOpacity 
-                style={[styles.loginButton, styles.appleButton]}
-                disabled={isLoading}
-              >
-                <View style={styles.buttonContent}>
-                  <Text style={styles.appleIcon}></Text>
-                  <Text style={[styles.buttonText, styles.appleButtonText]}>使用 Apple 登录</Text>
-                </View>
-              </TouchableOpacity>
-            </Animated.View>
-          </GestureDetector>
-        )}
-      </View>
-
-      <View style={styles.footer}>
-        <GestureDetector gesture={checkboxGesture}>
-          <Animated.View style={[styles.checkboxContainer, checkboxAnimatedStyle]}>
-            <View style={[styles.checkbox, agreedToTerms && styles.checkboxChecked]}>
-              {agreedToTerms && <Text style={styles.checkmark}>✓</Text>}
+            <Text style={styles.title}>Group</Text>
+            <View>
             </View>
-            <Text style={styles.checkboxText}>
-              我已阅读并同意{' '}
-              <Text style={styles.link}>用户协议</Text>
-              {' '}和{' '}
-              <Text style={styles.link}>隐私政策</Text>
-            </Text>
-          </Animated.View>
-        </GestureDetector>
-      </View>
-    </View>
-    )}
-    {isLoggedIn && (
-      <NavigationContainer>    
-        <I18nextProvider i18n={i18n}>
-        <Stack.Navigator initialRouteName="Main">
-          <Stack.Screen name="PhotoView" component={PhotoViewScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
-        </Stack.Navigator>
-        </I18nextProvider>
-      </NavigationContainer>    )}
+          </View>
+          <View style={styles.content}>
+            <View style={styles.header}>
+              <Text style={styles.title}>欢迎回来</Text>
+              <Text style={styles.subtitle}>请选择您喜欢的登录方式</Text>
+            </View>
+
+            <View style={styles.buttonContainer}>
+              <GestureDetector gesture={createButtonGesture('google')}>
+                <Animated.View style={buttonAnimatedStyle}>
+                  <TouchableOpacity
+                    style={[styles.loginButton, styles.googleButton]}
+                    disabled={isLoading}
+                  >
+                    <View style={styles.buttonContent}>
+                      <Text style={styles.googleIcon}>G</Text>
+                      <Text style={styles.buttonText}>使用 Google 登录</Text>
+                    </View>
+                  </TouchableOpacity>
+                </Animated.View>
+              </GestureDetector>
+
+              {Platform.OS === 'ios' && (
+                <GestureDetector gesture={createButtonGesture('apple')}>
+                  <Animated.View style={buttonAnimatedStyle}>
+                    <TouchableOpacity
+                      style={[styles.loginButton, styles.appleButton]}
+                      disabled={isLoading}
+                    >
+                      <View style={styles.buttonContent}>
+                        <Text style={styles.appleIcon}></Text>
+                        <Text style={[styles.buttonText, styles.appleButtonText]}>使用 Apple 登录</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </Animated.View>
+                </GestureDetector>
+              )}
+            </View>
+
+            <View style={styles.footer}>
+              <GestureDetector gesture={checkboxGesture}>
+                <Animated.View style={[styles.checkboxContainer, checkboxAnimatedStyle]}>
+                  <View style={[styles.checkbox, agreedToTerms && styles.checkboxChecked]}>
+                    {agreedToTerms && <Text style={styles.checkmark}>✓</Text>}
+                  </View>
+                  <Text style={styles.checkboxText}>
+                    我已阅读并同意{' '}
+                    <Text style={styles.link}>用户协议</Text>
+                    {' '}和{' '}
+                    <Text style={styles.link}>隐私政策</Text>
+                  </Text>
+                </Animated.View>
+              </GestureDetector>
+            </View>
+          </View>
+        </>
+      )}
+      {isLoggedIn && (
+        <NavigationContainer>
+          <I18nextProvider i18n={i18n}>
+            <Stack.Navigator initialRouteName="Main">
+              <Stack.Screen name="PhotoView" component={PhotoViewScreen} options={{ headerShown: false }} />
+              <Stack.Screen name="Main" component={MainTabs} options={{
+                headerLeft: () => (
+                  <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+                    {/* 可以换成你自己的返回图标 */}
+                    <X size={24} color="#3b82f6"/>
+                  </TouchableOpacity>
+                ),
+                headerTitle: () => (
+                  <Text style={styles.title}>Group</Text>
+                ),
+                // 在导航栏右侧放置一个自定义组件
+                headerRight: () => (
+                  <TouchableOpacity onPress={handleBack} style={styles.cameraButton}>
+                    <Camera size={24} color="#3b82f6" />
+                  </TouchableOpacity>
+                ),
+                headerStyle: {
+                  backgroundColor: '#000',
+                },
+              }}
+              />
+            </Stack.Navigator>
+          </I18nextProvider>
+        </NavigationContainer>)}
     </GestureHandlerRootView>
   );
 }
@@ -591,13 +611,13 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     resizeMode: 'contain',
-    color:"white"
+    color: "white"
   },
   cameraButton: {
     right: 20,
     width: 32,
     height: 32,
-    borderRadius:16,
+    borderRadius: 16,
     backgroundColor: '#f3f4f6',
     alignItems: 'center',
     justifyContent: 'center',
