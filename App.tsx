@@ -88,8 +88,16 @@ function App() {
         const sessionString = await AuthBridge.getSession();
         if (sessionString) {
           const session = JSON.parse(sessionString);
-          setIsLoggedIn(!!session);
-          setUser(session?.user || null);
+          const expiresAt = parseInt(session.expires_at, 10);
+          const now = Math.floor(Date.now() / 1000);
+          if (now < expiresAt) {
+            // ✅ access_token 还有效
+            setIsLoggedIn(!!session);
+            setUser(session?.user || null);
+          } else {
+            setIsLoggedIn(false);
+            setUser(null);
+          }
         } else {
           setIsLoggedIn(false);
           setUser(null);

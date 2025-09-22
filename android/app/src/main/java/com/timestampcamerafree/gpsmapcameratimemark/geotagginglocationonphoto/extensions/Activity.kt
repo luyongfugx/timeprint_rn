@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import com.facebook.react.bridge.ReactMethod
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.R
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.helpers.ensureBackgroundThread
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.helpers.isOnMainThread
@@ -86,11 +87,19 @@ fun Activity.launchViewIntent(url: String) {
     }
 }
 fun Activity.getSession(): String? {
-    var namespace = "supabase"
+    val namespace = "supabase"
     val prefs = getSharedPreferences(namespace, Context.MODE_PRIVATE)
     val sessionJson = prefs.getString("session", null)
     return sessionJson
 }
+
+
+fun Activity.saveSession(sessionJson: String) {
+    val namespace = "supabase"
+    val prefs = getSharedPreferences(namespace, Context.MODE_PRIVATE)
+    prefs.edit().putString("session", sessionJson).apply()
+}
+
 fun Activity.getTeamInfo(): String? {
     var namespace = "supabase"
     val prefs = getSharedPreferences(namespace, Context.MODE_PRIVATE)

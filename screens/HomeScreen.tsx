@@ -8,9 +8,6 @@ import {   View,
   TouchableOpacity,
   NativeModules,
   Alert } from 'react-native';
-
-
-
 import { launchImageLibrary } from 'react-native-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
@@ -22,16 +19,11 @@ import {
   TrendingUp,
 } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../api/supabase';
 import { getMembership } from '../api/teams/membership';
 import { getHomeData } from '../api/teams/home';
-import { doCheckIn } from '../api/teams/checkin';
+import { getCheckIns } from '../api/teams/checkin';
 
 const { AuthBridge } = NativeModules;
-
-const API_URL = 'http://192.168.3.165:3000/checkin-records'; // Replace with your actual API endpoint
-
-
 const todayPhotos = [
   'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=150&h=150&fit=crop',
   'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=150&h=150&fit=crop',
@@ -40,90 +32,89 @@ const todayPhotos = [
 ];
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
-  const viewPhoto = (photoUrl: CheckinRecord) => {
+  const viewPhoto = (photoUrl: Checkin) => {
     navigation.navigate('PhotoView', { photoUrl });
   };
-  const [checkinRecords, setCheckinRecords] = useState<CheckinRecord[]>([]);
+  const [checkinRecords, setCheckinRecords] = useState<Checkin[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
   const [teamMembership,setTeamMembership] = useState<TeamMembership>();
   useEffect(() => {
-    const fetchCheckinRecords = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data: CheckinRecord[] = await response.json();
+    //     setLoading(true);
+    //     const response = await fetch(API_URL);
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     const data: CheckinRecord[] = getCheckIns();
         
-        setCheckinRecords(data);
-      } catch (err: unknown) {
-       // setError(err instanceof Error ? err.message : 'Failed to fetch check-in records');
-        // Fallback to mock data if API fails (remove in production)
-        setCheckinRecords([
-          {
-            id: '1',
-            memberName: '张小',
-            avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
-            time: '09:00',
-            location: t('headquarters'),
-            photos: [
-              'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=300&h=200&fit=crop',
-              'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
-              'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
-            ],
-            status: 'on-time',
-          },
-          {
-            id: '2',
-            memberName: '李小红',
-            avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop&crop=face',
-            time: '09:15',
-            location: '公司总部',
-            photos: [
-              'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
-              'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=300&h=200&fit=crop',
-            ],
-            status: 'late',
-          },
-          {
-            id: '3',
-            memberName: '王大强',
-            avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?w=100&h=100&fit=crop&crop=face',
-            time: '08:55',
-            location: '公司总部',
-            photos: [
-              'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
-            ],
-            status: 'on-time',
-          },
-        ]);
-      } finally {
-        setLoading(false);
-      }
-    };
+    //     setCheckinRecords(data);
+    //   } catch (err: unknown) {
+    //    // setError(err instanceof Error ? err.message : 'Failed to fetch check-in records');
+    //     // Fallback to mock data if API fails (remove in production)
+    //     setCheckinRecords([
+    //       {
+    //         id: '1',
+    //         memberName: '张小',
+    //         avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
+    //         time: '09:00',
+    //         location: t('headquarters'),
+    //         photos: [
+    //           'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=300&h=200&fit=crop',
+    //           'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
+    //           'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
+    //         ],
+    //         status: 'on-time',
+    //       },
+    //       {
+    //         id: '2',
+    //         memberName: '李小红',
+    //         avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop&crop=face',
+    //         time: '09:15',
+    //         location: '公司总部',
+    //         photos: [
+    //           'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
+    //           'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=300&h=200&fit=crop',
+    //         ],
+    //         status: 'late',
+    //       },
+    //       {
+    //         id: '3',
+    //         memberName: '王大强',
+    //         avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?w=100&h=100&fit=crop&crop=face',
+    //         time: '08:55',
+    //         location: '公司总部',
+    //         photos: [
+    //           'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
+    //         ],
+    //         status: 'on-time',
+    //       },
+    //     ]);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
-    fetchCheckinRecords();
+    // fetchCheckinRecords();
     const checkAuthState = async () => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
-          console.log("sessionString:",sessionString)
+
           const session = JSON.parse(sessionString);
-          console.log("session:",session)
           const membership = await getMembership(session)
+          setLoading(true);
           setTeamMembership(membership.teamMember)  
           var jsonStr = JSON.stringify(membership.teamMember)
           await  AuthBridge.saveTeamInfo(jsonStr)
           const homeData = await getHomeData(session)
           console.log(homeData)
-
+          const checkins = await getCheckIns(session)
+          setCheckinRecords(checkins.today_checkins)
+          console.log(checkins)
+          setLoading(false);
       }
     };
-
      checkAuthState();
-
   }, []);
 
   const getStatusColor = (status: string) => {
@@ -228,24 +219,39 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           ) : error ? (
             <Text style={{ color: 'red' }}>{error}</Text>
           ) : 
-            checkinRecords.map((record: CheckinRecord) => (
+            checkinRecords.map((record: Checkin) => (
             <View key={record.id} style={styles.recordCard}>
               <View style={styles.recordHeader}>
                 <View style={styles.memberInfo}>
-                  <Image source={{ uri: record.avatar }} style={styles.memberAvatar} />
+                 
                   <View style={styles.memberDetails}>
-                    <Text style={styles.memberName}>{record.memberName}</Text>
+                  <View style={styles.timeLocationRow}>
+                    <Image source={{ uri: record.user_avatar }} style={styles.memberAvatar} />
+                    <Text style={styles.memberName}>{record.user_name}</Text>
+                  </View>
                     <View style={styles.timeLocationContainer}>
+
+                    <TouchableOpacity 
+                    style={styles.photoWrapper}
+                    onPress={() => viewPhoto(record)}
+                  >
+                   <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} /> 
+   
+                  </TouchableOpacity>
+                      <View style={styles.timeLocationRow}>
                       <Clock size={14} color="#6b7280" />
-                      <Text style={styles.timeText}>{record.time}</Text>
+                      <Text style={styles.timeText}>{record.created_at}</Text>
+                      </View>
+                      <View style={styles.timeLocationRow}>
                       <MapPin size={14} color="#6b7280" />
                       <Text style={styles.locationText}>{record.location}</Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-                <View style={[styles.statusBadge, { backgroundColor: getStatusColor(record.status) }]}>
+                {/* <View style={[styles.statusBadge, { backgroundColor: getStatusColor(record.status) }]}>
                   <Text style={styles.statusText}>{getStatusText(record.status)}</Text>
-                </View>
+                </View> */}
               </View>
               <ScrollView 
                 horizontal 
@@ -253,22 +259,21 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                 style={styles.photosContainer}
                 contentContainerStyle={styles.photosContent}
               >
-                {record.photos.map((photo: string, index: number) => (
+                {/* {record.photos.map((photo: string, index: number) => ( */}
                   <TouchableOpacity 
-                    key={index} 
                     style={styles.photoWrapper}
                     onPress={() => viewPhoto(record)}
                   >
-                    <Image source={{ uri: photo }} style={styles.checkinPhoto} />
-                    {record.photos.length > 1 && (
+                    {/* <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} /> */}
+                    {/* {record.photos.length > 1 && (
                       <View style={styles.photoCounter}>
                         <Text style={styles.photoCounterText}>
                           {index + 1}/{record.photos.length}
                         </Text>
                       </View>
-                    )}
+                    )} */}
                   </TouchableOpacity>
-                ))}
+                {/* ))} */}
               </ScrollView>
             </View>
           ))}
@@ -417,14 +422,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   memberName: {
+    lineHeight:48,
     fontSize: 16,
     fontWeight: '600',
     color: '#1f2937',
     marginBottom: 4,
   },
   timeLocationContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 4,
+  },
+  timeLocationRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    marginRight:8,
+    alignItems: 'flex-start',
     gap: 4,
   },
   timeText: {
@@ -435,6 +447,7 @@ const styles = StyleSheet.create({
   locationText: {
     fontSize: 12,
     color: '#6b7280',
+    overflow: 'hidden',
   },
   statusBadge: {
     paddingHorizontal: 12,

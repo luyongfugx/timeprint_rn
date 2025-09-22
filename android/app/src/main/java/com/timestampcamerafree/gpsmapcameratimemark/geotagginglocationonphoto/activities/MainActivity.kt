@@ -107,11 +107,13 @@ import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.ex
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.beVisibleIf
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.getFormattedDuration
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.getLatestMediaId
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.getSession
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.hasPermission
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.isVisible
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.navigationBarHeight
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.onAppLaunched
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.rescanPaths
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.saveSession
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.toast
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.extensions.viewBinding
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.helpers.*
@@ -123,6 +125,7 @@ import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.re
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.services.version.IGpVersionService
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.BroadcastManagerUtil
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GPAppUtils
+import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.GpHttpRequestApi
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.utils.TencentCOSUtils
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.ScaleView
 import com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto.views.widget.WaterMarkMapWidget
@@ -355,8 +358,9 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
           // checkNewVersion()
             //获取official logo
            // getOfficialLogo()
-           //获取session
-//            this.getSession()
+           //刷新 refreshSession
+            Log.d(TAG,"before refreshSession")
+            refreshSession()
         }
         // 初始化 logoContainer 的布局参数
         initFuncRunnable.run()
@@ -498,21 +502,43 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
             mPreview?.setZoomRatio(scale)
         }
     }
-//    fun getSession(): String? {
-//        val prefs = getSharedPreferences("supabase", Context.MODE_PRIVATE)
-//        val sessionJson = prefs.getString("session", null)
-//        return sessionJson
-////        if (sessionJson != null) {
-////            val jsonObj = org.json.JSONObject(sessionJson)
-////            val user = jsonObj.getJSONObject("user")
-////            val email = user.getString("email")
-////            val id = user.getString("id")
-////            println("👤 Logged in user: $email ($id)")
-////        }
-////        else {
-////            println("👤 Logged in user is null")
-////        }
-//    }
+    fun refreshSession() {
+        val sessionJson =  this.getSession()
+        println("👤 Logged refreshSession sessionJson $sessionJson")
+        if (sessionJson != null) {
+            val jsonObj = org.json.JSONObject(sessionJson)
+            val accessToken = jsonObj.getString("access_token")
+            val refreshToken = jsonObj.getString("refresh_token")
+            val expiresAt = jsonObj.getLong("expires_at")
+            val user = jsonObj.getJSONObject("user")
+            val email = user.getString("email")
+            val id = user.getString("id")
+            val now = System.currentTimeMillis() / 1000  // 秒级时间戳
+            println("👤 Logged refreshSession now $now expiresAt $expiresAt")
+
+            if (accessToken != null && now < expiresAt) {
+                // ✅ access_token 还有效
+            } else if (refreshToken != null) {
+                // ⚠️ access_token 过期，尝试用 refresh_token 刷新
+                try {
+                    GpHttpRequestApi.refreshSession(refreshToken){
+                        if (it!=null && it != "error"){
+                           // println("refreshSession: $it")
+                            this.saveSession(it)
+                        }
+                    }
+                }
+                catch (e:Exception){
+                    Log.d(TAG,"refreshSession error: $e")
+                }
+
+            }
+            println("👤 Logged in user: $email ($id) $accessToken $refreshToken $expiresAt")
+        }
+        else {
+            println("👤 Logged in user is null")
+        }
+    }
     private fun setScaleView(scale:Float){
         var showScale = scale
         //如果小于一，统一显示成0.6

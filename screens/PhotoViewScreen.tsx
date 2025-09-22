@@ -15,14 +15,12 @@ import { X } from 'lucide-react-native';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-interface CheckinRecord {
-  photos: string[];
-}
+
 
 const PhotoViewScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
-  const { photoUrl } = route.params as { photoUrl: CheckinRecord };
+  const { photoUrl } = route.params as { photoUrl: Checkin };
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -46,10 +44,10 @@ const PhotoViewScreen = () => {
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={handleScroll}
       >
-        {photoUrl.photos.map((photo, index) => (
+        {[photoUrl].map((record, index) => (
           <View key={index} style={styles.imageContainer}>
             <Image 
-              source={{ uri: photo }} 
+              source={{ uri: record.image_url }} 
               style={styles.image}
               resizeMode="contain"
             />
@@ -58,7 +56,7 @@ const PhotoViewScreen = () => {
       </ScrollView>
 
       <View style={styles.pagination}>
-        {photoUrl.photos.map((_, index) => (
+        {[photoUrl].map((record, index) => (
           <View 
             key={index} 
             style={[

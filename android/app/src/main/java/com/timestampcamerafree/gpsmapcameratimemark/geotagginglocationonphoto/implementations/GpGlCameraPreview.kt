@@ -820,14 +820,11 @@ class GpGlCameraPreview (
     }
     private fun doCheckIn(uri: Uri,cosPath:String){
         Log.d(TAG, "doCheckIn CheckIn teamInfoJson data: $cosPath")
-        var teamInfoJson = activity.getTeamInfo();
+        val teamInfoJson = activity.getTeamInfo();
         val teamMembership = Gson().fromJson<TeamMembership>(teamInfoJson,TeamMembership::class.java)
-
-
-
         Log.d(TAG, "CheckIn teamInfoJson data: $teamInfoJson")
-        var teamId = teamMembership.teamId
-        var newCosPath = "${teamId}/${cosPath}"
+        val teamId = teamMembership.teamId
+        val newCosPath = "${teamId}/${cosPath}"
         val sessionJson = activity.getSession()
         if (sessionJson != null) {
             TencentCOSUtils.uploadTeamFile(App.context, uri,newCosPath){

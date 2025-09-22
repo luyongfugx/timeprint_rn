@@ -15,6 +15,7 @@ import org.jose4j.jws.AlgorithmIdentifiers
 import org.jose4j.jws.JsonWebSignature
 import org.jose4j.jwt.JwtClaims
 import org.jose4j.jwt.NumericDate
+import org.json.JSONObject
 
 import java.io.IOException
 import java.security.KeyFactory
@@ -28,6 +29,8 @@ object GpHttpRequestApi {
     private const val TIME_API_URL:String = "https://timeprint.aiboot.cloud/api/mask/timezone"
     //团队接口
     private const val GROUP_BASE_API_URL:String = "http://localhost:3000"
+    private const val SUPABASE_URL = "https://jagoxfrvvxfnpdjvbtrf.supabase.co"
+    private const val SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphZ294ZnJ2dnhmbnBkanZidHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5MzM5NDUsImV4cCI6MjA3MTUwOTk0NX0.P1wI24InDGhCHYltNSWUXQshp-OcM38WUGGCg02Pa3Q";
 
     fun realtime(lat:Double,lon:Double ,callback: (GPRealTimeModel?) -> Unit) {
 
@@ -230,7 +233,52 @@ object GpHttpRequestApi {
         return keyFactory.generatePrivate(keySpec)
     }
 
-    // 
+    //
+
+    fun refreshSession(refreshToken: String, callback: (String?) -> Unit) {
+        val client = OkHttpClient()
+        val requestBody = FormBody.Builder()
+            .add("refresh_token", refreshToken)
+            .build()
+
+        val request = Request.Builder()
+            .url("$SUPABASE_URL/auth/v1/token?grant_type=refresh_token")
+            .post(requestBody)
+            .addHeader("apikey", SUPABASE_ANON_KEY)
+            .addHeader("Content-Type", "application/x-www-form-urlencoded")
+            .build()
+
+//        client.newCall(request).execute().use { response ->
+//            if (!response.isSuccessful){
+//                callback("error")
+//            }
+//            val body = response.body?.string()
+//            callback(body)
+//
+//        }
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e(TAG, "refreshSession request failed: ${e.message}")
+                callback("error")
+            }
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                if (response.isSuccessful && responseBody != null) {
+                    try {
+                        Log.d(TAG, "refreshSession response data: $responseBody")
+                        callback(responseBody)
+                    } catch (e: Exception) {
+                        Log.e(TAG, "refreshSession JSON parsing error: ${e.message}")
+                        callback("error")
+                    }
+                } else {
+                    Log.e(TAG, "refreshSession response failed: ${response.code} ${response.message}")
+                    callback("error")
+                }
+            }
+        })
+    }
+
     fun checkIn(sessionJson: String,data:String, callback: (String?) -> Unit) {
         try {
             // 解析 JSON 字符串获取 session 对象
