@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   View,
@@ -8,98 +8,26 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  NativeModules,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Search, MapPin, Clock, Phone, Mail, MoveVertical as MoreVertical } from 'lucide-react-native';
+import { getTeamMembers } from '../api/teams/membership';
 
-interface TeamMember {
-  id: string;
-  name: string;
-  avatar: string;
-  position: string;
-  department: string;
-  phone: string;
-  email: string;
-  lastCheckinTime: string;
-  lastLocation: string;
-  status: 'online' | 'offline' | 'away';
-}
-
-const mockMembers: TeamMember[] = [
-  {
-    id: '1',
-    name: '张小明',
-    avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
-    position: '前端开发工程师',
-    department: '技术部',
-    phone: '138****5678',
-    email: 'zhang@company.com',
-    lastCheckinTime: '09:00',
-    lastLocation: '公司总部',
-    status: 'online',
-  },
-  {
-    id: '2',
-    name: '李小红',
-    avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop&crop=face',
-    position: 'UI/UX设计师',
-    department: '设计部',
-    phone: '139****1234',
-    email: 'li@company.com',
-    lastCheckinTime: '09:15',
-    lastLocation: '公司总部',
-    status: 'online',
-  },
-  {
-    id: '3',
-    name: '王大强',
-    avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?w=100&h=100&fit=crop&crop=face',
-    position: '后端开发工程师',
-    department: '技术部',
-    phone: '137****9876',
-    email: 'wang@company.com',
-    lastCheckinTime: '08:55',
-    lastLocation: '公司总部',
-    status: 'online',
-  },
-  {
-    id: '4',
-    name: '陈小丽',
-    avatar: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?w=100&h=100&fit=crop&crop=face',
-    position: '产品经理',
-    department: '产品部',
-    phone: '136****4567',
-    email: 'chen@company.com',
-    lastCheckinTime: '09:30',
-    lastLocation: '分公司',
-    status: 'away',
-  },
-  {
-    id: '5',
-    name: '刘小军',
-    avatar: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?w=100&h=100&fit=crop&crop=face',
-    position: '测试工程师',
-    department: '技术部',
-    phone: '135****7890',
-    email: 'liu@company.com',
-    lastCheckinTime: '昨天 18:00',
-    lastLocation: '公司总部',
-    status: 'offline',
-  },
-];
+const { AuthBridge } = NativeModules;
 
 export default function MembersManagement() {
+  const [loading, setLoading] = useState<boolean>(true);
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredMembers, setFilteredMembers] = useState(mockMembers);
-
+   const [filteredMembers, setFilteredMembers] = useState<TeamMember[]>([]);
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    const filtered = mockMembers.filter(
+    const filtered = teamMembers.filter(
       (member) =>
-        member.name.toLowerCase().includes(query.toLowerCase()) ||
-        member.position.toLowerCase().includes(query.toLowerCase()) ||
-        member.department.toLowerCase().includes(query.toLowerCase())
+        member.user_name.toLowerCase().includes(query.toLowerCase()) ||
+        member.user_email.toLowerCase().includes(query.toLowerCase()) 
     );
     setFilteredMembers(filtered);
   };
@@ -129,13 +57,27 @@ export default function MembersManagement() {
         return t('unknown');
     }
   };
+    useEffect(() => {
+      const checkAuthState = async () => {
+        const sessionString = await AuthBridge.getSession();
+        if (sessionString) {
+            const session = JSON.parse(sessionString);
+            setLoading(true);
+            const members= await getTeamMembers(session)
+            setTeamMembers(members);
+            setFilteredMembers(members);
+            setLoading(false);
+        }
+      };
+       checkAuthState();
+    }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>{t('membersManagement')}</Text>
-        <Text style={styles.subtitle}>{t('totalMembers', { count: mockMembers.length })}</Text>
+        <Text style={styles.subtitle}>{t('totalMembers', { count: filteredMembers.length })}</Text>
       </View>
 
       {/* Search Bar */}
@@ -151,25 +93,21 @@ export default function MembersManagement() {
           />
         </View>
       </View>
-
+      <View style={styles.searchContainer}>   
+             {loading && (
+                  <Text>{t('loading')}</Text>
+               )}
+      </View>
       {/* Members List */}
       <ScrollView style={styles.membersList} showsVerticalScrollIndicator={false}>
         {filteredMembers.map((member) => (
           <TouchableOpacity key={member.id} style={styles.memberCard}>
             <View style={styles.memberHeader}>
               <View style={styles.avatarContainer}>
-                <Image source={{ uri: member.avatar }} style={styles.avatar} />
-                <View
-                  style={[
-                    styles.statusIndicator,
-                    { backgroundColor: getStatusColor(member.status) },
-                  ]}
-                />
+                <Image source={{ uri: member.user_avatar }} style={styles.avatar} />
               </View>
               <View style={styles.memberMainInfo}>
-                <Text style={styles.memberName}>{member.name}</Text>
-                <Text style={styles.memberPosition}>{member.position}</Text>
-                <Text style={styles.memberDepartment}>{member.department}</Text>
+                <Text style={styles.memberName}>{member.user_name}</Text>
               </View>
               <TouchableOpacity style={styles.moreButton}>
                 <MoreVertical size={20} color="#9ca3af" />
@@ -179,16 +117,12 @@ export default function MembersManagement() {
             <View style={styles.memberDetails}>
               <View style={styles.contactInfo}>
                 <View style={styles.contactItem}>
-                  <Phone size={14} color="#6b7280" />
-                  <Text style={styles.contactText}>{member.phone}</Text>
-                </View>
-                <View style={styles.contactItem}>
                   <Mail size={14} color="#6b7280" />
-                  <Text style={styles.contactText}>{member.email}</Text>
+                  <Text style={styles.contactText}>{member.user_email}</Text>
                 </View>
               </View>
 
-              <View style={styles.checkinInfo}>
+              {/* <View style={styles.checkinInfo}>
                 <View style={styles.checkinItem}>
                   <Clock size={14} color="#6b7280" />
                   <Text style={styles.checkinText}>{t('lastCheckin')}: {member.lastCheckinTime}</Text>
@@ -197,8 +131,8 @@ export default function MembersManagement() {
                   <MapPin size={14} color="#6b7280" />
                   <Text style={styles.checkinText}>{member.lastLocation}</Text>
                 </View>
-              </View>
-
+              </View> */}
+{/* 
               <View style={styles.statusContainer}>
                 <View
                   style={[
@@ -221,7 +155,7 @@ export default function MembersManagement() {
                     {getStatusText(member.status)}
                   </Text>
                 </View>
-              </View>
+              </View> */}
             </View>
           </TouchableOpacity>
         ))}

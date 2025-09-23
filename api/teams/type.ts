@@ -10,19 +10,13 @@
     updated_at?: string; // 从示例数据中看到的可选字段
   }
   
+
   interface TeamMember {
     id: string;
-    name: string;
-    avatar: string;
-    position: string;
-    department: string;
-    phone: string;
-    email: string;
-    lastCheckinTime: string;
-    lastLocation: string;
-    status: 'online' | 'offline' | 'away';
-    team_id?: string; // 从示例数据中看到的可选字段
-    role?: string; // 从示例数据中看到的可选字段
+    user_id: string;
+    user_name: string;
+    user_email: string;
+    user_avatar: string;
   }
   
   interface TeamMembership {
