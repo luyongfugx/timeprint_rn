@@ -303,7 +303,7 @@ function App() {
                 headerLeft: () => (
                   <TouchableOpacity onPress={handleBack} style={styles.backButton}>
                     {/* 可以换成你自己的返回图标 */}
-                    <X size={24} color="#3b82f6"/>
+                    <X size={24} color="#ffffff"/>
                   </TouchableOpacity>
                 ),
                 headerTitle: () => (

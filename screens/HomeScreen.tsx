@@ -24,12 +24,26 @@ import { getHomeData } from '../api/teams/home';
 import { getCheckIns } from '../api/teams/checkin';
 
 const { AuthBridge } = NativeModules;
-const todayPhotos = [
-  'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=150&h=150&fit=crop',
-  'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=150&h=150&fit=crop',
-  'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=150&h=150&fit=crop',
-  'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=150&h=150&fit=crop',
-];
+
+// 格式化 Unix 时间戳（毫秒）为 YYYY-MM-DD HH:mm:ss 格式
+const formatUnixTimestamp = (timestamp: number): string => {
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
+// 计算百分比并格式化为 "6%" 格式
+const calculatePercentage = (numerator: number, denominator: number): string => {
+  if (denominator === 0) return '0%';
+  const percentage = (numerator / denominator) * 100;
+  return `${Math.round(percentage)}%`;
+};
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
   const viewPhoto = (photoUrl: Checkin) => {
@@ -37,65 +51,13 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   };
   const [checkinRecords, setCheckinRecords] = useState<Checkin[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [homeLoading, setHomeLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
   const [teamMembership,setTeamMembership] = useState<TeamMembership>();
+  const [homeData,setHomeData] = useState<HomeData>();
+  
   useEffect(() => {
-    //     setLoading(true);
-    //     const response = await fetch(API_URL);
-    //     if (!response.ok) {
-    //       throw new Error(`HTTP error! status: ${response.status}`);
-    //     }
-    //     const data: CheckinRecord[] = getCheckIns();
-        
-    //     setCheckinRecords(data);
-    //   } catch (err: unknown) {
-    //    // setError(err instanceof Error ? err.message : 'Failed to fetch check-in records');
-    //     // Fallback to mock data if API fails (remove in production)
-    //     setCheckinRecords([
-    //       {
-    //         id: '1',
-    //         memberName: '张小',
-    //         avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=100&h=100&fit=crop&crop=face',
-    //         time: '09:00',
-    //         location: t('headquarters'),
-    //         photos: [
-    //           'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=300&h=200&fit=crop',
-    //           'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
-    //           'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
-    //         ],
-    //         status: 'on-time',
-    //       },
-    //       {
-    //         id: '2',
-    //         memberName: '李小红',
-    //         avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop&crop=face',
-    //         time: '09:15',
-    //         location: '公司总部',
-    //         photos: [
-    //           'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=300&h=200&fit=crop',
-    //           'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?w=300&h=200&fit=crop',
-    //         ],
-    //         status: 'late',
-    //       },
-    //       {
-    //         id: '3',
-    //         memberName: '王大强',
-    //         avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?w=100&h=100&fit=crop&crop=face',
-    //         time: '08:55',
-    //         location: '公司总部',
-    //         photos: [
-    //           'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?w=300&h=200&fit=crop',
-    //         ],
-    //         status: 'on-time',
-    //       },
-    //     ]);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-
-    // fetchCheckinRecords();
     const checkAuthState = async () => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
@@ -106,8 +68,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           setTeamMembership(membership.teamMember)  
           var jsonStr = JSON.stringify(membership.teamMember)
           await  AuthBridge.saveTeamInfo(jsonStr)
+ 
+          setHomeLoading(true);
           const homeData = await getHomeData(session)
-          console.log(homeData)
+          setHomeData(homeData)
+          setHomeLoading(false);
           const checkins = await getCheckIns(session)
           setCheckinRecords(checkins.today_checkins)
           console.log(checkins)
@@ -116,32 +81,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     };
      checkAuthState();
   }, []);
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'on-time':
-        return '#10b981';
-      case 'late':
-        return '#f59e0b';
-      case 'absent':
-        return '#ef4444';
-      default:
-        return '#6b7280';
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'on-time':
-        return t('on-time');
-      case 'late':
-        return t('late');
-      case 'absent':
-        return t('absent');
-      default:
-        return t('unknown');
-    }
-  };
     const gotoMember = () => {
       navigation.navigate('Member')
     };
@@ -168,7 +107,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               </TouchableOpacity>
             </View>
             <TouchableOpacity onPress={gotoMember} >
-            <Text style={styles.statNumber}>{teamMembership ? teamMembership.teams.member_count : 0}</Text>
+            <Text style={styles.statNumber}>{homeData ? homeData.statistics.total_members : 0}</Text>
             <Text style={styles.statLabel}>{t('teamMembers')}</Text>
             </TouchableOpacity>
           </View>
@@ -176,36 +115,44 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             <View style={styles.statIconContainer}>
               <Clock size={24} color="#10b981" />
             </View>
-            <Text style={styles.statNumber}>25</Text>
+            <Text style={styles.statNumber}>{homeData ? homeData.statistics.today_checkin_count : 0}</Text>
             <Text style={styles.statLabel}>{t('checkedIn')}</Text>
           </View>
           <View style={styles.statCard}>
             <View style={styles.statIconContainer}>
               <TrendingUp size={24} color="#f59e0b" />
             </View>
-            <Text style={styles.statNumber}>89%</Text>
+            <Text style={styles.statNumber}>{homeData ? calculatePercentage(homeData.statistics.today_checkin_count, homeData.statistics.total_members) : "0%"}</Text>
             <Text style={styles.statLabel}>{t('attendanceRate')}</Text>
           </View>
         </View>
 
         {/* Today's Photos */}
+        
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Camera size={20} color="#374151" />
             <Text style={styles.sectionTitle}>{t('todaysPhotos')}</Text>
           </View>
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false} 
-            style={styles.photosScroll}
-            contentContainerStyle={styles.todayPhotosContent}
-          >
-            {todayPhotos.map((photo, index) => (
-              <TouchableOpacity key={index} style={styles.photoContainer}>
-                <Image source={{ uri: photo }} style={styles.photo} />
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+           <View style={styles.todayPhotosContent}>   
+             {homeLoading && (
+                  <Text>{t('loading')}</Text>
+               )}</View>
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false} 
+              style={styles.photosScroll}
+              contentContainerStyle={styles.todayPhotosContent}
+            >
+              
+              { homeData?.today_checkins.map((record, index) => (
+                <TouchableOpacity key={index} style={styles.photoContainer}     onPress={() => viewPhoto(record)}>
+                  <Image source={{ uri:record.image_url }} style={styles.photo} />
+                </TouchableOpacity>
+              ))}
+                       
+            </ScrollView>
+   
         </View>
 
         {/* Checkin Records */}
@@ -240,7 +187,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   </TouchableOpacity>
                       <View style={styles.timeLocationRow}>
                       <Clock size={14} color="#6b7280" />
-                      <Text style={styles.timeText}>{record.created_at}</Text>
+                      <Text style={styles.timeText}>{formatUnixTimestamp(record.created_at)}</Text>
                       </View>
                       <View style={styles.timeLocationRow}>
                       <MapPin size={14} color="#6b7280" />
@@ -326,6 +273,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     gap: 12,
+    width:"100%"
   },
   statCard: {
     flex: 1,
@@ -364,6 +312,7 @@ const styles = StyleSheet.create({
   section: {
     paddingHorizontal: 20,
     paddingBottom: 24,
+
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -381,6 +330,7 @@ const styles = StyleSheet.create({
   },
   todayPhotosContent: {
     paddingHorizontal: 4,
+    width:"100%",
   },
   photoContainer: {
     marginHorizontal: 4,

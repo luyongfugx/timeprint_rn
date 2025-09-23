@@ -48,6 +48,25 @@
     user_name: string;
     user_email: string;
     user_avatar: string;
-    created_at: string;
+    created_at: number;
     status: 'on-time' | 'late' | 'absent';
+  }
+
+  interface HomeData {
+    team: {
+      id: string;
+      name: string;
+      address: string;
+      user_id: string;
+      created_at: string;
+      updated_at: string;
+      description: string;
+    };
+    statistics: {
+      total_members: number;
+      today_checkin_count: number;
+      today_checkin_users: number;
+      today_checkin_photos: string[];
+    };
+    today_checkins: Checkin[];
   }
