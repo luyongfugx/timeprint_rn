@@ -46,6 +46,15 @@
     status: 'on-time' | 'late' | 'absent';
   }
 
+  interface UserInfo {
+    user_id: string;
+    user_name: string;
+    user_email: string;
+    user_avatar: string;
+  }
+
+
+
   interface HomeData {
     team: {
       id: string;

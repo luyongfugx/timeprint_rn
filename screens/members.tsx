@@ -16,7 +16,7 @@ import { getTeamMembers } from '../api/teams/membership';
 
 const { AuthBridge } = NativeModules;
 
-export default function MembersManagement() {
+export default function MembersManagement({ navigation }: { navigation: any })  {
   const [loading, setLoading] = useState<boolean>(true);
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,31 +32,6 @@ export default function MembersManagement() {
     setFilteredMembers(filtered);
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'online':
-        return '#10b981';
-      case 'away':
-        return '#f59e0b';
-      case 'offline':
-        return '#6b7280';
-      default:
-        return '#6b7280';
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'online':
-        return t('online');
-      case 'away':
-        return t('away');
-      case 'offline':
-        return t('offline');
-      default:
-        return t('unknown');
-    }
-  };
     useEffect(() => {
       const checkAuthState = async () => {
         const sessionString = await AuthBridge.getSession();
@@ -64,14 +39,18 @@ export default function MembersManagement() {
             const session = JSON.parse(sessionString);
             setLoading(true);
             const members= await getTeamMembers(session)
-            setTeamMembers(members);
-            setFilteredMembers(members);
+            if(members){
+              setTeamMembers(members);
+              setFilteredMembers(members);
+            }
             setLoading(false);
         }
       };
        checkAuthState();
     }, []);
-
+    const goToUser = (userId: String) => {
+      navigation.navigate('UserInfo', { userId });
+    };
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -101,7 +80,7 @@ export default function MembersManagement() {
       {/* Members List */}
       <ScrollView style={styles.membersList} showsVerticalScrollIndicator={false}>
         {filteredMembers.map((member) => (
-          <TouchableOpacity key={member.id} style={styles.memberCard}>
+          <TouchableOpacity key={member.id} style={styles.memberCard} onPress={() => goToUser(member.user_id)} >
             <View style={styles.memberHeader}>
               <View style={styles.avatarContainer}>
                 <Image source={{ uri: member.user_avatar }} style={styles.avatar} />

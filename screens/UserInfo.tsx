@@ -17,12 +17,11 @@ import {
   MapPin,
   Calendar,
   TrendingUp,
+  X,
 } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { getMembership } from '../api/teams/membership';
-import { getHomeData } from '../api/teams/home';
-import { getCheckIns } from '../api/teams/checkin';
-
+import { useRoute } from '@react-navigation/native';
+import { getUserInfo } from '../api/teams/user';
 const { AuthBridge } = NativeModules;
 
 // 格式化 Unix 时间戳（毫秒）为 YYYY-MM-DD HH:mm:ss 格式
@@ -45,46 +44,33 @@ const calculatePercentage = (numerator: number, denominator: number): string => 
   return `${Math.round(percentage)}%`;
 };
 
-const HomeScreen = ({ navigation }: { navigation: any }) => {
-  const viewPhoto = (photoUrl: Checkin) => {
-    navigation.navigate('PhotoView', { photoUrl });
-  };
+const UserInfoScreen = ({ navigation }: { navigation: any }) => {
+  const route = useRoute();
+  const { userId } = route.params as { userId: String };
   const [checkinRecords, setCheckinRecords] = useState<Checkin[]>([]);
+  const [userInfo, setUserInfo] = useState<UserInfo>();
+  
   const [loading, setLoading] = useState<boolean>(true);
-  const [homeLoading, setHomeLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
-  const [teamMembership,setTeamMembership] = useState<TeamMembership>();
-  const [homeData,setHomeData] = useState<HomeData>();
+  const [error, setError] = useState<string | null>(null);
   
   useEffect(() => {
     const checkAuthState = async () => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
-
-          const session = JSON.parse(sessionString);
-          const membership = await getMembership(session)
+          const session = JSON.parse(sessionString)
           setLoading(true);
-          setTeamMembership(membership.teamMember)  
-          var jsonStr = JSON.stringify(membership.teamMember)
-          await  AuthBridge.saveTeamInfo(jsonStr)
- 
-          setHomeLoading(true);
-          const homeData = await getHomeData(session)
-          setHomeData(homeData)
-          setHomeLoading(false);
-          const checkins = await getCheckIns(session)
-          setCheckinRecords(checkins.today_checkins)
+          const data = await getUserInfo(session,userId)
+          setCheckinRecords(data.checkins)
+          setUserInfo(data.user)
           setLoading(false);
       }
     };
      checkAuthState();
   }, []);
-    const gotoMember = () => {
-      navigation.navigate('Member')
-    };
-
-
+  const viewPhoto = (photoUrl: Checkin) => {
+    navigation.navigate('PhotoView', { photoUrl });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -92,15 +78,15 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       style={{width:"100%"}}  
              >
         {/* Header */}
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
             <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
           </View>
-        </View>
+        </View> */}
 
         {/* Stats Cards */}
-        <View style={styles.statsContainer}>
+        {/* <View style={styles.statsContainer}>
           <View style={styles.statCard} >
             <View style={styles.statIconContainer}>
             <TouchableOpacity onPress={gotoMember} >
@@ -126,36 +112,23 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             <Text style={styles.statNumber}>{homeData ? calculatePercentage(homeData.statistics.today_checkin_users, homeData.statistics.total_members) : "0%"}</Text>
             <Text style={styles.statLabel}>{t('attendanceRate')}</Text>
           </View>
+        </View> */}
+       {userInfo && (
+      <View style={styles.header}>
+
+        <View style={styles.avatarContainer}>
+          <Image
+            source={{ uri: userInfo.user_avatar }}
+            style={styles.avatar}
+          />        
+          <View style={{ flex: 1, marginLeft: 12 }}>
+          <Text style={styles.name}>{userInfo.user_name}</Text>
+          <Text style={styles.subtitle_name}>{userInfo.user_email}</Text>
+        </View>
         </View>
 
-        {/* Today's Photos */}
-        
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Camera size={20} color="#374151" />
-            <Text style={styles.sectionTitle}>{t('todaysPhotos')}</Text>
-          </View>
-           <View style={styles.todayPhotosLoading}>   
-             {homeLoading && (
-                  <Text>{t('loading')}</Text>
-               )}</View>
-            <ScrollView 
-              horizontal 
-              showsHorizontalScrollIndicator={false} 
-              style={styles.photosScroll}
-              contentContainerStyle={styles.todayPhotosContent}
-            >
-              
-              { homeData?.today_checkins.map((record, index) => (
-                <TouchableOpacity key={index} style={styles.photoContainer}     onPress={() => viewPhoto(record)}>
-                  <Image source={{ uri:record.image_url }} style={styles.photo} />
-                </TouchableOpacity>
-              ))}
-                       
-            </ScrollView>
-   
-        </View>
-
+      </View>
+      )}
         {/* Checkin Records */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
@@ -331,6 +304,15 @@ const styles = StyleSheet.create({
   photosScroll: {
     marginHorizontal: -4,
   },
+  closeButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    borderRadius: 20,
+    padding: 10,
+  },
   todayPhotosLoading:{
     paddingHorizontal: 4,
     width:"100%",
@@ -403,6 +385,15 @@ const styles = StyleSheet.create({
     color: '#6b7280',
     marginRight: 8,
   },
+  name: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#000",
+  },
+  subtitle_name: {
+    fontSize: 14,
+    color: "#666",
+  },
   locationText: {
     fontSize: 12,
     color: '#6b7280',
@@ -467,8 +458,18 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
+  avatarContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 4,
+  },
+  avatar: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+  },
 });
-export default HomeScreen;
+export default UserInfoScreen;
 
 
 

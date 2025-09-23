@@ -26,3 +26,6 @@ export async function getCheckIns(session:any) {
    const data = await res.json();
   return data
 }
+
+
+

@@ -2,10 +2,10 @@
  * @format
  */
 import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Users, Chrome as Home, Settings, Camera, X } from 'lucide-react-native';
+import { Users, Chrome as Home, Settings, Camera, X, LucideFileCog, ChevronLeft } from 'lucide-react-native';
 import { GestureDetector, GestureHandlerRootView, Gesture } from 'react-native-gesture-handler';
 
 // 引入你创建的页面组件
@@ -29,6 +29,7 @@ import Animated, {
   FadeInUp,
   FadeInDown
 } from 'react-native-reanimated';
+import UserInfoScreen from './screens/UserInfo';
 
 // import { USE_SESSION_TOKEN_CREDENTIAL, STS_URL, COS_SECRET_ID, COS_SECRET_KEY, USE_SCOPE_LIMIT_TOKEN_CREDENTIAL, STS_SCOPE_LIMIT_URL, USE_CREDENTIAL } from './config/config';
 
@@ -75,7 +76,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [ready, setReady] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-
   const buttonScale = useSharedValue(1);
   const checkboxScale = useSharedValue(1);
   const fadeIn = useSharedValue(0);
@@ -299,11 +299,23 @@ function App() {
           <I18nextProvider i18n={i18n}>
             <Stack.Navigator initialRouteName="Main">
               <Stack.Screen name="PhotoView" component={PhotoViewScreen} options={{ headerShown: false }} />
+              <Stack.Screen name="UserInfo" component={UserInfoScreen} options={({ navigation }) => ({
+                headerLeft: () => (
+                  <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                    <ChevronLeft size={24} color="#ffffff" />
+                  </TouchableOpacity>
+                ),
+                headerStyle: {
+                  backgroundColor: '#000',
+                },
+              })} />
+
+
               <Stack.Screen name="Main" component={MainTabs} options={{
                 headerLeft: () => (
                   <TouchableOpacity onPress={handleBack} style={styles.backButton}>
                     {/* 可以换成你自己的返回图标 */}
-                    <X size={24} color="#ffffff"/>
+                    <X size={24} color="#ffffff" />
                   </TouchableOpacity>
                 ),
                 headerTitle: () => (
