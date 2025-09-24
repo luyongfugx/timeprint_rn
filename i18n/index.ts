@@ -17,10 +17,10 @@ const detectLanguage = () => {
 };
 export const initI18n = async () => {
   const lng =  detectLanguage();
+  console.log("lng:",lng)
   return i18n
     .use(initReactI18next)
     .init({
-      
     //   compatibilityJSON: 'v3',
       resources,
       lng,

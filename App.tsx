@@ -30,6 +30,7 @@ import Animated, {
   FadeInDown
 } from 'react-native-reanimated';
 import UserInfoScreen from './screens/UserInfo';
+import { GOOGLE_SIGN_IN_SCOPES, GOOGLE_SIGN_IN_WEB_CLIENT_ID } from './api/teams/config';
 
 // import { USE_SESSION_TOKEN_CREDENTIAL, STS_URL, COS_SECRET_ID, COS_SECRET_KEY, USE_SCOPE_LIMIT_TOKEN_CREDENTIAL, STS_SCOPE_LIMIT_URL, USE_CREDENTIAL } from './config/config';
 
@@ -79,6 +80,7 @@ function App() {
   const buttonScale = useSharedValue(1);
   const checkboxScale = useSharedValue(1);
   const fadeIn = useSharedValue(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // 检查当前登录状态 - 使用 AuthBridge.getSession
@@ -125,36 +127,31 @@ function App() {
   }, []);
   const handleLogin = async (provider: string) => {
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-      webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',
+      scopes: [GOOGLE_SIGN_IN_SCOPES],
+      webClientId: GOOGLE_SIGN_IN_WEB_CLIENT_ID,
     })
     if (!agreedToTerms) {
-      Alert.alert('提示', '请先阅读并同意用户协议');
+      Alert.alert(t('tip'), t('read_agreement'));
       return;
     }
 
     try {
       await GoogleSignin.hasPlayServices()
       const userInfo = await GoogleSignin.signIn()
-      console.log("GoogleSignin hasPlayServicesxxx", userInfo)
-
       if (userInfo?.data?.idToken) {
         const { data, error } = await supabase.auth.signInWithIdToken({
           provider: 'google',
           token: userInfo.data.idToken,
         })
-        console.log(error, data)
-
         const { data: sessionData } = await supabase.auth.getSession();
         if (sessionData.session) {
           AuthBridge.saveSession(JSON.stringify(sessionData.session));
-          console.log("✅ Session saved to native:", sessionData.session);
         }
       } else {
         throw new Error('no ID token present!')
       }
     } catch (error: any) {
-      console.log("GoogleSignin hasPlayServicesxxx error", error)
+      console.log("GoogleSignin hasPlayServicesxxx error",error)
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -165,8 +162,9 @@ function App() {
         // some other error happened
       }
     }
-
+  
   };
+
 
   const createButtonGesture = (provider: 'google' | 'apple') => {
     return Gesture.Tap()
@@ -240,8 +238,8 @@ function App() {
           </View>
           <View style={styles.content}>
             <View style={styles.header}>
-              <Text style={styles.title}>欢迎回来</Text>
-              <Text style={styles.subtitle}>请选择您喜欢的登录方式</Text>
+              <Text style={styles.title}>{t('wellcome_back')}</Text>
+              <Text style={styles.subtitle}>{t('wellcome_back')}</Text>
             </View>
 
             <View style={styles.buttonContainer}>
@@ -253,7 +251,7 @@ function App() {
                   >
                     <View style={styles.buttonContent}>
                       <Text style={styles.googleIcon}>G</Text>
-                      <Text style={styles.buttonText}>使用 Google 登录</Text>
+                      <Text style={styles.buttonText}>{t('login_with_google')}</Text>
                     </View>
                   </TouchableOpacity>
                 </Animated.View>
@@ -283,11 +281,11 @@ function App() {
                     {agreedToTerms && <Text style={styles.checkmark}>✓</Text>}
                   </View>
                   <Text style={styles.checkboxText}>
-                    我已阅读并同意{' '}
-                    <Text style={styles.link}>用户协议</Text>
-                    {' '}和{' '}
-                    <Text style={styles.link}>隐私政策</Text>
-                  </Text>
+                    {t('i_agree')}{' '}
+                      <Text style={styles.link}>{t('user_agreement')}</Text>
+                      {' '}{t('and')}{' '}
+                      <Text style={styles.link}>{t('private_policy')}</Text>
+                    </Text>
                 </Animated.View>
               </GestureDetector>
             </View>
@@ -305,6 +303,7 @@ function App() {
                     <ChevronLeft size={24} color="#ffffff" />
                   </TouchableOpacity>
                 ),
+
                 headerStyle: {
                   backgroundColor: '#000',
                 },
