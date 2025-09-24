@@ -1,6 +1,7 @@
 
-import React, { useState,useEffect } from 'react';
-import {   View,
+import React, { useState, useEffect } from 'react';
+import {
+  View,
   Text,
   StyleSheet,
   ScrollView,
@@ -8,7 +9,8 @@ import {   View,
   TouchableOpacity,
   NativeModules,
   Alert,
-  TextInput } from 'react-native';
+  TextInput
+} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -37,7 +39,7 @@ const formatUnixTimestamp = (timestamp: number): string => {
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
   const seconds = String(date.getSeconds()).padStart(2, '0');
-  
+
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
@@ -57,60 +59,60 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   const [homeLoading, setHomeLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
-  const [teamMembership,setTeamMembership] = useState<TeamMembership>();
-  const [homeData,setHomeData] = useState<HomeData>();
+  const [teamMembership, setTeamMembership] = useState<TeamMembership>();
+  const [homeData, setHomeData] = useState<HomeData>();
   const [hasTeam, setHasTeam] = useState<boolean>(true);
-    // 标签页状态
+  // 标签页状态
   const [activeTab, setActiveTab] = useState<'create' | 'join'>('create');
-  
-    // 创建团队表单状态
-    const [formData, setFormData] = useState({
-      name: '',
-      address: '',
-      description: ''
-    });
+
+  // 创建团队表单状态
+  const [formData, setFormData] = useState({
+    name: '',
+    address: '',
+    description: ''
+  });
   useEffect(() => {
     const checkAuthState = async () => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
 
-          const session = JSON.parse(sessionString);
-          try{
-            setLoading(true);
-            const membership = await getMembership(session)
-            if(!membership.teamMember){ //如果没有团队
-              setLoading(false);
-              setHasTeam(false)
-            }
-            else {
-              setTeamMembership(membership.teamMember)  
-              var jsonStr = JSON.stringify(membership.teamMember)
-              await  AuthBridge.saveTeamInfo(jsonStr)
-              setHomeLoading(true);
-              const homeData = await getHomeData(session)
-              setHomeData(homeData)
-              setHomeLoading(false);
-              const checkins = await getCheckIns(session)
-              setCheckinRecords(checkins.today_checkins)
-              setLoading(false);
-            }
-  
+        const session = JSON.parse(sessionString);
+        try {
+          setLoading(true);
+          const membership = await getMembership(session)
+          if (!membership.teamMember) { //如果没有团队
+            setLoading(false);
+            setHasTeam(false)
           }
-          catch(e){
+          else {
+            setTeamMembership(membership.teamMember)
+            var jsonStr = JSON.stringify(membership.teamMember)
+            await AuthBridge.saveTeamInfo(jsonStr)
+            setHomeLoading(true);
+            const homeData = await getHomeData(session)
+            setHomeData(homeData)
+            setHomeLoading(false);
+            const checkins = await getCheckIns(session)
+            setCheckinRecords(checkins.today_checkins)
+            setLoading(false);
+          }
 
-          }
+        }
+        catch (e) {
+
+        }
       }
     };
-     checkAuthState();
+    checkAuthState();
   }, []);
-    const gotoMember = () => {
-      navigation.navigate('Member')
-    };
+  const gotoMember = () => {
+    navigation.navigate('Member')
+  };
 
 
 
 
-  
+
   const [createLoading, setCreateLoading] = useState(false);
 
   // 加入团队表单状态
@@ -121,7 +123,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
   const handleCreateSubmit = async () => {
     if (!formData.name.trim()) {
-      Alert.alert('错误', '团队名称不能为空');
+      Alert.alert(t('error'), t('teamNameRequired'));
       return;
     }
 
@@ -129,10 +131,10 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     try {
       // 这里添加创建团队的 API 调用
       // await createTeamAPI(formData);
-      Alert.alert('成功', '团队创建成功');
+      Alert.alert(t('success'), t('teamCreatedSuccess'));
       setHasTeam(true);
     } catch (error) {
-      Alert.alert('错误', '创建团队失败');
+      Alert.alert(t('error'), t('teamCreatedFailed'));
     } finally {
       setCreateLoading(false);
     }
@@ -140,7 +142,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
   const handleSearchTeam = async () => {
     if (!teamId.trim()) {
-      Alert.alert('错误', '请输入团队ID');
+      Alert.alert(t('error'), t('teamIdRequired'));
       return;
     }
 
@@ -149,16 +151,16 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       // 这里添加查询团队信息的 API 调用
       // const teamData = await searchTeamAPI(teamId);
       // setTeamInfo(teamData);
-      
+
       // 模拟数据
       setTeamInfo({
         id: teamId,
-        name: '示例团队',
-        description: '这是一个示例团队',
+        name: t('teamName'),
+        description: t('teamDescription'),
         memberCount: 5
       });
     } catch (error) {
-      Alert.alert('错误', '查询团队信息失败');
+      Alert.alert(t('error'), t('teamSearchFailed'));
     } finally {
       setSearchLoading(false);
     }
@@ -166,7 +168,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
   const handleJoinTeam = async () => {
     if (!teamInfo) {
-      Alert.alert('错误', '请先查询团队信息');
+      Alert.alert(t('error'), t('searchTeamInfoFirst'));
       return;
     }
 
@@ -174,134 +176,35 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     try {
       // 这里添加加入团队的 API 调用
       // await joinTeamAPI(teamInfo.id);
-      Alert.alert('成功', '加入团队成功');
+      Alert.alert(t('success'), t('teamJoinSuccess'));
       setHasTeam(true);
     } catch (error) {
-      Alert.alert('错误', '加入团队失败');
+      Alert.alert(t('error'), t('teamJoinFailed'));
     } finally {
       setJoinLoading(false);
     }
   };
 
-  const CreateTeamTab = () => (
-    <View style={styles.tabContent}>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>团队名称 *</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="输入团队名称"
-          value={formData.name}
-          onChangeText={(text) => setFormData(prev => ({ ...prev, name: text }))}
-          returnKeyType="done"
- 
-        />
-      </View>
 
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>团队地址</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="输入团队地址"
-          value={formData.address}
-          onChangeText={(text) => setFormData(prev => ({ ...prev, address: text }))}
-          returnKeyType="done"
-          blurOnSubmit={false}
-        />
-      </View>
 
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>团队简介</Text>
-        <TextInput
-          style={[styles.input, styles.textarea]}
-          placeholder="输入团队简介"
-          value={formData.description}
-          onChangeText={(text) => setFormData(prev => ({ ...prev, description: text }))}
-          multiline
-          numberOfLines={3}
-          returnKeyType="done"
-          blurOnSubmit={false}
-        />
-      </View>
 
-      <TouchableOpacity 
-        style={[styles.submitButton, createLoading && styles.submitButtonDisabled]}
-        onPress={handleCreateSubmit}
-        disabled={createLoading}
-      >
-        <Text style={styles.submitButtonText}>
-          {createLoading ? "创建中..." : "创建团队"}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
 
-  const JoinTeamTab = () => (
-    <View style={styles.tabContent}>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>团队ID *</Text>
-        <View style={styles.searchContainer}>
-          <TextInput
-            style={[styles.input, styles.searchInput]}
-            placeholder="输入团队ID"
-            value={teamId}
-            onChangeText={setTeamId}
-            returnKeyType="done"
-          />
-          <TouchableOpacity 
-            style={[styles.searchButton, searchLoading && styles.searchButtonDisabled]}
-            onPress={handleSearchTeam}
-            disabled={searchLoading}
-          >
-            <Text style={styles.searchButtonText}>
-              {searchLoading ? "查询中..." : "查询"}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
 
-      {teamInfo && (
-        <View style={styles.teamInfoCard}>
-          <Text style={styles.teamInfoTitle}>团队信息</Text>
-          <View style={styles.teamInfoItem}>
-            <Text style={styles.teamInfoLabel}>团队名称:</Text>
-            <Text style={styles.teamInfoValue}>{teamInfo.name}</Text>
-          </View>
-          <View style={styles.teamInfoItem}>
-            <Text style={styles.teamInfoLabel}>团队描述:</Text>
-            <Text style={styles.teamInfoValue}>{teamInfo.description}</Text>
-          </View>
-          <View style={styles.teamInfoItem}>
-            <Text style={styles.teamInfoLabel}>成员数量:</Text>
-            <Text style={styles.teamInfoValue}>{teamInfo.memberCount}人</Text>
-          </View>
-        </View>
-      )}
 
-      <TouchableOpacity 
-        style={[styles.submitButton, (!teamInfo || joinLoading) && styles.submitButtonDisabled]}
-        onPress={handleJoinTeam}
-        disabled={!teamInfo || joinLoading}
-      >
-        <Text style={styles.submitButtonText}>
-          {joinLoading ? "加入中..." : "确认加入"}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
 
   return (
     <SafeAreaView style={styles.container}>
       {!hasTeam && (
-        <ScrollView 
+        <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.tabsContainer}
-        keyboardShouldPersistTaps="handled"
-        keyboardDismissMode="on-drag"
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
         >
           <View style={styles.card}>
             <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>团队设置</Text>
-              <Text style={styles.cardDescription}>创建或加入团队开始使用打卡系统</Text>
+              <Text style={styles.cardTitle}>{t('teamSetup')}</Text>
+              <Text style={styles.cardDescription}>{t('createOrJoinTeam')}</Text>
               
               {/* 标签页切换 */}
               <View style={styles.tabButtons}>
@@ -310,7 +213,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   onPress={() => setActiveTab('create')}
                 >
                   <Text style={[styles.tabButtonText, activeTab === 'create' && styles.tabButtonTextActive]}>
-                    创建团队
+                    {t('createTeam')}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
@@ -318,158 +221,261 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   onPress={() => setActiveTab('join')}
                 >
                   <Text style={[styles.tabButtonText, activeTab === 'join' && styles.tabButtonTextActive]}>
-                    加入团队
+                    {t('joinTeam')}
                   </Text>
                 </TouchableOpacity>
               </View>
             </View>
-            
+
             <View style={styles.cardContent}>
-              {activeTab === 'create' ? <CreateTeamTab /> : <JoinTeamTab />}
+              <View style={{ display: activeTab === 'create' ? 'flex' : 'none', flex: 1 }}>
+                <View style={styles.tabContent}>
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>{t('teamName')} *</Text>
+                    <TextInput
+                      style={styles.input}
+                      placeholder={t('enterTeamName')}
+                      value={formData.name}
+                      onChangeText={(text) => setFormData(prev => ({ ...prev, name: text }))}
+                      returnKeyType="done"
+
+                    />
+                  </View>
+
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>{t('teamAddress')}</Text>
+                    <TextInput
+                      style={styles.input}
+                      placeholder={t('enterTeamAddress')}
+                      value={formData.address}
+                      onChangeText={(text) => setFormData(prev => ({ ...prev, address: text }))}
+                      returnKeyType="done"
+                      blurOnSubmit={false}
+                    />
+                  </View>
+
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>{t('teamDescription')}</Text>
+                    <TextInput
+                      style={[styles.input, styles.textarea]}
+                      placeholder={t('enterTeamDescription')}
+                      value={formData.description}
+                      onChangeText={(text) => setFormData(prev => ({ ...prev, description: text }))}
+                      multiline
+                      numberOfLines={3}
+                      returnKeyType="done"
+                      blurOnSubmit={false}
+                    />
+                  </View>
+
+                  <TouchableOpacity
+                    style={[styles.submitButton, createLoading && styles.submitButtonDisabled]}
+                    onPress={handleCreateSubmit}
+                    disabled={createLoading}
+                  >
+                    <Text style={styles.submitButtonText}>
+                      {createLoading ? t('creating') : t('createTeam')}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{ display: activeTab === 'join' ? 'flex' : 'none', flex: 1 }}>
+                <View style={styles.tabContent}>
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>{t('teamId')} *</Text>
+                    <View style={styles.searchContainer}>
+                      <TextInput
+                        style={[styles.input, styles.searchInput]}
+                        placeholder={t('enterTeamId')}
+                        value={teamId}
+                        onChangeText={setTeamId}
+                        returnKeyType="done"
+                      />
+                      <TouchableOpacity 
+                        style={[styles.searchButton, searchLoading && styles.searchButtonDisabled]}
+                        onPress={handleSearchTeam}
+                        disabled={searchLoading}
+                      >
+                        <Text style={styles.searchButtonText}>
+                          {searchLoading ? t('searching') : t('search')}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+
+                  {teamInfo && (
+                    <View style={styles.teamInfoCard}>
+                      <Text style={styles.teamInfoTitle}>{t('teamInfo')}</Text>
+                      <View style={styles.teamInfoItem}>
+                        <Text style={styles.teamInfoLabel}>{t('teamNameLabel')}</Text>
+                        <Text style={styles.teamInfoValue}>{teamInfo.name}</Text>
+                      </View>
+                      <View style={styles.teamInfoItem}>
+                        <Text style={styles.teamInfoLabel}>{t('teamDescriptionLabel')}</Text>
+                        <Text style={styles.teamInfoValue}>{teamInfo.description}</Text>
+                      </View>
+                      <View style={styles.teamInfoItem}>
+                        <Text style={styles.teamInfoLabel}>{t('memberCountLabel')}</Text>
+                        <Text style={styles.teamInfoValue}>{teamInfo.memberCount}{t('people')}</Text>
+                      </View>
+                    </View>
+                  )}
+
+                  <TouchableOpacity
+                    style={[styles.submitButton, (!teamInfo || joinLoading) && styles.submitButtonDisabled]}
+                    onPress={handleJoinTeam}
+                    disabled={!teamInfo || joinLoading}
+                  >
+                      <Text style={styles.submitButtonText}>
+                        {joinLoading ? t('joining') : t('confirmJoin')}
+                      </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
           </View>
         </ScrollView>
       )}
-      {hasTeam &&       
-      <ScrollView showsVerticalScrollIndicator={false}  
-      style={{width:"100%"}}  
-             >
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
-            <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
+      {hasTeam &&
+        <ScrollView showsVerticalScrollIndicator={false}
+          style={{ width: "100%" }}
+        >
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={styles.headerLeft}>
+              <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
+              <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
+            </View>
           </View>
-        </View>
 
-        {/* Stats Cards */}
-        <View style={styles.statsContainer}>
-          <View style={styles.statCard} >
-            <View style={styles.statIconContainer}>
-            <TouchableOpacity onPress={gotoMember} >
-              <Users size={24} color="#3b82f6" />
+          {/* Stats Cards */}
+          <View style={styles.statsContainer}>
+            <View style={styles.statCard} >
+              <View style={styles.statIconContainer}>
+                <TouchableOpacity onPress={gotoMember} >
+                  <Users size={24} color="#3b82f6" />
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity onPress={gotoMember} >
+                <Text style={styles.statNumber}>{homeData ? homeData.statistics.total_members : 0}</Text>
+                <Text style={styles.statLabel}>{t('teamMembers')}</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={gotoMember} >
-            <Text style={styles.statNumber}>{homeData ? homeData.statistics.total_members : 0}</Text>
-            <Text style={styles.statLabel}>{t('teamMembers')}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.statCard}>
-            <View style={styles.statIconContainer}>
-              <Clock size={24} color="#10b981" />
+            <View style={styles.statCard}>
+              <View style={styles.statIconContainer}>
+                <Clock size={24} color="#10b981" />
+              </View>
+              <Text style={styles.statNumber}>{homeData ? homeData.statistics.today_checkin_users : 0}</Text>
+              <Text style={styles.statLabel}>{t('checkedIn')}</Text>
             </View>
-            <Text style={styles.statNumber}>{homeData ? homeData.statistics.today_checkin_users : 0}</Text>
-            <Text style={styles.statLabel}>{t('checkedIn')}</Text>
-          </View>
-          <View style={styles.statCard}>
-            <View style={styles.statIconContainer}>
-              <TrendingUp size={24} color="#f59e0b" />
+            <View style={styles.statCard}>
+              <View style={styles.statIconContainer}>
+                <TrendingUp size={24} color="#f59e0b" />
+              </View>
+              <Text style={styles.statNumber}>{homeData ? calculatePercentage(homeData.statistics.today_checkin_users, homeData.statistics.total_members) : "0%"}</Text>
+              <Text style={styles.statLabel}>{t('attendanceRate')}</Text>
             </View>
-            <Text style={styles.statNumber}>{homeData ? calculatePercentage(homeData.statistics.today_checkin_users, homeData.statistics.total_members) : "0%"}</Text>
-            <Text style={styles.statLabel}>{t('attendanceRate')}</Text>
           </View>
-        </View>
 
-        {/* Today's Photos */}
-        
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Camera size={20} color="#374151" />
-            <Text style={styles.sectionTitle}>{t('todaysPhotos')}</Text>
-          </View>
-           <View style={styles.todayPhotosLoading}>   
-             {homeLoading && (
-                  <Text>{t('loading')}</Text>
-               )}</View>
-            <ScrollView 
-              horizontal 
-              showsHorizontalScrollIndicator={false} 
+          {/* Today's Photos */}
+
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Camera size={20} color="#374151" />
+              <Text style={styles.sectionTitle}>{t('todaysPhotos')}</Text>
+            </View>
+            <View style={styles.todayPhotosLoading}>
+              {homeLoading && (
+                <Text>{t('loading')}</Text>
+              )}</View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
               style={styles.photosScroll}
               contentContainerStyle={styles.todayPhotosContent}
             >
-              
-              { homeData?.today_checkins.map((record, index) => (
-                <TouchableOpacity key={index} style={styles.photoContainer}     onPress={() => viewPhoto(record)}>
-                  <Image source={{ uri:record.image_url }} style={styles.photo} />
+
+              {homeData?.today_checkins.map((record, index) => (
+                <TouchableOpacity key={index} style={styles.photoContainer} onPress={() => viewPhoto(record)}>
+                  <Image source={{ uri: record.image_url }} style={styles.photo} />
                 </TouchableOpacity>
               ))}
-                       
+
             </ScrollView>
-   
-        </View>
 
-        {/* Checkin Records */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Calendar size={20} color="#374151" />
-            <Text style={styles.sectionTitle}>{t('checkinRecords')}</Text>
           </View>
-          {loading ? (
-            <Text>{t('loading')}</Text>
-          ) : error ? (
-            <Text style={{ color: 'red' }}>{error}</Text>
-          ) : 
-            checkinRecords.map((record: Checkin) => (
-            <View key={record.id} style={styles.recordCard}>
-              <View style={styles.recordHeader}>
-                <View style={styles.memberInfo}>
-                 
-                  <View style={styles.memberDetails}>
-                  <View style={styles.timeLocationRow}>
-                    <Image source={{ uri: record.user_avatar }} style={styles.memberAvatar} />
-                    <Text style={styles.memberName}>{record.user_name}</Text>
-                  </View>
-                    <View style={styles.timeLocationContainer}>
 
-                    <TouchableOpacity 
-                    style={styles.photoWrapper}
-                    onPress={() => viewPhoto(record)}
-                  >
-                   <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} /> 
-   
-                  </TouchableOpacity>
-                      <View style={styles.timeLocationRow}>
-                      <Clock size={14} color="#6b7280" />
-                      <Text style={styles.timeText}>{formatUnixTimestamp(record.created_at)}</Text>
-                      </View>
-                      <View style={styles.timeLocationRow}>
-                      <MapPin size={14} color="#6b7280" />
-                      <Text style={styles.locationText}>{record.location}</Text>
+          {/* Checkin Records */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Calendar size={20} color="#374151" />
+              <Text style={styles.sectionTitle}>{t('checkinRecords')}</Text>
+            </View>
+            {loading ? (
+              <Text>{t('loading')}</Text>
+            ) : error ? (
+              <Text style={{ color: 'red' }}>{error}</Text>
+            ) :
+              checkinRecords.map((record: Checkin) => (
+                <View key={record.id} style={styles.recordCard}>
+                  <View style={styles.recordHeader}>
+                    <View style={styles.memberInfo}>
+
+                      <View style={styles.memberDetails}>
+                        <View style={styles.timeLocationRow}>
+                          <Image source={{ uri: record.user_avatar }} style={styles.memberAvatar} />
+                          <Text style={styles.memberName}>{record.user_name}</Text>
+                        </View>
+                        <View style={styles.timeLocationContainer}>
+
+                          <TouchableOpacity
+                            style={styles.photoWrapper}
+                            onPress={() => viewPhoto(record)}
+                          >
+                            <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} />
+
+                          </TouchableOpacity>
+                          <View style={styles.timeLocationRow}>
+                            <Clock size={14} color="#6b7280" />
+                            <Text style={styles.timeText}>{formatUnixTimestamp(record.created_at)}</Text>
+                          </View>
+                          <View style={styles.timeLocationRow}>
+                            <MapPin size={14} color="#6b7280" />
+                            <Text style={styles.locationText}>{record.location}</Text>
+                          </View>
+                        </View>
                       </View>
                     </View>
-                  </View>
-                </View>
-                {/* <View style={[styles.statusBadge, { backgroundColor: getStatusColor(record.status) }]}>
+                    {/* <View style={[styles.statusBadge, { backgroundColor: getStatusColor(record.status) }]}>
                   <Text style={styles.statusText}>{getStatusText(record.status)}</Text>
                 </View> */}
-              </View>
-              <ScrollView 
-                horizontal 
-                showsHorizontalScrollIndicator={false} 
-                style={styles.photosContainer}
-                contentContainerStyle={styles.photosContent}
-              >
-                {/* {record.photos.map((photo: string, index: number) => ( */}
-                  <TouchableOpacity 
-                    style={styles.photoWrapper}
-                    onPress={() => viewPhoto(record)}
+                  </View>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.photosContainer}
+                    contentContainerStyle={styles.photosContent}
                   >
-                    {/* <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} /> */}
-                    {/* {record.photos.length > 1 && (
+                    {/* {record.photos.map((photo: string, index: number) => ( */}
+                    <TouchableOpacity
+                      style={styles.photoWrapper}
+                      onPress={() => viewPhoto(record)}
+                    >
+                      {/* <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} /> */}
+                      {/* {record.photos.length > 1 && (
                       <View style={styles.photoCounter}>
                         <Text style={styles.photoCounterText}>
                           {index + 1}/{record.photos.length}
                         </Text>
                       </View>
                     )} */}
-                  </TouchableOpacity>
-                {/* ))} */}
-              </ScrollView>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+                    </TouchableOpacity>
+                    {/* ))} */}
+                  </ScrollView>
+                </View>
+              ))}
+          </View>
+        </ScrollView>
       }
     </SafeAreaView >
   );
@@ -491,7 +497,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width:"100%",
+    width: "100%",
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f8fafc',
@@ -503,7 +509,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     paddingBottom: 10,
-    width:"100%"
+    width: "100%"
   },
   title: {
     fontSize: 28,
@@ -520,7 +526,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     gap: 12,
-    width:"100%"
+    width: "100%"
   },
   statCard: {
     flex: 1,
@@ -559,7 +565,7 @@ const styles = StyleSheet.create({
   section: {
     paddingHorizontal: 20,
     paddingBottom: 24,
-    width:"100%"
+    width: "100%"
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -575,12 +581,12 @@ const styles = StyleSheet.create({
   photosScroll: {
     marginHorizontal: -4,
   },
-  todayPhotosLoading:{
+  todayPhotosLoading: {
     paddingHorizontal: 4,
-    width:"100%",
+    width: "100%",
   },
-  teamMembershipContent:{
-    width:"100%",
+  teamMembershipContent: {
+    width: "100%",
   },
   todayPhotosContent: {
     paddingHorizontal: 4,
@@ -625,7 +631,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   memberName: {
-    lineHeight:48,
+    lineHeight: 48,
     fontSize: 16,
     fontWeight: '600',
     color: '#1f2937',
@@ -638,7 +644,7 @@ const styles = StyleSheet.create({
   },
   timeLocationRow: {
     flexDirection: 'row',
-    marginRight:8,
+    marginRight: 8,
     alignItems: 'flex-start',
     gap: 4,
   },
@@ -789,7 +795,7 @@ const styles = StyleSheet.create({
   },
   // ScrollView 样式
   scrollView: {
-    width:"100%"
+    width: "100%"
   },
   // 标签页样式
   tabsContainer: {
