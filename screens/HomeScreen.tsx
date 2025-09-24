@@ -7,8 +7,11 @@ import {   View,
   Image,
   TouchableOpacity,
   NativeModules,
-  Alert } from 'react-native';
+  Alert,
+  TextInput } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Users,
@@ -56,26 +59,46 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   const { t } = useTranslation();
   const [teamMembership,setTeamMembership] = useState<TeamMembership>();
   const [homeData,setHomeData] = useState<HomeData>();
+  const [hasTeam, setHasTeam] = useState<boolean>(true);
+    // 标签页状态
+  const [activeTab, setActiveTab] = useState<'create' | 'join'>('create');
   
+    // 创建团队表单状态
+    const [formData, setFormData] = useState({
+      name: '',
+      address: '',
+      description: ''
+    });
   useEffect(() => {
     const checkAuthState = async () => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
 
           const session = JSON.parse(sessionString);
-          const membership = await getMembership(session)
-          setLoading(true);
-          setTeamMembership(membership.teamMember)  
-          var jsonStr = JSON.stringify(membership.teamMember)
-          await  AuthBridge.saveTeamInfo(jsonStr)
- 
-          setHomeLoading(true);
-          const homeData = await getHomeData(session)
-          setHomeData(homeData)
-          setHomeLoading(false);
-          const checkins = await getCheckIns(session)
-          setCheckinRecords(checkins.today_checkins)
-          setLoading(false);
+          try{
+            setLoading(true);
+            const membership = await getMembership(session)
+            if(!membership.teamMember){ //如果没有团队
+              setLoading(false);
+              setHasTeam(false)
+            }
+            else {
+              setTeamMembership(membership.teamMember)  
+              var jsonStr = JSON.stringify(membership.teamMember)
+              await  AuthBridge.saveTeamInfo(jsonStr)
+              setHomeLoading(true);
+              const homeData = await getHomeData(session)
+              setHomeData(homeData)
+              setHomeLoading(false);
+              const checkins = await getCheckIns(session)
+              setCheckinRecords(checkins.today_checkins)
+              setLoading(false);
+            }
+  
+          }
+          catch(e){
+
+          }
       }
     };
      checkAuthState();
@@ -86,8 +109,228 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
 
 
+
+  
+  const [createLoading, setCreateLoading] = useState(false);
+
+  // 加入团队表单状态
+  const [teamId, setTeamId] = useState('');
+  const [teamInfo, setTeamInfo] = useState<any>(null);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [joinLoading, setJoinLoading] = useState(false);
+
+  const handleCreateSubmit = async () => {
+    if (!formData.name.trim()) {
+      Alert.alert('错误', '团队名称不能为空');
+      return;
+    }
+
+    setCreateLoading(true);
+    try {
+      // 这里添加创建团队的 API 调用
+      // await createTeamAPI(formData);
+      Alert.alert('成功', '团队创建成功');
+      setHasTeam(true);
+    } catch (error) {
+      Alert.alert('错误', '创建团队失败');
+    } finally {
+      setCreateLoading(false);
+    }
+  };
+
+  const handleSearchTeam = async () => {
+    if (!teamId.trim()) {
+      Alert.alert('错误', '请输入团队ID');
+      return;
+    }
+
+    setSearchLoading(true);
+    try {
+      // 这里添加查询团队信息的 API 调用
+      // const teamData = await searchTeamAPI(teamId);
+      // setTeamInfo(teamData);
+      
+      // 模拟数据
+      setTeamInfo({
+        id: teamId,
+        name: '示例团队',
+        description: '这是一个示例团队',
+        memberCount: 5
+      });
+    } catch (error) {
+      Alert.alert('错误', '查询团队信息失败');
+    } finally {
+      setSearchLoading(false);
+    }
+  };
+
+  const handleJoinTeam = async () => {
+    if (!teamInfo) {
+      Alert.alert('错误', '请先查询团队信息');
+      return;
+    }
+
+    setJoinLoading(true);
+    try {
+      // 这里添加加入团队的 API 调用
+      // await joinTeamAPI(teamInfo.id);
+      Alert.alert('成功', '加入团队成功');
+      setHasTeam(true);
+    } catch (error) {
+      Alert.alert('错误', '加入团队失败');
+    } finally {
+      setJoinLoading(false);
+    }
+  };
+
+  const CreateTeamTab = () => (
+    <View style={styles.tabContent}>
+      <View style={styles.inputGroup}>
+        <Text style={styles.label}>团队名称 *</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="输入团队名称"
+          value={formData.name}
+          onChangeText={(text) => setFormData(prev => ({ ...prev, name: text }))}
+          returnKeyType="done"
+ 
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <Text style={styles.label}>团队地址</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="输入团队地址"
+          value={formData.address}
+          onChangeText={(text) => setFormData(prev => ({ ...prev, address: text }))}
+          returnKeyType="done"
+          blurOnSubmit={false}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <Text style={styles.label}>团队简介</Text>
+        <TextInput
+          style={[styles.input, styles.textarea]}
+          placeholder="输入团队简介"
+          value={formData.description}
+          onChangeText={(text) => setFormData(prev => ({ ...prev, description: text }))}
+          multiline
+          numberOfLines={3}
+          returnKeyType="done"
+          blurOnSubmit={false}
+        />
+      </View>
+
+      <TouchableOpacity 
+        style={[styles.submitButton, createLoading && styles.submitButtonDisabled]}
+        onPress={handleCreateSubmit}
+        disabled={createLoading}
+      >
+        <Text style={styles.submitButtonText}>
+          {createLoading ? "创建中..." : "创建团队"}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const JoinTeamTab = () => (
+    <View style={styles.tabContent}>
+      <View style={styles.inputGroup}>
+        <Text style={styles.label}>团队ID *</Text>
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={[styles.input, styles.searchInput]}
+            placeholder="输入团队ID"
+            value={teamId}
+            onChangeText={setTeamId}
+            returnKeyType="done"
+          />
+          <TouchableOpacity 
+            style={[styles.searchButton, searchLoading && styles.searchButtonDisabled]}
+            onPress={handleSearchTeam}
+            disabled={searchLoading}
+          >
+            <Text style={styles.searchButtonText}>
+              {searchLoading ? "查询中..." : "查询"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {teamInfo && (
+        <View style={styles.teamInfoCard}>
+          <Text style={styles.teamInfoTitle}>团队信息</Text>
+          <View style={styles.teamInfoItem}>
+            <Text style={styles.teamInfoLabel}>团队名称:</Text>
+            <Text style={styles.teamInfoValue}>{teamInfo.name}</Text>
+          </View>
+          <View style={styles.teamInfoItem}>
+            <Text style={styles.teamInfoLabel}>团队描述:</Text>
+            <Text style={styles.teamInfoValue}>{teamInfo.description}</Text>
+          </View>
+          <View style={styles.teamInfoItem}>
+            <Text style={styles.teamInfoLabel}>成员数量:</Text>
+            <Text style={styles.teamInfoValue}>{teamInfo.memberCount}人</Text>
+          </View>
+        </View>
+      )}
+
+      <TouchableOpacity 
+        style={[styles.submitButton, (!teamInfo || joinLoading) && styles.submitButtonDisabled]}
+        onPress={handleJoinTeam}
+        disabled={!teamInfo || joinLoading}
+      >
+        <Text style={styles.submitButtonText}>
+          {joinLoading ? "加入中..." : "确认加入"}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
+      {!hasTeam && (
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.tabsContainer}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        >
+          <View style={styles.card}>
+            <View style={styles.cardHeader}>
+              <Text style={styles.cardTitle}>团队设置</Text>
+              <Text style={styles.cardDescription}>创建或加入团队开始使用打卡系统</Text>
+              
+              {/* 标签页切换 */}
+              <View style={styles.tabButtons}>
+                <TouchableOpacity 
+                  style={[styles.tabButton, activeTab === 'create' && styles.tabButtonActive]}
+                  onPress={() => setActiveTab('create')}
+                >
+                  <Text style={[styles.tabButtonText, activeTab === 'create' && styles.tabButtonTextActive]}>
+                    创建团队
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.tabButton, activeTab === 'join' && styles.tabButtonActive]}
+                  onPress={() => setActiveTab('join')}
+                >
+                  <Text style={[styles.tabButtonText, activeTab === 'join' && styles.tabButtonTextActive]}>
+                    加入团队
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            
+            <View style={styles.cardContent}>
+              {activeTab === 'create' ? <CreateTeamTab /> : <JoinTeamTab />}
+            </View>
+          </View>
+        </ScrollView>
+      )}
+      {hasTeam &&       
       <ScrollView showsVerticalScrollIndicator={false}  
       style={{width:"100%"}}  
              >
@@ -227,6 +470,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           ))}
         </View>
       </ScrollView>
+      }
     </SafeAreaView >
   );
 };
@@ -466,6 +710,183 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  // 创建团队表单样式
+  createTeamContainer: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f8fafc',
+  },
+  card: {
+    width: '95%', // 增加宽度，留出边距
+    maxWidth: 500, // 设置最大宽度
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  cardHeader: {
+    padding: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f1f5f9',
+    alignItems: 'center',
+  },
+  cardTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#1f2937',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  cardDescription: {
+    fontSize: 16,
+    color: '#6b7280',
+    textAlign: 'center',
+  },
+  cardContent: {
+    padding: 24,
+  },
+  inputGroup: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 8,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#d1d5db',
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    backgroundColor: '#ffffff',
+  },
+  textarea: {
+    minHeight: 100,
+    textAlignVertical: 'top',
+  },
+  submitButton: {
+    backgroundColor: '#3b82f6',
+    borderRadius: 8,
+    padding: 16,
+    alignItems: 'center',
+  },
+  submitButtonDisabled: {
+    backgroundColor: '#9ca3af',
+  },
+  submitButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  // ScrollView 样式
+  scrollView: {
+    width:"100%"
+  },
+  // 标签页样式
+  tabsContainer: {
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: 8,
+    paddingTop: 40, // 增加顶部间距
+    backgroundColor: '#f8fafc',
+  },
+  tabContent: {
+    width: '100%',
+  },
+  tabButtons: {
+    flexDirection: 'row',
+    marginTop: 20,
+    backgroundColor: '#f1f5f9',
+    borderRadius: 8,
+    padding: 4,
+  },
+  tabButton: {
+    flex: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  tabButtonActive: {
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  tabButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#6b7280',
+  },
+  tabButtonTextActive: {
+    color: '#3b82f6',
+  },
+  // 搜索团队样式
+  searchContainer: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  searchInput: {
+    flex: 1,
+  },
+  searchButton: {
+    backgroundColor: '#3b82f6',
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 80,
+  },
+  searchButtonDisabled: {
+    backgroundColor: '#9ca3af',
+  },
+  searchButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  // 团队信息卡片样式
+  teamInfoCard: {
+    backgroundColor: '#f8fafc',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+  },
+  teamInfoTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1f2937',
+    marginBottom: 12,
+  },
+  teamInfoItem: {
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  teamInfoLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#374151',
+    width: 80,
+  },
+  teamInfoValue: {
+    fontSize: 14,
+    color: '#6b7280',
+    flex: 1,
   },
 });
 export default HomeScreen;

@@ -28,4 +28,5 @@ export const initI18n = async () => {
       interpolation: { escapeValue: false },
     });
 };
+initI18n()
 export default i18n;

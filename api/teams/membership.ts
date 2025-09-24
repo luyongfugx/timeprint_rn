@@ -8,7 +8,10 @@ export async function getMembership(session:any) {
       Authorization: `Bearer ${accessToken}`, // 把 Supabase token 带上
     }
   });
-   const data = await res.json();
+  
+ 
+  
+  const data = await res.json();
   return data
 }
 

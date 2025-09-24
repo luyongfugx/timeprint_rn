@@ -16,6 +16,7 @@ import PhotoViewScreen from './screens/PhotoViewScreen';
 import { NativeModules, ActivityIndicator, BackHandler, View, TouchableOpacity, Platform, StyleSheet, Text, Alert, Image } from 'react-native';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import i18n from './i18n';
+import "./i18n"; // 必须先 import，保证 i18next 初始化
 import { initI18n } from './i18n';
 import { supabase } from './api/supabase';
 // import { Text } from 'react-native-svg';
@@ -39,9 +40,6 @@ const Stack = createNativeStackNavigator();
 const { AuthBridge } = NativeModules;
 function MainTabs() {
   const { t } = useTranslation();
-
-
-
   return (
 
     <Tab.Navigator
@@ -71,6 +69,7 @@ function MainTabs() {
 
   );
 }
+
 function App() {
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -121,7 +120,6 @@ function App() {
         setIsLoading(false);
       }
     );
-    initI18n().then(() => setReady(true));
     return () => subscription.unsubscribe();
 
   }, []);
@@ -280,12 +278,12 @@ function App() {
                   <View style={[styles.checkbox, agreedToTerms && styles.checkboxChecked]}>
                     {agreedToTerms && <Text style={styles.checkmark}>✓</Text>}
                   </View>
-                  <Text style={styles.checkboxText}>
-                    {t('i_agree')}{' '}
-                      <Text style={styles.link}>{t('user_agreement')}</Text>
-                      {' '}{t('and')}{' '}
-                      <Text style={styles.link}>{t('private_policy')}</Text>
-                    </Text>
+                <Text style={styles.checkboxText}>
+                  {t('i_agree')}{' '}
+                    <Text style={styles.link}>{t('user_agreement')}</Text>
+                    {' '}{t('and')}{' '}
+                    <Text style={styles.link}>{t('private_policy')}</Text>
+                  </Text>
                 </Animated.View>
               </GestureDetector>
             </View>
