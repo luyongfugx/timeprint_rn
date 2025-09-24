@@ -53,8 +53,6 @@
     user_avatar: string;
   }
 
-
-
   interface HomeData {
     team: {
       id: string;

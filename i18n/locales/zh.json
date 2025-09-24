@@ -42,5 +42,15 @@
   "logout": "退出登录",
   "login": "登录",
   "user": "用户",
-  "copy": "复制"
+  "copy": "复制",
+  "login_with_google": "使用 Google 登录",
+  "tip":"提示",
+  "read_agreement":"请先阅读并同意用户协议",
+  "wellcome_back":"欢迎回来",
+  "choose_login_type":"请选择您喜欢的登录方式",
+  "i_agree":"我已阅读并同意",
+   "user_agreement":"用户协议",
+   "and":"和",
+   "private_policy":"隐私政策",
+   "nickname":"昵称"
 }

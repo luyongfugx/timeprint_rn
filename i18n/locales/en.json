@@ -42,5 +42,15 @@
   "logout": "Log Out",
   "login": "Log In",
   "user": "User",
-  "copy": "Copy"
+  "copy": "Copy",
+  "login_with_google": "Log in with Google",
+  "tip": "Tip",
+  "read_agreement": "Please read and agree to the user agreement first",
+  "wellcome_back": "Welcome back",
+  "choose_login_type": "Please choose your preferred login method",
+  "i_agree": "I have read and agree to",
+  "user_agreement": "User Agreement",
+  "and": "and",
+  "private_policy": "Privacy Policy",
+  "nickname": "Nickname"
 }

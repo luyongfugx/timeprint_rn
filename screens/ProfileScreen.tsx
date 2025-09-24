@@ -17,6 +17,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import { GOOGLE_SIGN_IN_SCOPES, GOOGLE_SIGN_IN_WEB_CLIENT_ID } from '../api/teams/config';
 const { AuthBridge } = NativeModules;
 const ProfileScreen = () => {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ const ProfileScreen = () => {
   const checkboxScale = useSharedValue(1);
   const fadeIn = useSharedValue(0);
 
- 
+
 
   useEffect(() => {
     fadeIn.value = withTiming(1, { duration: 800 });
@@ -128,11 +129,11 @@ const ProfileScreen = () => {
 
   const handleLogin = async (provider: string) => {
     GoogleSignin.configure({
-      scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-      webClientId: '401431549807-5jq8d5vicunav6osh0lcof33i260nb64.apps.googleusercontent.com',
+      scopes: [GOOGLE_SIGN_IN_SCOPES],
+      webClientId: GOOGLE_SIGN_IN_WEB_CLIENT_ID,
     })
     if (!agreedToTerms) {
-      Alert.alert('提示', '请先阅读并同意用户协议');
+      Alert.alert(t('tip'), t('read_agreement'));
       return;
     }
 
@@ -167,14 +168,13 @@ const ProfileScreen = () => {
   };
 
 
-
   return (
     <SafeAreaView style={styles.container}>
       {!isLoggedIn && (
     <Animated.View style={[styles.content, fadeAnimatedStyle]}>
       <View style={styles.header}>
-        <Text style={styles.title}>欢迎回来</Text>
-        <Text style={styles.subtitle}>请选择您喜欢的登录方式</Text>
+        <Text style={styles.title}>{t('wellcome_back')}</Text>
+        <Text style={styles.subtitle}>{t('choose_login_type')}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -186,13 +186,13 @@ const ProfileScreen = () => {
             >
               <View style={styles.buttonContent}>
                 <Text style={styles.googleIcon}>G</Text>
-                <Text style={styles.buttonText}>使用 Google 登录</Text>
+                <Text style={styles.buttonText}>{t('login_with_google')}</Text>
               </View>
             </TouchableOpacity>
           </Animated.View>
         </GestureDetector>
 
-        {Platform.OS === 'ios' && (
+        {/* {Platform.OS === 'ios' && (
           <GestureDetector gesture={createButtonGesture('apple')}>
             <Animated.View style={buttonAnimatedStyle}>
               <TouchableOpacity 
@@ -206,7 +206,7 @@ const ProfileScreen = () => {
               </TouchableOpacity>
             </Animated.View>
           </GestureDetector>
-        )}
+        )} */}
       </View>
 
       <View style={styles.footer}>
@@ -216,10 +216,10 @@ const ProfileScreen = () => {
               {agreedToTerms && <Text style={styles.checkmark}>✓</Text>}
             </View>
             <Text style={styles.checkboxText}>
-              我已阅读并同意{' '}
-              <Text style={styles.link}>用户协议</Text>
-              {' '}和{' '}
-              <Text style={styles.link}>隐私政策</Text>
+            {t('i_agree')}{' '}
+              <Text style={styles.link}>{t('user_agreement')}</Text>
+              {' '}{t('and')}{' '}
+              <Text style={styles.link}>{t('private_policy')}</Text>
             </Text>
           </Animated.View>
         </GestureDetector>
@@ -263,7 +263,7 @@ const ProfileScreen = () => {
                 <Mail size={20} color="#A16207" />
               </View>
               <View style={styles.infoContent}>
-                <Text style={styles.infoLabel}>昵称</Text>
+                <Text style={styles.infoLabel}>{t('nick_name')}</Text>
                 <Text style={styles.infoValue}>{user.user_metadata?.name || user.email || t('user')}</Text>
               </View>
             </View>
@@ -292,7 +292,7 @@ const ProfileScreen = () => {
             <Animated.View style={buttonAnimatedStyle}>
               <TouchableOpacity style={styles.signOutButton}>
                 <LogOut size={20} color="#DC2626" />
-                <Text style={styles.signOutText}>退出登录</Text>
+                <Text style={styles.signOutText}>{t('logout')}</Text>
               </TouchableOpacity>
             </Animated.View>
           </GestureDetector>
