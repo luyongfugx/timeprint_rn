@@ -11,7 +11,7 @@ import {
   Alert,
   TextInput
 } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -27,6 +27,7 @@ import { useTranslation } from 'react-i18next';
 import { getMembership } from '../api/teams/membership';
 import { getHomeData } from '../api/teams/home';
 import { getCheckIns } from '../api/teams/checkin';
+import { createTeam, getJoinTeam, getTeamInfoById, joinTeam } from '../api/teams/team';
 
 const { AuthBridge } = NativeModules;
 
@@ -109,10 +110,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     navigation.navigate('Member')
   };
 
-
-
-
-
   const [createLoading, setCreateLoading] = useState(false);
 
   // 加入团队表单状态
@@ -130,9 +127,15 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     setCreateLoading(true);
     try {
       // 这里添加创建团队的 API 调用
-      // await createTeamAPI(formData);
-      Alert.alert(t('success'), t('teamCreatedSuccess'));
-      setHasTeam(true);
+      const sessionString = await AuthBridge.getSession();
+      if (sessionString) {
+          const session = JSON.parse(sessionString);
+
+          const teamData = await createTeam(session,formData);
+          Alert.alert(t('success'), t('teamCreatedSuccess'));
+          setHasTeam(true);
+        }
+
     } catch (error) {
       Alert.alert(t('error'), t('teamCreatedFailed'));
     } finally {
@@ -148,17 +151,19 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
     setSearchLoading(true);
     try {
-      // 这里添加查询团队信息的 API 调用
-      // const teamData = await searchTeamAPI(teamId);
-      // setTeamInfo(teamData);
-
-      // 模拟数据
-      setTeamInfo({
-        id: teamId,
-        name: t('teamName'),
-        description: t('teamDescription'),
-        memberCount: 5
-      });
+      const sessionString = await AuthBridge.getSession();
+      if (sessionString) {
+        const session = JSON.parse(sessionString);
+        const teamData = await getTeamInfoById(session,teamId);
+        setTeamInfo(teamData);
+        // 模拟数据
+        setTeamInfo({
+          id: teamId,
+          name: t('teamName'),
+          description: t('teamDescription'),
+          memberCount: 5
+        });
+        }
     } catch (error) {
       Alert.alert(t('error'), t('teamSearchFailed'));
     } finally {
@@ -174,24 +179,22 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 
     setJoinLoading(true);
     try {
+      const sessionString = await AuthBridge.getSession();
+      if (sessionString) {
+          const session = JSON.parse(sessionString);
       // 这里添加加入团队的 API 调用
-      // await joinTeamAPI(teamInfo.id);
-      Alert.alert(t('success'), t('teamJoinSuccess'));
-      setHasTeam(true);
+          await joinTeam(session,teamInfo.id);
+          Alert.alert(t('success'), t('teamJoinSuccess'));
+          setHasTeam(true);
+        }
+
     } catch (error) {
       Alert.alert(t('error'), t('teamJoinFailed'));
+      setJoinLoading(false);
     } finally {
       setJoinLoading(false);
     }
   };
-
-
-
-
-
-
-
-
   return (
     <SafeAreaView style={styles.container}>
       {!hasTeam && (
