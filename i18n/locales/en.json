@@ -84,5 +84,6 @@
   "enterTeamAddress": "Enter team address",
   "enterTeamDescription": "Enter team description",
   "enterTeamId": "Enter team ID",
-  "people": "people"
+  "people": "people",
+  "nodata": "No DATA"
 }

@@ -11,9 +11,6 @@ import {
   Alert,
   TextInput
 } from 'react-native';
-
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Users,
@@ -72,39 +69,39 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     address: '',
     description: ''
   });
-  useEffect(() => {
-    const checkAuthState = async () => {
-      const sessionString = await AuthBridge.getSession();
-      if (sessionString) {
+  const loadHomeData = async () => {
+    const sessionString = await AuthBridge.getSession();
+    if (sessionString) {
 
-        const session = JSON.parse(sessionString);
-        try {
-          setLoading(true);
-          const membership = await getMembership(session)
-          if (!membership.teamMember) { //如果没有团队
-            setLoading(false);
-            setHasTeam(false)
-          }
-          else {
-            setTeamMembership(membership.teamMember)
-            var jsonStr = JSON.stringify(membership.teamMember)
-            await AuthBridge.saveTeamInfo(jsonStr)
-            setHomeLoading(true);
-            const homeData = await getHomeData(session)
-            setHomeData(homeData)
-            setHomeLoading(false);
-            const checkins = await getCheckIns(session)
-            setCheckinRecords(checkins.today_checkins)
-            setLoading(false);
-          }
-
+      const session = JSON.parse(sessionString);
+      try {
+        setLoading(true);
+        const membership = await getMembership(session)
+        if (!membership.teamMember) { //如果没有团队
+          setLoading(false);
+          setHasTeam(false)
         }
-        catch (e) {
-
+        else {
+          setTeamMembership(membership.teamMember)
+          var jsonStr = JSON.stringify(membership.teamMember)
+          await AuthBridge.saveTeamInfo(jsonStr)
+          setHomeLoading(true);
+          const homeData = await getHomeData(session)
+          setHomeData(homeData)
+          setHomeLoading(false);
+          const checkins = await getCheckIns(session)
+          setCheckinRecords(checkins.today_checkins)
+          setLoading(false);
         }
+
       }
-    };
-    checkAuthState();
+      catch (e) {
+
+      }
+    }
+  };
+  useEffect(() => {
+    loadHomeData();
   }, []);
   const gotoMember = () => {
     navigation.navigate('Member')
@@ -134,6 +131,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           if(teamData.status == 200){
             Alert.alert(t('success'), t('teamCreatedSuccess'));
             setHasTeam(true);
+            loadHomeData() //重新获取数据
           }
           else {
             Alert.alert(t('error'), t('teamSearchFailed'));
@@ -399,14 +397,19 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             <View style={styles.todayPhotosLoading}>
               {homeLoading && (
                 <Text>{t('loading')}</Text>
-              )}</View>
+              )}
+                   {(!homeData  || homeData.today_checkins?.length <=0) &&  !homeLoading &&      
+               <Text>{t('nodata')}</Text>
+               }
+              </View>
+          
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.photosScroll}
               contentContainerStyle={styles.todayPhotosContent}
             >
-
+         
               {homeData?.today_checkins.map((record, index) => (
                 <TouchableOpacity key={index} style={styles.photoContainer} onPress={() => viewPhoto(record)}>
                   <Image source={{ uri: record.image_url }} style={styles.photo} />
@@ -423,6 +426,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               <Calendar size={20} color="#374151" />
               <Text style={styles.sectionTitle}>{t('checkinRecords')}</Text>
             </View>
+            {(!checkinRecords || checkinRecords?.length <=0) &&  !loading &&      
+               <Text>{t('nodata')}</Text>}
             {loading ? (
               <Text>{t('loading')}</Text>
             ) : error ? (

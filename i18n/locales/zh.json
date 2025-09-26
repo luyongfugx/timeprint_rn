@@ -84,5 +84,6 @@
   "enterTeamAddress": "输入团队地址",
   "enterTeamDescription": "输入团队简介",
   "enterTeamId": "输入团队ID",
-  "people": "人"
+  "people": "人",
+    "nodata": "无数据"
 }
