@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next';
 import { getMembership } from '../api/teams/membership';
 import { getHomeData } from '../api/teams/home';
 import { getCheckIns } from '../api/teams/checkin';
-import { createTeam, getJoinTeam, getTeamInfoById, joinTeam } from '../api/teams/team';
+import { createTeam, getTeamInfoById, joinTeam } from '../api/teams/team';
 
 const { AuthBridge } = NativeModules;
 
@@ -130,10 +130,15 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
           const session = JSON.parse(sessionString);
-
           const teamData = await createTeam(session,formData);
-          Alert.alert(t('success'), t('teamCreatedSuccess'));
-          setHasTeam(true);
+          if(teamData.status == 200){
+            Alert.alert(t('success'), t('teamCreatedSuccess'));
+            setHasTeam(true);
+          }
+          else {
+            Alert.alert(t('error'), t('teamSearchFailed'));
+          }
+
         }
 
     } catch (error) {
@@ -155,15 +160,14 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       if (sessionString) {
         const session = JSON.parse(sessionString);
         const teamData = await getTeamInfoById(session,teamId);
-        setTeamInfo(teamData);
-        // 模拟数据
-        setTeamInfo({
-          id: teamId,
-          name: t('teamName'),
-          description: t('teamDescription'),
-          memberCount: 5
-        });
+
+        if(teamData.status == 200){
+          setTeamInfo(teamData.data);
         }
+        else {
+          Alert.alert(t('error'), t('teamSearchFailed'));
+        }
+      }
     } catch (error) {
       Alert.alert(t('error'), t('teamSearchFailed'));
     } finally {
@@ -176,17 +180,22 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       Alert.alert(t('error'), t('searchTeamInfoFirst'));
       return;
     }
-
     setJoinLoading(true);
     try {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
           const session = JSON.parse(sessionString);
       // 这里添加加入团队的 API 调用
-          await joinTeam(session,teamInfo.id);
+        const joinData =    await joinTeam(session,teamInfo.id);
+        console.log(joinData)
+        if(joinData.status == 200){
           Alert.alert(t('success'), t('teamJoinSuccess'));
           setHasTeam(true);
         }
+        else {
+          Alert.alert(t('error'), t('teamJoinFailed'));
+        }
+      }
 
     } catch (error) {
       Alert.alert(t('error'), t('teamJoinFailed'));
