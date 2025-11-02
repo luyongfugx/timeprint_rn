@@ -26,4 +26,22 @@ class AuthBridge: NSObject {
       resolve(nil)
     }
   }
+  
+  
+  @objc
+  func saveTeamInfo(_ teamInfo: String) {
+    let defaults = UserDefaults.standard
+    defaults.set(teamInfo, forKey: "teamInfo")
+  }
+
+  @objc
+  func  getTeamInfo(_ resolve: RCTPromiseResolveBlock,
+                    reject: RCTPromiseRejectBlock) {
+    let defaults = UserDefaults.standard
+    if let session = defaults.string(forKey: "teamInfo") {
+      resolve(session)
+    } else {
+      resolve(nil)
+    }
+  }
 }
