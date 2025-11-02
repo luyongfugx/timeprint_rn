@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAk6R_Yk9DJEyNBK-blO-wAJgvU3md426Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>987439760391</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.timestampcamerafree.gpsmapcameratimemark.geotagginglocationonphoto</string>
+	<key>PROJECT_ID</key>
+	<string>timegps-201a4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>timegps-201a4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:987439760391:ios:cdc8cf391dfe6f1b2d56a2</string>
+</dict>
+</plist>
