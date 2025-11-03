@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "ፎቶዎችን ለመያዝ እና በጊዜ ማህተሞች፣ አድራሻዎች፣ መጋጠሚያዎች፣ የኩባንያ አርማዎች እና ሌሎችም ሊበጁ የሚችሉ የውሃ ምልክቶችን ለማከል Timeprint ን ይፍቀዱ።";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Timeprint አድራሻ፣ መጋጠሚያዎች፣ ካርታ እና የአየር ሁኔታ መረጃን በአካባቢዎ ላይ በመመስረት እንዲያሳይ ይፍቀዱ (አማራጭ)።";
+"NSLocationWhenInUseUsageDescription" = "Timeprint አድራሻ፣ መጋጠሚያዎች፣ ካርታ እና የአየር ሁኔታ መረጃን በአካባቢዎ ላይ በመመስረት እንዲያሳይ ይፍቀዱ (አማራጭ)።";
+"NSMicrophoneUsageDescription" = "Timeprint ቪዲዮዎችን በድምፅ እንዲቀርጽ ይፍቀዱ።";
+"NSPhotoLibraryAddUsageDescription" = "Timeprint የተቀረጹትን ፎቶዎችዎን በካሜራ ሮል ውስጥ እንዲያስቀምጥ ይፍቀዱ።";
+"NSPhotoLibraryUsageDescription" = "Timeprint የውሃ ምልክት የተደረገባቸውን ፎቶዎችዎን ለማየት እና በፍጥነት ለማጋራት የፎቶ ቤተ-መጽሐፍትን እንዲደርስ ይፍቀዱ።";

@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Sta Timeprint toe om foto's te maken en aanpasbare watermerken toe te voegen met tijdstempels, adres, coördinaten, bedrijfslogo's en meer.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Sta Timeprint toe om adres, coördinaten, kaart en weersinformatie weer te geven op basis van uw locatie (optioneel).";
+"NSLocationWhenInUseUsageDescription" = "Sta Timeprint toe om adres, coördinaten, kaart en weersinformatie weer te geven op basis van uw locatie (optioneel).";
+"NSMicrophoneUsageDescription" = "Sta Timeprint toe om video's met audio op te nemen.";
+"NSPhotoLibraryAddUsageDescription" = "Sta Timeprint toe om de foto's die je hebt gemaakt op te slaan in de camera roll.";
+"NSPhotoLibraryUsageDescription" = "Sta Timeprint toe om toegang te krijgen tot de fotobibliotheek om je watermerkenfoto's te bekijken en snel te delen.";

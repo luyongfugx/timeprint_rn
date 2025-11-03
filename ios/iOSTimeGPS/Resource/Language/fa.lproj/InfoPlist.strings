@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "اجازه دهید Timeprint عکس بگیرد و واترمارک‌های قابل تنظیم با تاریخ و زمان، آدرس، مختصات، لوگوهای شرکت و موارد دیگر را اضافه کند.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "اجازه دهید Timeprint بر اساس موقعیت مکانی شما (اختیاری)، اطلاعات آدرس، مختصات، نقشه و آب و هوا را نمایش دهد.";
+"NSLocationWhenInUseUsageDescription" = "اجازه دهید Timeprint بر اساس موقعیت مکانی شما (اختیاری)، اطلاعات آدرس، مختصات، نقشه و آب و هوا را نمایش دهد.";
+"NSMicrophoneUsageDescription" = "اجازه دهید Timeprint فیلم‌هایی با صدا ضبط کند.";
+"NSPhotoLibraryAddUsageDescription" = "اجازه دهید Timeprint عکس‌هایی که گرفته‌اید را در Camera Roll ذخیره کند.";
+"NSPhotoLibraryUsageDescription" = "اجازه دهید Timeprint به کتابخانه عکس دسترسی داشته باشد تا عکس‌های دارای واترمارک خود را مشاهده و به سرعت به اشتراک بگذارد.";

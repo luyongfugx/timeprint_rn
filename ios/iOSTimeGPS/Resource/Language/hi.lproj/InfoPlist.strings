@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Timeprint को फ़ोटो कैप्चर करने और समय-मुद्रा, पता, निर्देशांक, कंपनी लोगो और बहुत कुछ के साथ अनुकूलन योग्य वॉटरमार्क जोड़ने की अनुमति दें।";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Timeprint को आपके स्थान के आधार पर पता, निर्देशांक, मानचित्र और मौसम की जानकारी प्रदर्शित करने की अनुमति दें (वैकल्पिक)।";
+"NSLocationWhenInUseUsageDescription" = "Timeprint को आपके स्थान के आधार पर पता, निर्देशांक, मानचित्र और मौसम की जानकारी प्रदर्शित करने की अनुमति दें (वैकल्पिक)।";
+"NSMicrophoneUsageDescription" = "Timeprint को ऑडियो के साथ वीडियो रिकॉर्ड करने की अनुमति दें।";
+"NSPhotoLibraryAddUsageDescription" = "Timeprint को आपके द्वारा कैप्चर की गई फ़ोटो को कैमरा रोल में सहेजने की अनुमति दें।";
+"NSPhotoLibraryUsageDescription" = "Timeprint को अपनी वॉटरमार्क वाली फ़ोटो देखने और शीघ्र साझा करने के लिए फ़ोटो लाइब्रेरी तक पहुँचने की अनुमति दें।";

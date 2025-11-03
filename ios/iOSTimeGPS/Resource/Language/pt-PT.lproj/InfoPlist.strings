@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Permitir que o Timeprint capture fotos e adicione marcas de água personalizáveis com carimbos de data e hora, endereço, coordenadas, logotipos da empresa e muito mais.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Permitir que o Timeprint exiba o endereço, coordenadas, mapa e informações meteorológicas com base na sua localização (opcional).";
+"NSLocationWhenInUseUsageDescription" = "Permitir que o Timeprint exiba o endereço, coordenadas, mapa e informações meteorológicas com base na sua localização (opcional).";
+"NSMicrophoneUsageDescription" = "Permitir que o Timeprint grave vídeos com áudio.";
+"NSPhotoLibraryAddUsageDescription" = "Permitir que o Timeprint salve as fotos que captou na biblioteca de fotos.";
+"NSPhotoLibraryUsageDescription" = "Permitir que o Timeprint aceda à biblioteca de fotos para visualizar e partilhar rapidamente as suas fotos com marcas de água.";

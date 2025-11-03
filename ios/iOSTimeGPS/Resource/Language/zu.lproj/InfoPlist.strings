@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Vumela i-Timeprint ukuthi ithwebule izithombe futhi yengeze ama-watermark angaguquguquki anezincazelo zesikhathi, ikheli, ikho-ordinathi, imiqondo yenkampani, nokuningi.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Vumela i-Timeprint ukubonisa ikheli, ikho-ordinathi, imephu, nolwazi lwesimo sezulu ngokususelwa endaweni yakho (okukhethwa kukho).";
+"NSLocationWhenInUseUsageDescription" = "Vumela i-Timeprint ukubonisa ikheli, ikho-ordinathi, imephu, nolwazi lwesimo sezulu ngokususelwa endaweni yakho (okukhethwa kukho).";
+"NSMicrophoneUsageDescription" = "Vumela i-Timeprint ukurekhoda amavidiyo anomculo.";
+"NSPhotoLibraryAddUsageDescription" = "Vumela i-Timeprint ukugcina izithombe ozithwebule ku-camera roll.";
+"NSPhotoLibraryUsageDescription" = "Vumela i-Timeprint ukufinyelela i-photo library ukubuka nokukwabelana ngokushesha ngezithombe zakho ezinemifanekiso yamanzi.";

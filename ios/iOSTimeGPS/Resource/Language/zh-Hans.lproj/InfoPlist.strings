@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "允许 Timeprint 拍摄照片并添加可自定义的水印，包括时间戳、地址、坐标、公司徽标等。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "允许 Timeprint 根据您的位置（可选）显示地址、坐标、地图和天气信息。";
+"NSLocationWhenInUseUsageDescription" = "允许 Timeprint 根据您的位置（可选）显示地址、坐标、地图和天气信息。";
+"NSMicrophoneUsageDescription" = "允许 Timeprint 记录带有音频的视频。";
+"NSPhotoLibraryAddUsageDescription" = "允许 Timeprint 将您拍摄的照片保存到相机胶卷。";
+"NSPhotoLibraryUsageDescription" = "允许 Timeprint 访问照片库以查看和快速分享您加了水印的照片。";

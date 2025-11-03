@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Erlaube Timeprint, Fotos aufzunehmen und benutzerdefinierte Wasserzeichen mit Zeitstempeln, Adresse, Koordinaten, Firmenlogos und mehr hinzuzufügen.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Erlaube Timeprint, Adresse, Koordinaten, Karte und Wetterinformationen basierend auf deinem Standort anzuzeigen (optional).";
+"NSLocationWhenInUseUsageDescription" = "Erlaube Timeprint, Adresse, Koordinaten, Karte und Wetterinformationen basierend auf deinem Standort anzuzeigen (optional).";
+"NSMicrophoneUsageDescription" = "Erlaube Timeprint, Videos mit Audio aufzunehmen.";
+"NSPhotoLibraryAddUsageDescription" = "Erlaube Timeprint, die von dir aufgenommenen Fotos in der Kamerarolle zu speichern.";
+"NSPhotoLibraryUsageDescription" = "Erlaube Timeprint, auf die Fotobibliothek zuzugreifen, um deine mit Wasserzeichen versehenen Fotos anzuzeigen und schnell zu teilen.";

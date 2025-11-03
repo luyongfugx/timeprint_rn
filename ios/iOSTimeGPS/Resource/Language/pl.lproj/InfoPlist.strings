@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Zezwól aplikacji Timeprint na robienie zdjęć i dodawanie spersonalizowanych znaków wodnych z datą i godziną, adresem, współrzędnymi, logami firm i nie tylko.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Zezwól aplikacji Timeprint na wyświetlanie adresu, współrzędnych, mapy i informacji pogodowych na podstawie Twojej lokalizacji (opcjonalnie).";
+"NSLocationWhenInUseUsageDescription" = "Zezwól aplikacji Timeprint na wyświetlanie adresu, współrzędnych, mapy i informacji pogodowych na podstawie Twojej lokalizacji (opcjonalnie).";
+"NSMicrophoneUsageDescription" = "Zezwól aplikacji Timeprint na nagrywanie filmów z dźwiękiem.";
+"NSPhotoLibraryAddUsageDescription" = "Zezwól aplikacji Timeprint na zapisywanie wykonanych zdjęć w rolce aparatu.";
+"NSPhotoLibraryUsageDescription" = "Zezwól aplikacji Timeprint na dostęp do biblioteki zdjęć w celu przeglądania i szybkiego udostępniania zdjęć ze znakami wodnymi.";

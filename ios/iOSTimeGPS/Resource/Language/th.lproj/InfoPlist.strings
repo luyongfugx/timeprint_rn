@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "อนุญาตให้ Timeprint ถ่ายภาพและเพิ่มลายน้ำแบบกำหนดเองพร้อมกับการประทับเวลา ที่อยู่ พิกัด โลโก้ของบริษัท และอื่นๆ";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "อนุญาตให้ Timeprint แสดงที่อยู่ พิกัด แผนที่ และข้อมูลสภาพอากาศตามตำแหน่งของคุณ (ไม่บังคับ)";
+"NSLocationWhenInUseUsageDescription" = "อนุญาตให้ Timeprint แสดงที่อยู่ พิกัด แผนที่ และข้อมูลสภาพอากาศตามตำแหน่งของคุณ (ไม่บังคับ)";
+"NSMicrophoneUsageDescription" = "อนุญาตให้ Timeprint บันทึกวิดีโอพร้อมเสียง";
+"NSPhotoLibraryAddUsageDescription" = "อนุญาตให้ Timeprint บันทึกภาพที่คุณถ่ายไปยังกล้องถ่ายรูป";
+"NSPhotoLibraryUsageDescription" = "อนุญาตให้ Timeprint เข้าถึงคลังรูปภาพเพื่อดูและแชร์ภาพที่ทำลายน้ำของคุณอย่างรวดเร็ว";

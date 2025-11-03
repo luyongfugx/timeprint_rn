@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "السماح لـ Timeprint بالتقاط الصور وإضافة علامات مائية قابلة للتخصيص مع الطوابع الزمنية، العنوان، الإحداثيات، شعارات الشركة، والمزيد.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "السماح لـ Timeprint بعرض العنوان والإحداثيات والخريطة ومعلومات الطقس بناءً على موقعك (اختياري).";
+"NSLocationWhenInUseUsageDescription" = "السماح لـ Timeprint بعرض العنوان والإحداثيات والخريطة ومعلومات الطقس بناءً على موقعك (اختياري).";
+"NSMicrophoneUsageDescription" = "السماح لـ Timeprint بتسجيل مقاطع فيديو مع صوت.";
+"NSPhotoLibraryAddUsageDescription" = "السماح لـ Timeprint بحفظ الصور التي التقطتها في ملف الصور.";
+"NSPhotoLibraryUsageDescription" = "السماح لـ Timeprint بالوصول إلى مكتبة الصور لعرض ومشاركة صورك المائية بسرعة.";

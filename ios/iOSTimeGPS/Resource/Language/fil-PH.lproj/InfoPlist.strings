@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Payagan ang Timeprint na kumuha ng mga larawan at magdagdag ng mga na-customize na watermark na may mga timestamp, address, coordinate, logo ng kumpanya, at marami pa.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Payagan ang Timeprint na ipakita ang address, coordinate, mapa, at impormasyon ng panahon batay sa iyong lokasyon (opsyonal).";
+"NSLocationWhenInUseUsageDescription" = "Payagan ang Timeprint na ipakita ang address, coordinate, mapa, at impormasyon ng panahon batay sa iyong lokasyon (opsyonal).";
+"NSMicrophoneUsageDescription" = "Payagan ang Timeprint na mag-record ng mga video na may audio.";
+"NSPhotoLibraryAddUsageDescription" = "Payagan ang Timeprint na i-save ang mga larawan na iyong kinuha sa camera roll.";
+"NSPhotoLibraryUsageDescription" = "Payagan ang Timeprint na ma-access ang photo library upang tingnan at mabilis na ibahagi ang iyong mga larawan na may watermark.";

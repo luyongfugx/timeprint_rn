@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Timeprint'in fotoğraf çekmesine ve zaman damgası, adres, koordinat, şirket logosu ve daha fazlası ile özelleştirilebilir filigranlar eklemesine izin verin.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Timeprint'in konumunuza göre (isteğe bağlı) adres, koordinat, harita ve hava durumu bilgileri görüntülemesine izin verin.";
+"NSLocationWhenInUseUsageDescription" = "Timeprint'in konumunuza göre (isteğe bağlı) adres, koordinat, harita ve hava durumu bilgileri görüntülemesine izin verin.";
+"NSMicrophoneUsageDescription" = "Timeprint'in sesli videolar kaydetmesine izin verin.";
+"NSPhotoLibraryAddUsageDescription" = "Timeprint'in çektiğiniz fotoğrafları fotoğraf albümünüze kaydetmesine izin verin.";
+"NSPhotoLibraryUsageDescription" = "Timeprint'in filigranlı fotoğraflarınızı görüntülemek ve hızlı bir şekilde paylaşmak için fotoğraf albümüne erişmesine izin verin.";

@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Allow Timeprint to capture photos and add customizable watermarks with timestamps, address, coordinate, company logos, and more.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Allow Timeprint to display address, coordinates, map, and weather information based on your location (optional).";
+"NSLocationWhenInUseUsageDescription" = "Allow Timeprint to display address, coordinates, map, and weather information based on your location (optional).";
+"NSMicrophoneUsageDescription" = "Allow Timeprint to record videos with audio.";
+"NSPhotoLibraryAddUsageDescription" = "Allow Timeprint to save the photos you captured to camera roll.";
+"NSPhotoLibraryUsageDescription" = "Allow Timeprint to access photo library to view and quickly share your watermarked photos.";

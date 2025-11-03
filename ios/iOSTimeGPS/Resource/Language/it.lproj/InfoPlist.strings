@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Consenti a Timeprint di acquisire foto e aggiungere filigrane personalizzabili con timestamp, indirizzo, coordinate, loghi aziendali e altro.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Consenti a Timeprint di visualizzare indirizzo, coordinate, mappa e informazioni meteorologiche in base alla tua posizione (opzionale).";
+"NSLocationWhenInUseUsageDescription" = "Consenti a Timeprint di visualizzare indirizzo, coordinate, mappa e informazioni meteorologiche in base alla tua posizione (opzionale).";
+"NSMicrophoneUsageDescription" = "Consenti a Timeprint di registrare video con audio.";
+"NSPhotoLibraryAddUsageDescription" = "Consenti a Timeprint di salvare le foto acquisite nella libreria foto.";
+"NSPhotoLibraryUsageDescription" = "Consenti a Timeprint di accedere alla libreria foto per visualizzare e condividere rapidamente le foto con filigrana.";

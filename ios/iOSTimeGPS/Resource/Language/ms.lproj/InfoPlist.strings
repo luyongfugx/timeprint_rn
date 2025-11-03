@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Benarkan Timeprint untuk merakam foto dan menambah tanda air yang boleh disesuaikan dengan cap waktu, alamat, koordinat, logo syarikat, dan banyak lagi.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Benarkan Timeprint untuk memaparkan alamat, koordinat, peta, dan maklumat cuaca berdasarkan lokasi anda (pilihan).";
+"NSLocationWhenInUseUsageDescription" = "Benarkan Timeprint untuk memaparkan alamat, koordinat, peta, dan maklumat cuaca berdasarkan lokasi anda (pilihan).";
+"NSMicrophoneUsageDescription" = "Benarkan Timeprint untuk merakam video dengan audio.";
+"NSPhotoLibraryAddUsageDescription" = "Benarkan Timeprint untuk menyimpan foto yang anda rakam ke roll kamera.";
+"NSPhotoLibraryUsageDescription" = "Benarkan Timeprint untuk mengakses pustaka foto untuk melihat dan berkongsi foto anda yang bertanda air dengan cepat.";

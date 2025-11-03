@@ -1,0 +1,523 @@
+[{
+    "name": "k_general",
+    "list": [{
+            "base_id": "1",
+            "id": "1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/1_1_424_186.png",
+            "name": "k_timelocaiont"
+        },
+        {
+            "base_id": "2",
+            "id": "2",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/2_2_336_319.png",
+            "name": "k_attendance_record"
+        },
+        {
+            "base_id": "4",
+            "id": "4",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_4_400_193.png",
+            "name": "k_custom_watermark"
+        },
+        {
+            "base_id": "5",
+            "id": "6",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/5_6_400_256.png",
+            "name": "k_security_check"
+        },
+        {
+            "base_id": "12",
+            "id": "12",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/12_12_632_274.png",
+            "name": "i_watermark_sample"
+        },
+        {
+            "base_id": "6",
+            "id": "7",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/6_7_430_260.png",
+            "name": "k_daily_wordk_record"
+        },
+        {
+            "base_id": "4",
+            "id": "5",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_5_524_477.png",
+            "name": "i_service_name"
+        },
+        {
+            "base_id": "3",
+            "id": "3",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/3_3_337_319.png",
+            "name": "k_clock_out"
+        },
+        {
+            "base_id": "8",
+            "id": "8_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/8_8_1_400_388.png",
+            "name": "i_watermark_meeting"
+        },
+        {
+            "base_id": "9",
+            "id": "9_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/9_9_1_478_271.png",
+            "name": "k_time_clock"
+        },
+        {
+            "base_id": "10",
+            "id": "10_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/10_10_1_480_308.png",
+            "name": "i_watermark_clean"
+        },
+        {
+            "base_id": "11",
+            "id": "11_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/11_11_1_480_263.png",
+            "name": "i_watermark_receipt"
+        },
+        {
+            "base_id": "13",
+            "id": "13",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/13_13_828_316.png",
+            "name": "i_watermark_map"
+        },
+        {
+            "base_id": "14",
+            "id": "14",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/14_14_828_260.png",
+            "name": "i_watermark_map2"
+        }
+    ]
+}, {
+    "name": "k_brand",
+    "list": [{
+            "base_id": "1",
+            "id": "1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/1_1_424_186.png",
+            "name": "k_timelocaiont"
+        },
+        {
+            "base_id": "2",
+            "id": "2",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/2_2_336_319.png",
+            "name": "k_attendance_record"
+        },
+        {
+            "base_id": "4",
+            "id": "4",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_4_400_193.png",
+            "name": "k_custom_watermark"
+        },
+        {
+            "base_id": "5",
+            "id": "6",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/5_6_400_256.png",
+            "name": "k_security_check"
+        },
+        {
+            "base_id": "12",
+            "id": "12",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/12_12_632_274.png",
+            "name": "i_watermark_sample"
+        },
+        {
+            "base_id": "6",
+            "id": "7",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/6_7_430_260.png",
+            "name": "k_daily_wordk_record"
+        },
+        {
+            "base_id": "4",
+            "id": "5",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_5_524_477.png",
+            "name": "i_service_name"
+        },
+        {
+            "base_id": "3",
+            "id": "3",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/3_3_337_319.png",
+            "name": "k_clock_out"
+        },
+        {
+            "base_id": "8",
+            "id": "8_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/8_8_1_400_388.png",
+            "name": "i_watermark_meeting"
+        },
+        {
+            "base_id": "9",
+            "id": "9_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/9_9_1_478_271.png",
+            "name": "k_time_clock"
+        },
+        {
+            "base_id": "10",
+            "id": "10_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/10_10_1_480_308.png",
+            "name": "i_watermark_clean"
+        },
+        {
+            "base_id": "11",
+            "id": "11_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/11_11_1_480_263.png",
+            "name": "i_watermark_receipt"
+        },
+        {
+            "base_id": "13",
+            "id": "13",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/13_13_828_316.png",
+            "name": "i_watermark_map"
+        },
+        {
+            "base_id": "14",
+            "id": "14",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/14_14_828_260.png",
+            "name": "i_watermark_map2"
+        }
+    ]
+}, {
+    "name": "k_attendance",
+    "list": [{
+            "base_id": "1",
+            "id": "1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/1_1_424_186.png",
+            "name": "k_timelocaiont"
+        },
+        {
+            "base_id": "2",
+            "id": "2",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/2_2_336_319.png",
+            "name": "k_attendance_record"
+        },
+        {
+            "base_id": "4",
+            "id": "4",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_4_400_193.png",
+            "name": "k_custom_watermark"
+        },
+        {
+            "base_id": "5",
+            "id": "6",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/5_6_400_256.png",
+            "name": "k_security_check"
+        },
+        {
+            "base_id": "12",
+            "id": "12",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/12_12_632_274.png",
+            "name": "i_watermark_sample"
+        },
+        {
+            "base_id": "6",
+            "id": "7",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/6_7_430_260.png",
+            "name": "k_daily_wordk_record"
+        },
+        {
+            "base_id": "4",
+            "id": "5",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_5_524_477.png",
+            "name": "i_service_name"
+        },
+        {
+            "base_id": "3",
+            "id": "3",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/3_3_337_319.png",
+            "name": "k_clock_out"
+        },
+        {
+            "base_id": "8",
+            "id": "8_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/8_8_1_400_388.png",
+            "name": "i_watermark_meeting"
+        },
+        {
+            "base_id": "9",
+            "id": "9_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/9_9_1_478_271.png",
+            "name": "k_time_clock"
+        },
+        {
+            "base_id": "10",
+            "id": "10_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/10_10_1_480_308.png",
+            "name": "i_watermark_clean"
+        },
+        {
+            "base_id": "11",
+            "id": "11_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/11_11_1_480_263.png",
+            "name": "i_watermark_receipt"
+        },
+        {
+            "base_id": "13",
+            "id": "13",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/13_13_828_316.png",
+            "name": "i_watermark_map"
+        },
+        {
+            "base_id": "14",
+            "id": "14",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/14_14_828_260.png",
+            "name": "i_watermark_map2"
+        }
+    ]
+}, {
+    "name": "k_work_record",
+    "list": [{
+            "base_id": "1",
+            "id": "1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/1_1_424_186.png",
+            "name": "k_timelocaiont"
+        },
+        {
+            "base_id": "2",
+            "id": "2",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/2_2_336_319.png",
+            "name": "k_attendance_record"
+        },
+        {
+            "base_id": "4",
+            "id": "4",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_4_400_193.png",
+            "name": "k_custom_watermark"
+        },
+        {
+            "base_id": "5",
+            "id": "6",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/5_6_400_256.png",
+            "name": "k_security_check"
+        },
+        {
+            "base_id": "12",
+            "id": "12",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/12_12_632_274.png",
+            "name": "i_watermark_sample"
+        },
+        {
+            "base_id": "6",
+            "id": "7",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/6_7_430_260.png",
+            "name": "k_daily_wordk_record"
+        },
+        {
+            "base_id": "4",
+            "id": "5",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_5_524_477.png",
+            "name": "i_service_name"
+        },
+        {
+            "base_id": "3",
+            "id": "3",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/3_3_337_319.png",
+            "name": "k_clock_out"
+        },
+        {
+            "base_id": "8",
+            "id": "8_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/8_8_1_400_388.png",
+            "name": "i_watermark_meeting"
+        },
+        {
+            "base_id": "9",
+            "id": "9_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/9_9_1_478_271.png",
+            "name": "k_time_clock"
+        },
+        {
+            "base_id": "10",
+            "id": "10_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/10_10_1_480_308.png",
+            "name": "i_watermark_clean"
+        },
+        {
+            "base_id": "11",
+            "id": "11_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/11_11_1_480_263.png",
+            "name": "i_watermark_receipt"
+        },
+        {
+            "base_id": "13",
+            "id": "13",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/13_13_828_316.png",
+            "name": "i_watermark_map"
+        },
+        {
+            "base_id": "14",
+            "id": "14",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/14_14_828_260.png",
+            "name": "i_watermark_map2"
+        }
+    ]
+}, {
+    "name": "k_construction",
+    "list": [{
+            "base_id": "1",
+            "id": "1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/1_1_424_186.png",
+            "name": "k_timelocaiont"
+        },
+        {
+            "base_id": "2",
+            "id": "2",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/2_2_336_319.png",
+            "name": "k_attendance_record"
+        },
+        {
+            "base_id": "4",
+            "id": "4",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_4_400_193.png",
+            "name": "k_custom_watermark"
+        },
+        {
+            "base_id": "5",
+            "id": "6",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/5_6_400_256.png",
+            "name": "k_security_check"
+        },
+        {
+            "base_id": "12",
+            "id": "12",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/12_12_632_274.png",
+            "name": "i_watermark_sample"
+        },
+        {
+            "base_id": "6",
+            "id": "7",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/6_7_430_260.png",
+            "name": "k_daily_wordk_record"
+        },
+        {
+            "base_id": "4",
+            "id": "5",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_5_524_477.png",
+            "name": "i_service_name"
+        },
+        {
+            "base_id": "3",
+            "id": "3",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/3_3_337_319.png",
+            "name": "k_clock_out"
+        },
+        {
+            "base_id": "8",
+            "id": "8_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/8_8_1_400_388.png",
+            "name": "i_watermark_meeting"
+        },
+        {
+            "base_id": "9",
+            "id": "9_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/9_9_1_478_271.png",
+            "name": "k_time_clock"
+        },
+        {
+            "base_id": "10",
+            "id": "10_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/10_10_1_480_308.png",
+            "name": "i_watermark_clean"
+        },
+        {
+            "base_id": "11",
+            "id": "11_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/11_11_1_480_263.png",
+            "name": "i_watermark_receipt"
+        },
+        {
+            "base_id": "13",
+            "id": "13",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/13_13_828_316.png",
+            "name": "i_watermark_map"
+        },
+        {
+            "base_id": "14",
+            "id": "14",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/14_14_828_260.png",
+            "name": "i_watermark_map2"
+        }
+    ]
+}, {
+    "name": "k_inspection",
+    "list": [{
+            "base_id": "1",
+            "id": "1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/1_1_424_186.png",
+            "name": "k_timelocaiont"
+        },
+        {
+            "base_id": "2",
+            "id": "2",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/2_2_336_319.png",
+            "name": "k_attendance_record"
+        },
+        {
+            "base_id": "4",
+            "id": "4",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_4_400_193.png",
+            "name": "k_custom_watermark"
+        },
+        {
+            "base_id": "5",
+            "id": "6",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/5_6_400_256.png",
+            "name": "k_security_check"
+        },
+        {
+            "base_id": "12",
+            "id": "12",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/12_12_632_274.png",
+            "name": "i_watermark_sample"
+        },
+        {
+            "base_id": "6",
+            "id": "7",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/6_7_430_260.png",
+            "name": "k_daily_wordk_record"
+        },
+        {
+            "base_id": "4",
+            "id": "5",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/4_5_524_477.png",
+            "name": "i_service_name"
+        },
+        {
+            "base_id": "3",
+            "id": "3",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/3_3_337_319.png",
+            "name": "k_clock_out"
+        },
+        {
+            "base_id": "8",
+            "id": "8_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/8_8_1_400_388.png",
+            "name": "i_watermark_meeting"
+        },
+        {
+            "base_id": "9",
+            "id": "9_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/9_9_1_478_271.png",
+            "name": "k_time_clock"
+        },
+        {
+            "base_id": "10",
+            "id": "10_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/10_10_1_480_308.png",
+            "name": "i_watermark_clean"
+        },
+        {
+            "base_id": "11",
+            "id": "11_1",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/11_11_1_480_263.png",
+            "name": "i_watermark_receipt"
+        },
+        {
+            "base_id": "13",
+            "id": "13",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/13_13_828_316.png",
+            "name": "i_watermark_map"
+        },
+        {
+            "base_id": "14",
+            "id": "14",
+            "cover": "https://wm-1330977225.cos.ap-singapore.myqcloud.com/wm_cover/zh-Hans/14_14_828_260.png",
+            "name": "i_watermark_map2"
+        }
+    ]
+}]

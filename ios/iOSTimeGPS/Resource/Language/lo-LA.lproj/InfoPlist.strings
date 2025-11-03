@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "ອະນຸຍາດໃຫ້ Timeprint ຖ່າຍຮູບ ແລະ ເພີ່ມນ້ຳໝາກຕາມທີ່ຕ້ອງການ ດ້ວຍເວລາ, ທີ່ຢູ່, ພิกັດ, ໂລໂກ້ບໍລິສັດ, ແລະອື່ນໆ.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "ອະນຸຍາດໃຫ້ Timeprint ສະແດງທີ່ຢູ່, ພิกັດ, ແຜນທີ່, ແລະຂໍ້ມູນດິນຟ້າອາກາດໂດຍອີງໃສ່ສະຖານທີ່ຂອງທ່ານ (ເລືອກໄດ້).";
+"NSLocationWhenInUseUsageDescription" = "ອະນຸຍາດໃຫ້ Timeprint ສະແດງທີ່ຢູ່, ພິກັດ, ແຜນທີ່, ແລະຂໍ້ມູນດິນຟ້າອາກາດໂດຍອີງໃສ່ສະຖານທີ່ຂອງທ່ານ (ເລືອກໄດ້).";
+"NSMicrophoneUsageDescription" = "ອະນຸຍາດໃຫ້ Timeprint ບັນທຶກວິດີໂອທີ່ມີສຽງ.";
+"NSPhotoLibraryAddUsageDescription" = "ອະນຸຍາດໃຫ້ Timeprint ບັນທຶກຮູບທີ່ທ່ານຖ່າຍໄປໃນ Camera Roll.";
+"NSPhotoLibraryUsageDescription" = "ອະນຸຍາດໃຫ້ Timeprint ເຂົ້າເຖິງຫ້ອງສະໝຸດຮູບເພື່ອເບິ່ງ ແລະ ແບ່ງປັນຮູບທີ່ມີນ້ຳໝາກໄວ.";

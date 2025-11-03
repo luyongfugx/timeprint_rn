@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Ruhusu Timeprint kunasa picha na kuongeza alama za maji zinazoweza kubinafsishwa zilizo na mihuri ya wakati, anwani, kuratibu, nembo za kampuni, na zaidi.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Ruhusu Timeprint kuonyesha anwani, kuratibu, ramani, na habari za hali ya hewa kulingana na eneo lako (hiari).";
+"NSLocationWhenInUseUsageDescription" = "Ruhusu Timeprint kuonyesha anwani, kuratibu, ramani, na habari za hali ya hewa kulingana na eneo lako (hiari).";
+"NSMicrophoneUsageDescription" = "Ruhusu Timeprint kurekodi video zilizo na sauti.";
+"NSPhotoLibraryAddUsageDescription" = "Ruhusu Timeprint kuhifadhi picha ulizonasa kwenye roll ya kamera.";
+"NSPhotoLibraryUsageDescription" = "Ruhusu Timeprint kupata ufikiaji wa maktaba ya picha ili kutazama na kushiriki kwa haraka picha zako zilizo na alama za maji.";

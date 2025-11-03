@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Bada Timeprint damfara hotuna da ƙara alamun ruwa masu daidaitawa tare da lokaci, adireshi, ko\'ordinati, alamomin kamfani, da sauransu.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Bada Timeprint ya nuna adireshi, ko\'ordinati, taswira, da bayanan yanayi dangane da wurin ku (na zaɓi).";
+"NSLocationWhenInUseUsageDescription" = "Bada Timeprint ya nuna adireshi, ko\'ordinati, taswira, da bayanan yanayi dangane da wurin ku (na zaɓi).";
+"NSMicrophoneUsageDescription" = "Bada Timeprint ya rikodin bidiyo tare da sauti.";
+"NSPhotoLibraryAddUsageDescription" = "Bada Timeprint ya adana hotunan da kuka ɗauka zuwa ɗakin hotuna.";
+"NSPhotoLibraryUsageDescription" = "Bada Timeprint ya samu damar shiga ɗakin hotuna don duba da sauƙin raba hotunanku masu alamun ruwa.";

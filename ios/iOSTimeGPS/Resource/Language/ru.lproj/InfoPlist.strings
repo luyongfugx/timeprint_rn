@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Разрешить Timeprint делать снимки и добавлять настраиваемые водяные знаки с метками времени, адресом, координатами, логотипами компании и др.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Разрешить Timeprint показывать адрес, координаты, карту и информацию о погоде на основе вашего местоположения (необязательно).";
+"NSLocationWhenInUseUsageDescription" = "Разрешить Timeprint показывать адрес, координаты, карту и информацию о погоде на основе вашего местоположения (необязательно).";
+"NSMicrophoneUsageDescription" = "Разрешить Timeprint записывать видео со звуком.";
+"NSPhotoLibraryAddUsageDescription" = "Разрешить Timeprint сохранять сделанные вами снимки в фотопленку.";
+"NSPhotoLibraryUsageDescription" = "Разрешить Timeprint получить доступ к фотопленке для просмотра и быстрого обмена вашими фотографиями с водяными знаками.";

@@ -1,0 +1,24 @@
+#ifndef _DES_H_
+#define _DES_H_
+
+#define ENCRYPTION_MODE 1
+#define DECRYPTION_MODE 0
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct __attribute__((visibility("hidden"))) {
+	unsigned char k[8];
+	unsigned char c[4];
+	unsigned char d[4];
+} key_set;
+
+__attribute__((visibility("hidden"))) void generate_key(unsigned char* key);
+__attribute__((visibility("hidden"))) void generate_sub_keys(unsigned char* main_key, key_set* key_sets);
+__attribute__((visibility("hidden"))) void process_message(unsigned char* message_piece, unsigned char* processed_piece, key_set* key_sets, int mode);
+
+#ifdef __cplusplus
+}
+#endif
+#endif

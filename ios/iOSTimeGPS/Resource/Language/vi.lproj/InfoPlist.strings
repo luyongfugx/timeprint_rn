@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Cho phép Timeprint chụp ảnh và thêm hình mờ tùy chỉnh với dấu thời gian, địa chỉ, tọa độ, logo công ty và nhiều hơn nữa.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Cho phép Timeprint hiển thị địa chỉ, tọa độ, bản đồ và thông tin thời tiết dựa trên vị trí của bạn (tùy chọn).";
+"NSLocationWhenInUseUsageDescription" = "Cho phép Timeprint hiển thị địa chỉ, tọa độ, bản đồ và thông tin thời tiết dựa trên vị trí của bạn (tùy chọn).";
+"NSMicrophoneUsageDescription" = "Cho phép Timeprint ghi video với âm thanh.";
+"NSPhotoLibraryAddUsageDescription" = "Cho phép Timeprint lưu ảnh bạn chụp vào cuộn phim.";
+"NSPhotoLibraryUsageDescription" = "Cho phép Timeprint truy cập thư viện ảnh để xem và chia sẻ nhanh chóng ảnh có hình mờ của bạn.";

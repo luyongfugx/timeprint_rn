@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Autoriser Timeprint à capturer des photos et à ajouter des filigranes personnalisables avec des horodatages, des adresses, des coordonnées, des logos d'entreprise, etc.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Autoriser Timeprint à afficher l'adresse, les coordonnées, la carte et les informations météorologiques en fonction de votre emplacement (facultatif).";
+"NSLocationWhenInUseUsageDescription" = "Autoriser Timeprint à afficher l'adresse, les coordonnées, la carte et les informations météorologiques en fonction de votre emplacement (facultatif).";
+"NSMicrophoneUsageDescription" = "Autoriser Timeprint à enregistrer des vidéos avec le son.";
+"NSPhotoLibraryAddUsageDescription" = "Autoriser Timeprint à enregistrer les photos que vous avez capturées dans la pellicule.";
+"NSPhotoLibraryUsageDescription" = "Autoriser Timeprint à accéder à la photothèque pour visualiser et partager rapidement vos photos avec filigranes.";

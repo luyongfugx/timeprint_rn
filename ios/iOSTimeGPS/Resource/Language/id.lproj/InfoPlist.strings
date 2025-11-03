@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Izinkan Timeprint untuk mengambil foto dan menambahkan watermark yang dapat disesuaikan dengan cap waktu, alamat, koordinat, logo perusahaan, dan lainnya.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Izinkan Timeprint untuk menampilkan alamat, koordinat, peta, dan informasi cuaca berdasarkan lokasi Anda (opsional).";
+"NSLocationWhenInUseUsageDescription" = "Izinkan Timeprint untuk menampilkan alamat, koordinat, peta, dan informasi cuaca berdasarkan lokasi Anda (opsional).";
+"NSMicrophoneUsageDescription" = "Izinkan Timeprint untuk merekam video dengan audio.";
+"NSPhotoLibraryAddUsageDescription" = "Izinkan Timeprint untuk menyimpan foto yang Anda ambil ke rol kamera.";
+"NSPhotoLibraryUsageDescription" = "Izinkan Timeprint untuk mengakses pustaka foto untuk melihat dan dengan cepat berbagi foto yang diberi watermark Anda.";

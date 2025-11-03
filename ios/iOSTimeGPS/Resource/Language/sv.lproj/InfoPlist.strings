@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Tillåt Timeprint att ta bilder och lägga till anpassningsbara vattenstämplar med tidstämplar, adress, koordinater, företagslogotyper och mer.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Tillåt Timeprint att visa adress, koordinater, karta och väderinformation baserat på din plats (valfritt).";
+"NSLocationWhenInUseUsageDescription" = "Tillåt Timeprint att visa adress, koordinater, karta och väderinformation baserat på din plats (valfritt).";
+"NSMicrophoneUsageDescription" = "Tillåt Timeprint att spela in videor med ljud.";
+"NSPhotoLibraryAddUsageDescription" = "Tillåt Timeprint att spara de bilder du tagit till kamerarullen.";
+"NSPhotoLibraryUsageDescription" = "Tillåt Timeprint att komma åt fotobiblioteket för att visa och snabbt dela dina vattenstämplade bilder.";

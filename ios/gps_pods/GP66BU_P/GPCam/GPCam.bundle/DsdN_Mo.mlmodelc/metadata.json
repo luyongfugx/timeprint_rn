@@ -1,0 +1,70 @@
+[
+  {
+    "shortDescription" : "",
+    "metadataOutputVersion" : "3.0",
+    "outputSchema" : [
+      {
+        "height" : "384",
+        "colorspace" : "BGR",
+        "isOptional" : "0",
+        "width" : "384",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 384 × 384)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "params for outputImage",
+        "name" : "output"
+      }
+    ],
+    "version" : "",
+    "modelParameters" : [
+
+    ],
+    "author" : "",
+    "specificationVersion" : 4,
+    "license" : "",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.15",
+      "tvOS" : "13.0",
+      "watchOS" : "6.0",
+      "iOS" : "13.0",
+      "macCatalyst" : "13.0"
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "inputSchema" : [
+      {
+        "height" : "128",
+        "colorspace" : "BGR",
+        "isOptional" : "0",
+        "width" : "128",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 128 × 128)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "Image to input",
+        "name" : "inputImage"
+      }
+    ],
+    "userDefinedMetadata" : {
+      "com.github.apple.coremltools.version" : "4.0",
+      "com.github.apple.coremltools.source" : "onnx==1.8.1"
+    },
+    "generatedClassName" : "NightMode",
+    "neuralNetworkLayerTypeHistogram" : {
+      "FillStatic" : 1,
+      "DivideBroadcastable" : 1,
+      "ActivationReLU" : 6,
+      "Scale" : 1,
+      "SplitND" : 1,
+      "LoadConstantND" : 2,
+      "ConcatND" : 7,
+      "Convolution" : 7,
+      "AddBroadcastable" : 1,
+      "Tanh" : 1
+    },
+    "method" : "predict"
+  }
+]

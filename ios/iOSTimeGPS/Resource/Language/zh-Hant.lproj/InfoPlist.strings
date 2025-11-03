@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "允許 Timeprint 拍攝照片並添加可自訂的浮水印，其中包含時間戳記、地址、座標、公司標誌等等。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "允許 Timeprint 根據您的位置顯示地址、座標、地圖和天氣資訊（可選）。";
+"NSLocationWhenInUseUsageDescription" = "允許 Timeprint 根據您的位置顯示地址、座標、地圖和天氣資訊（可選）。";
+"NSMicrophoneUsageDescription" = "允許 Timeprint 錄製包含音訊的影片。";
+"NSPhotoLibraryAddUsageDescription" = "允許 Timeprint 將您拍攝的照片儲存到相簿。";
+"NSPhotoLibraryUsageDescription" = "允許 Timeprint 存取照片庫，以便檢視和快速分享您的浮水印照片。";

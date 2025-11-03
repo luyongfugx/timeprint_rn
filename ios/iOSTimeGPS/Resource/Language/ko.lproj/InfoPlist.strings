@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Timeprint가 사진을 캡처하고 타임스탬프, 주소, 좌표, 회사 로고 등을 사용자 지정하여 워터마크를 추가하도록 허용합니다.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Timeprint가 위치 정보를 기반으로 주소, 좌표, 지도 및 날씨 정보를 표시하도록 허용합니다(선택 사항).";
+"NSLocationWhenInUseUsageDescription" = "Timeprint가 위치 정보를 기반으로 주소, 좌표, 지도 및 날씨 정보를 표시하도록 허용합니다(선택 사항).";
+"NSMicrophoneUsageDescription" = "Timeprint가 오디오를 포함한 비디오를 녹음하도록 허용합니다.";
+"NSPhotoLibraryAddUsageDescription" = "Timeprint가 캡처한 사진을 카메라 롤에 저장하도록 허용합니다.";
+"NSPhotoLibraryUsageDescription" = "Timeprint가 사진 라이브러리에 액세스하여 워터마크된 사진을 보고 빠르게 공유하도록 허용합니다.";

@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "អនុញ្ញាតឱ្យ Timeprint ថតរូបនិងបន្ថែមសញ្ញាសម្គាល់ដែលអាចកំណត់បានជាមួយនឹងស្លាកសម្គាល់ពេលវេលា អាសយដ្ឋាន កូអរដោនេ និងរូបសញ្ញាក្រុមហ៊ុន និងច្រើនទៀត។";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "អនុញ្ញាតឱ្យ Timeprint បង្ហាញអាសយដ្ឋាន កូអរដោនេ ផែនទី និងព័ត៌មានអាកាសធាតុដោយផ្អែកលើទីតាំងរបស់អ្នក (ជាជម្រើស)។";
+"NSLocationWhenInUseUsageDescription" = "អនុញ្ញាតឱ្យ Timeprint បង្ហាញអាសយដ្ឋាន កូអរដោនេ ផែនទី និងព័ត៌មានអាកាសធាតុដោយផ្អែកលើទីតាំងរបស់អ្នក (ជាជម្រើស)។";
+"NSMicrophoneUsageDescription" = "អនុញ្ញាតឱ្យ Timeprint ថតវីដេអូជាមួយសំឡេង។";
+"NSPhotoLibraryAddUsageDescription" = "អនុញ្ញាតឱ្យ Timeprint រក្សាទុករូបភាពដែលអ្នកថតទៅកាន់កាមេរ៉ារបស់អ្នក។";
+"NSPhotoLibraryUsageDescription" = "អនុញ្ញាតឱ្យ Timeprint ចូលប្រើបណ្ណាល័យរូបភាពដើម្បីមើលនិងចែករំលែករូបភាពដែលមានសញ្ញាសម្គាល់របស់អ្នកយ៉ាងឆាប់រហ័ស។";

@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Timeprintが写真撮影とタイムスタンプ、住所、座標、会社ロゴなどを追加できるカスタマイズ可能な透かしの追加を許可します。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Timeprintがあなたの現在地に基づいて住所、座標、地図、天気情報を表示することを許可します（オプション）。";
+"NSLocationWhenInUseUsageDescription" = "Timeprintがあなたの現在地に基づいて住所、座標、地図、天気情報を表示することを許可します（オプション）。";
+"NSMicrophoneUsageDescription" = "Timeprintが音声付きのビデオを録画することを許可します。";
+"NSPhotoLibraryAddUsageDescription" = "Timeprintがあなたが撮影した写真をカメラロールに保存することを許可します。";
+"NSPhotoLibraryUsageDescription" = "Timeprintが写真ライブラリにアクセスして透かし入りの写真を見たり、すばやく共有したりすることを許可します。";

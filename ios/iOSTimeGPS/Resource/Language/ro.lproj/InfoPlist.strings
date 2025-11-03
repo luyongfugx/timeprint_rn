@@ -1,0 +1,6 @@
+"NSCameraUsageDescription" = "Permiteți aplicației Timeprint să captureze fotografii și să adauge filigranuri personalizabile cu ștampile de timp, adresă, coordonate, logo-uri ale companiei și multe altele.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Permiteți aplicației Timeprint să afișeze adresa, coordonatele, harta și informațiile meteo pe baza locației dvs. (opțional).";
+"NSLocationWhenInUseUsageDescription" = "Permiteți aplicației Timeprint să afișeze adresa, coordonatele, harta și informațiile meteo pe baza locației dvs. (opțional).";
+"NSMicrophoneUsageDescription" = "Permiteți aplicației Timeprint să înregistreze videoclipuri cu sunet.";
+"NSPhotoLibraryAddUsageDescription" = "Permiteți aplicației Timeprint să salveze fotografiile capturate în camera foto.";
+"NSPhotoLibraryUsageDescription" = "Permiteți aplicației Timeprint să acceseze biblioteca de fotografii pentru a vizualiza și a partaja rapid fotografiile dvs. cu filigran.";
