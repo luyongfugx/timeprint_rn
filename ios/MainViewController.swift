@@ -4,6 +4,10 @@ import React_RCTAppDelegate
 import UIKit
 
 class MainViewController: UIViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     private var reactNativeFactory: RCTReactNativeFactory?
 
     init(reactNativeFactory: RCTReactNativeFactory) {
@@ -17,7 +21,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black  // 或者其他深色
 
         let button = UIButton(type: .system)
         button.setTitle("打开 TimePrint", for: .normal)

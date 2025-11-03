@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -9,7 +8,7 @@ import {
   TouchableOpacity,
   NativeModules,
   Alert,
-  TextInput
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
@@ -42,7 +41,10 @@ const formatUnixTimestamp = (timestamp: number): string => {
 };
 
 // 计算百分比并格式化为 "6%" 格式
-const calculatePercentage = (numerator: number, denominator: number): string => {
+const calculatePercentage = (
+  numerator: number,
+  denominator: number,
+): string => {
   if (denominator === 0) return '0%';
   const percentage = (numerator / denominator) * 100;
   return `${Math.round(percentage)}%`;
@@ -67,44 +69,39 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
-    description: ''
+    description: '',
   });
   const loadHomeData = async () => {
     const sessionString = await AuthBridge.getSession();
     if (sessionString) {
-
       const session = JSON.parse(sessionString);
       try {
         setLoading(true);
-        const membership = await getMembership(session)
-        if (!membership.teamMember) { //如果没有团队
+        const membership = await getMembership(session);
+        if (!membership.teamMember) {
+          //如果没有团队
           setLoading(false);
-          setHasTeam(false)
-        }
-        else {
-          setTeamMembership(membership.teamMember)
-          var jsonStr = JSON.stringify(membership.teamMember)
-          await AuthBridge.saveTeamInfo(jsonStr)
+          setHasTeam(false);
+        } else {
+          setTeamMembership(membership.teamMember);
+          var jsonStr = JSON.stringify(membership.teamMember);
+          await AuthBridge.saveTeamInfo(jsonStr);
           setHomeLoading(true);
-          const homeData = await getHomeData(session)
-          setHomeData(homeData)
+          const homeData = await getHomeData(session);
+          setHomeData(homeData);
           setHomeLoading(false);
-          const checkins = await getCheckIns(session)
-          setCheckinRecords(checkins.today_checkins)
+          const checkins = await getCheckIns(session);
+          setCheckinRecords(checkins.today_checkins);
           setLoading(false);
         }
-
-      }
-      catch (e) {
-
-      }
+      } catch (e) {}
     }
   };
   useEffect(() => {
     loadHomeData();
   }, []);
   const gotoMember = () => {
-    navigation.navigate('Member')
+    navigation.navigate('Member');
   };
 
   const [createLoading, setCreateLoading] = useState(false);
@@ -126,19 +123,16 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       // 这里添加创建团队的 API 调用
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
-          const session = JSON.parse(sessionString);
-          const teamData = await createTeam(session,formData);
-          if(teamData.status == 200){
-            Alert.alert(t('success'), t('teamCreatedSuccess'));
-            setHasTeam(true);
-            loadHomeData() //重新获取数据
-          }
-          else {
-            Alert.alert(t('error'), t('teamSearchFailed'));
-          }
-
+        const session = JSON.parse(sessionString);
+        const teamData = await createTeam(session, formData);
+        if (teamData.status == 200) {
+          Alert.alert(t('success'), t('teamCreatedSuccess'));
+          setHasTeam(true);
+          loadHomeData(); //重新获取数据
+        } else {
+          Alert.alert(t('error'), t('teamSearchFailed'));
         }
-
+      }
     } catch (error) {
       Alert.alert(t('error'), t('teamCreatedFailed'));
     } finally {
@@ -157,12 +151,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
         const session = JSON.parse(sessionString);
-        const teamData = await getTeamInfoById(session,teamId);
+        const teamData = await getTeamInfoById(session, teamId);
 
-        if(teamData.status == 200){
+        if (teamData.status == 200) {
           setTeamInfo(teamData.data);
-        }
-        else {
+        } else {
           Alert.alert(t('error'), t('teamSearchFailed'));
         }
       }
@@ -182,19 +175,17 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
     try {
       const sessionString = await AuthBridge.getSession();
       if (sessionString) {
-          const session = JSON.parse(sessionString);
-      // 这里添加加入团队的 API 调用
-        const joinData =    await joinTeam(session,teamInfo.id);
-        console.log(joinData)
-        if(joinData.status == 200){
+        const session = JSON.parse(sessionString);
+        // 这里添加加入团队的 API 调用
+        const joinData = await joinTeam(session, teamInfo.id);
+        console.log(joinData);
+        if (joinData.status == 200) {
           Alert.alert(t('success'), t('teamJoinSuccess'));
           setHasTeam(true);
-        }
-        else {
+        } else {
           Alert.alert(t('error'), t('teamJoinFailed'));
         }
       }
-
     } catch (error) {
       Alert.alert(t('error'), t('teamJoinFailed'));
       setJoinLoading(false);
@@ -214,23 +205,41 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           <View style={styles.card}>
             <View style={styles.cardHeader}>
               <Text style={styles.cardTitle}>{t('teamSetup')}</Text>
-              <Text style={styles.cardDescription}>{t('createOrJoinTeam')}</Text>
-              
+              <Text style={styles.cardDescription}>
+                {t('createOrJoinTeam')}
+              </Text>
+
               {/* 标签页切换 */}
               <View style={styles.tabButtons}>
-                <TouchableOpacity 
-                  style={[styles.tabButton, activeTab === 'create' && styles.tabButtonActive]}
+                <TouchableOpacity
+                  style={[
+                    styles.tabButton,
+                    activeTab === 'create' && styles.tabButtonActive,
+                  ]}
                   onPress={() => setActiveTab('create')}
                 >
-                  <Text style={[styles.tabButtonText, activeTab === 'create' && styles.tabButtonTextActive]}>
+                  <Text
+                    style={[
+                      styles.tabButtonText,
+                      activeTab === 'create' && styles.tabButtonTextActive,
+                    ]}
+                  >
                     {t('createTeam')}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity 
-                  style={[styles.tabButton, activeTab === 'join' && styles.tabButtonActive]}
+                <TouchableOpacity
+                  style={[
+                    styles.tabButton,
+                    activeTab === 'join' && styles.tabButtonActive,
+                  ]}
                   onPress={() => setActiveTab('join')}
                 >
-                  <Text style={[styles.tabButtonText, activeTab === 'join' && styles.tabButtonTextActive]}>
+                  <Text
+                    style={[
+                      styles.tabButtonText,
+                      activeTab === 'join' && styles.tabButtonTextActive,
+                    ]}
+                  >
                     {t('joinTeam')}
                   </Text>
                 </TouchableOpacity>
@@ -238,7 +247,12 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             </View>
 
             <View style={styles.cardContent}>
-              <View style={{ display: activeTab === 'create' ? 'flex' : 'none', flex: 1 }}>
+              <View
+                style={{
+                  display: activeTab === 'create' ? 'flex' : 'none',
+                  flex: 1,
+                }}
+              >
                 <View style={styles.tabContent}>
                   <View style={styles.inputGroup}>
                     <Text style={styles.label}>{t('teamName')} *</Text>
@@ -246,9 +260,10 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                       style={styles.input}
                       placeholder={t('enterTeamName')}
                       value={formData.name}
-                      onChangeText={(text) => setFormData(prev => ({ ...prev, name: text }))}
+                      onChangeText={text =>
+                        setFormData(prev => ({ ...prev, name: text }))
+                      }
                       returnKeyType="done"
-
                     />
                   </View>
 
@@ -258,7 +273,9 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                       style={styles.input}
                       placeholder={t('enterTeamAddress')}
                       value={formData.address}
-                      onChangeText={(text) => setFormData(prev => ({ ...prev, address: text }))}
+                      onChangeText={text =>
+                        setFormData(prev => ({ ...prev, address: text }))
+                      }
                       returnKeyType="done"
                       blurOnSubmit={false}
                     />
@@ -270,7 +287,9 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                       style={[styles.input, styles.textarea]}
                       placeholder={t('enterTeamDescription')}
                       value={formData.description}
-                      onChangeText={(text) => setFormData(prev => ({ ...prev, description: text }))}
+                      onChangeText={text =>
+                        setFormData(prev => ({ ...prev, description: text }))
+                      }
                       multiline
                       numberOfLines={3}
                       returnKeyType="done"
@@ -279,7 +298,10 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   </View>
 
                   <TouchableOpacity
-                    style={[styles.submitButton, createLoading && styles.submitButtonDisabled]}
+                    style={[
+                      styles.submitButton,
+                      createLoading && styles.submitButtonDisabled,
+                    ]}
                     onPress={handleCreateSubmit}
                     disabled={createLoading}
                   >
@@ -289,7 +311,12 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ display: activeTab === 'join' ? 'flex' : 'none', flex: 1 }}>
+              <View
+                style={{
+                  display: activeTab === 'join' ? 'flex' : 'none',
+                  flex: 1,
+                }}
+              >
                 <View style={styles.tabContent}>
                   <View style={styles.inputGroup}>
                     <Text style={styles.label}>{t('teamId')} *</Text>
@@ -301,8 +328,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                         onChangeText={setTeamId}
                         returnKeyType="done"
                       />
-                      <TouchableOpacity 
-                        style={[styles.searchButton, searchLoading && styles.searchButtonDisabled]}
+                      <TouchableOpacity
+                        style={[
+                          styles.searchButton,
+                          searchLoading && styles.searchButtonDisabled,
+                        ]}
                         onPress={handleSearchTeam}
                         disabled={searchLoading}
                       >
@@ -317,28 +347,44 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                     <View style={styles.teamInfoCard}>
                       <Text style={styles.teamInfoTitle}>{t('teamInfo')}</Text>
                       <View style={styles.teamInfoItem}>
-                        <Text style={styles.teamInfoLabel}>{t('teamNameLabel')}</Text>
-                        <Text style={styles.teamInfoValue}>{teamInfo.name}</Text>
+                        <Text style={styles.teamInfoLabel}>
+                          {t('teamNameLabel')}
+                        </Text>
+                        <Text style={styles.teamInfoValue}>
+                          {teamInfo.name}
+                        </Text>
                       </View>
                       <View style={styles.teamInfoItem}>
-                        <Text style={styles.teamInfoLabel}>{t('teamDescriptionLabel')}</Text>
-                        <Text style={styles.teamInfoValue}>{teamInfo.description}</Text>
+                        <Text style={styles.teamInfoLabel}>
+                          {t('teamDescriptionLabel')}
+                        </Text>
+                        <Text style={styles.teamInfoValue}>
+                          {teamInfo.description}
+                        </Text>
                       </View>
                       <View style={styles.teamInfoItem}>
-                        <Text style={styles.teamInfoLabel}>{t('memberCountLabel')}</Text>
-                        <Text style={styles.teamInfoValue}>{teamInfo.memberCount}{t('people')}</Text>
+                        <Text style={styles.teamInfoLabel}>
+                          {t('memberCountLabel')}
+                        </Text>
+                        <Text style={styles.teamInfoValue}>
+                          {teamInfo.memberCount}
+                          {t('people')}
+                        </Text>
                       </View>
                     </View>
                   )}
 
                   <TouchableOpacity
-                    style={[styles.submitButton, (!teamInfo || joinLoading) && styles.submitButtonDisabled]}
+                    style={[
+                      styles.submitButton,
+                      (!teamInfo || joinLoading) && styles.submitButtonDisabled,
+                    ]}
                     onPress={handleJoinTeam}
                     disabled={!teamInfo || joinLoading}
                   >
-                      <Text style={styles.submitButtonText}>
-                        {joinLoading ? t('joining') : t('confirmJoin')}
-                      </Text>
+                    <Text style={styles.submitButtonText}>
+                      {joinLoading ? t('joining') : t('confirmJoin')}
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -346,28 +392,35 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           </View>
         </ScrollView>
       )}
-      {hasTeam &&
-        <ScrollView showsVerticalScrollIndicator={false}
-          style={{ width: "100%" }}
+      {hasTeam && (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ width: '100%' }}
         >
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.headerLeft}>
-              <Text style={styles.title}>{teamMembership ? teamMembership.teams.name : t('teamCheckin')}</Text>
-              <Text style={styles.subtitle}>{t('todayIs')} {new Date().toLocaleDateString()}</Text>
+              <Text style={styles.title}>
+                {teamMembership ? teamMembership.teams.name : t('teamCheckin')}
+              </Text>
+              <Text style={styles.subtitle}>
+                {t('todayIs')} {new Date().toLocaleDateString()}
+              </Text>
             </View>
           </View>
 
           {/* Stats Cards */}
           <View style={styles.statsContainer}>
-            <View style={styles.statCard} >
+            <View style={styles.statCard}>
               <View style={styles.statIconContainer}>
-                <TouchableOpacity onPress={gotoMember} >
+                <TouchableOpacity onPress={gotoMember}>
                   <Users size={24} color="#3b82f6" />
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity onPress={gotoMember} >
-                <Text style={styles.statNumber}>{homeData ? homeData.statistics.total_members : 0}</Text>
+              <TouchableOpacity onPress={gotoMember}>
+                <Text style={styles.statNumber}>
+                  {homeData?.statistics?.total_members ?? 0}
+                </Text>
                 <Text style={styles.statLabel}>{t('teamMembers')}</Text>
               </TouchableOpacity>
             </View>
@@ -375,14 +428,21 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               <View style={styles.statIconContainer}>
                 <Clock size={24} color="#10b981" />
               </View>
-              <Text style={styles.statNumber}>{homeData ? homeData.statistics.today_checkin_users : 0}</Text>
+              <Text style={styles.statNumber}>
+                {homeData?.statistics?.today_checkin_users ?? 0}
+              </Text>
               <Text style={styles.statLabel}>{t('checkedIn')}</Text>
             </View>
             <View style={styles.statCard}>
               <View style={styles.statIconContainer}>
                 <TrendingUp size={24} color="#f59e0b" />
               </View>
-              <Text style={styles.statNumber}>{homeData ? calculatePercentage(homeData.statistics.today_checkin_users, homeData.statistics.total_members) : "0%"}</Text>
+              <Text style={styles.statNumber}>
+                {calculatePercentage(
+                  homeData?.statistics?.today_checkin_users ?? 0,
+                  homeData?.statistics?.total_members ?? 0,
+                )}
+              </Text>
               <Text style={styles.statLabel}>{t('attendanceRate')}</Text>
             </View>
           </View>
@@ -395,29 +455,30 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               <Text style={styles.sectionTitle}>{t('todaysPhotos')}</Text>
             </View>
             <View style={styles.todayPhotosLoading}>
-              {homeLoading && (
-                <Text>{t('loading')}</Text>
-              )}
-                   {(!homeData  || homeData.today_checkins?.length <=0) &&  !homeLoading &&      
-               <Text>{t('nodata')}</Text>
-               }
-              </View>
-          
+              {homeLoading && <Text>{t('loading')}</Text>}
+              {(!homeData || homeData.today_checkins?.length <= 0) &&
+                !homeLoading && <Text>{t('nodata')}</Text>}
+            </View>
+
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
               style={styles.photosScroll}
               contentContainerStyle={styles.todayPhotosContent}
             >
-         
-              {homeData?.today_checkins.map((record, index) => (
-                <TouchableOpacity key={index} style={styles.photoContainer} onPress={() => viewPhoto(record)}>
-                  <Image source={{ uri: record.image_url }} style={styles.photo} />
+              {homeData?.today_checkins?.map((record, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.photoContainer}
+                  onPress={() => viewPhoto(record)}
+                >
+                  <Image
+                    source={{ uri: record.image_url }}
+                    style={styles.photo}
+                  />
                 </TouchableOpacity>
               ))}
-
             </ScrollView>
-
           </View>
 
           {/* Checkin Records */}
@@ -426,39 +487,49 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
               <Calendar size={20} color="#374151" />
               <Text style={styles.sectionTitle}>{t('checkinRecords')}</Text>
             </View>
-            {(!checkinRecords || checkinRecords?.length <=0) &&  !loading &&      
-               <Text>{t('nodata')}</Text>}
+            {(!checkinRecords || checkinRecords?.length <= 0) && !loading && (
+              <Text>{t('nodata')}</Text>
+            )}
             {loading ? (
               <Text>{t('loading')}</Text>
             ) : error ? (
               <Text style={{ color: 'red' }}>{error}</Text>
-            ) :
+            ) : (
               checkinRecords.map((record: Checkin) => (
                 <View key={record.id} style={styles.recordCard}>
                   <View style={styles.recordHeader}>
                     <View style={styles.memberInfo}>
-
                       <View style={styles.memberDetails}>
                         <View style={styles.timeLocationRow}>
-                          <Image source={{ uri: record.user_avatar }} style={styles.memberAvatar} />
-                          <Text style={styles.memberName}>{record.user_name}</Text>
+                          <Image
+                            source={{ uri: record.user_avatar }}
+                            style={styles.memberAvatar}
+                          />
+                          <Text style={styles.memberName}>
+                            {record.user_name}
+                          </Text>
                         </View>
                         <View style={styles.timeLocationContainer}>
-
                           <TouchableOpacity
                             style={styles.photoWrapper}
                             onPress={() => viewPhoto(record)}
                           >
-                            <Image source={{ uri: record.image_url }} style={styles.checkinPhoto} />
-
+                            <Image
+                              source={{ uri: record.image_url }}
+                              style={styles.checkinPhoto}
+                            />
                           </TouchableOpacity>
                           <View style={styles.timeLocationRow}>
                             <Clock size={14} color="#6b7280" />
-                            <Text style={styles.timeText}>{formatUnixTimestamp(record.created_at)}</Text>
+                            <Text style={styles.timeText}>
+                              {formatUnixTimestamp(record.created_at)}
+                            </Text>
                           </View>
                           <View style={styles.timeLocationRow}>
                             <MapPin size={14} color="#6b7280" />
-                            <Text style={styles.locationText}>{record.location}</Text>
+                            <Text style={styles.locationText}>
+                              {record.location}
+                            </Text>
                           </View>
                         </View>
                       </View>
@@ -490,11 +561,12 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                     {/* ))} */}
                   </ScrollView>
                 </View>
-              ))}
+              ))
+            )}
           </View>
         </ScrollView>
-      }
-    </SafeAreaView >
+      )}
+    </SafeAreaView>
   );
 };
 
@@ -514,7 +586,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f8fafc',
@@ -526,7 +598,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     paddingBottom: 10,
-    width: "100%"
+    width: '100%',
   },
   title: {
     fontSize: 28,
@@ -543,7 +615,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     gap: 12,
-    width: "100%"
+    width: '100%',
   },
   statCard: {
     flex: 1,
@@ -582,7 +654,7 @@ const styles = StyleSheet.create({
   section: {
     paddingHorizontal: 20,
     paddingBottom: 24,
-    width: "100%"
+    width: '100%',
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -600,10 +672,10 @@ const styles = StyleSheet.create({
   },
   todayPhotosLoading: {
     paddingHorizontal: 4,
-    width: "100%",
+    width: '100%',
   },
   teamMembershipContent: {
-    width: "100%",
+    width: '100%',
   },
   todayPhotosContent: {
     paddingHorizontal: 4,
@@ -812,7 +884,7 @@ const styles = StyleSheet.create({
   },
   // ScrollView 样式
   scrollView: {
-    width: "100%"
+    width: '100%',
   },
   // 标签页样式
   tabsContainer: {
@@ -913,6 +985,3 @@ const styles = StyleSheet.create({
   },
 });
 export default HomeScreen;
-
-
-

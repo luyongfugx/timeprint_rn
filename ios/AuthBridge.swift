@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import React 
+import React
+
 @objc(AuthBridge)
 class AuthBridge: NSObject {
-  
+
   @objc
   func saveSession(_ sessionJson: String) {
     let defaults = UserDefaults.standard
@@ -17,8 +18,10 @@ class AuthBridge: NSObject {
   }
 
   @objc
-  func getSession(_ resolve: RCTPromiseResolveBlock,
-                  reject: RCTPromiseRejectBlock) {
+  func getSession(
+    _ resolve: RCTPromiseResolveBlock,
+    reject: RCTPromiseRejectBlock
+  ) {
     let defaults = UserDefaults.standard
     if let session = defaults.string(forKey: "supabase_session") {
       resolve(session)
@@ -26,8 +29,7 @@ class AuthBridge: NSObject {
       resolve(nil)
     }
   }
-  
-  
+
   @objc
   func saveTeamInfo(_ teamInfo: String) {
     let defaults = UserDefaults.standard
@@ -35,13 +37,26 @@ class AuthBridge: NSObject {
   }
 
   @objc
-  func  getTeamInfo(_ resolve: RCTPromiseResolveBlock,
-                    reject: RCTPromiseRejectBlock) {
+  func getTeamInfo(
+    _ resolve: RCTPromiseResolveBlock,
+    reject: RCTPromiseRejectBlock
+  ) {
     let defaults = UserDefaults.standard
     if let session = defaults.string(forKey: "teamInfo") {
       resolve(session)
     } else {
       resolve(nil)
+    }
+  }
+
+  @objc
+  func dismissReactNative() {
+    DispatchQueue.main.async {
+      if let keyWindow = UIApplication.shared.keyWindow,
+        let rootViewController = keyWindow.rootViewController
+      {
+        rootViewController.dismiss(animated: true, completion: nil)
+      }
     }
   }
 }

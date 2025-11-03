@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react-native/no-inline-styles */
 /**
  * @format
  */
@@ -240,7 +242,12 @@ function App() {
     transform: [{ scale: checkboxScale.value }],
   }));
   const handleBack = () => {
-    BackHandler.exitApp();
+    if (Platform.OS === 'android') {
+      BackHandler.exitApp();
+    } else {
+      // iOS: 调用原生方法返回
+      AuthBridge.dismissReactNative?.();
+    }
   };
 
   const fadeAnimatedStyle = useAnimatedStyle(() => ({
@@ -273,7 +280,7 @@ function App() {
               />
             </TouchableOpacity>
             <Text style={styles.title}>Group</Text>
-            <View></View>
+            <View />
           </View>
           <View style={styles.content}>
             <View style={styles.header}>
@@ -306,7 +313,7 @@ function App() {
                       disabled={isLoading}
                     >
                       <View style={styles.buttonContent}>
-                        <Text style={styles.appleIcon}></Text>
+                        <Text style={styles.appleIcon} />
                         <Text
                           style={[styles.buttonText, styles.appleButtonText]}
                         >
@@ -408,7 +415,7 @@ function App() {
   );
 }
 const NAV_BAR_HEIGHT = 56;
-const TAB_BAR_HEIGHT = 56;
+// const TAB_BAR_HEIGHT = 56;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
