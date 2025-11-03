@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
-import { 
-  View, 
-  StyleSheet, 
-  Image, 
-  TouchableOpacity, 
-  SafeAreaView, 
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
   ScrollView,
   Dimensions,
   NativeScrollEvent,
-  NativeSyntheticEvent
+  NativeSyntheticEvent,
+  StatusBar,
 } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { X } from 'lucide-react-native';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-
-
 const PhotoViewScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { photoUrl } = route.params as { photoUrl: Checkin };
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // 进入页面时隐藏状态栏
+    StatusBar.setHidden(true);
+
+    // 离开页面时恢复状态栏
+    return () => {
+      StatusBar.setHidden(false);
+    };
+  }, []);
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const contentOffset = event.nativeEvent.contentOffset;
@@ -31,13 +40,22 @@ const PhotoViewScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.closeButton}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          if (navigation.canGoBack()) {
+            console.log('Can==== go back, already at the first screen.');
+            navigation.goBack();
+          } else {
+            // 可能是首页，或者需要跳转到其他地方
+            // 例如：navigation.navigate('Home');
+            console.log('Cannot go back, already at the first screen.');
+          }
+        }}
       >
-        <X size={24} color="white" />
+        <X size={34} color="white" />
       </TouchableOpacity>
-      
+
       <ScrollView
         horizontal
         pagingEnabled
@@ -46,8 +64,8 @@ const PhotoViewScreen = () => {
       >
         {[photoUrl].map((record, index) => (
           <View key={index} style={styles.imageContainer}>
-            <Image 
-              source={{ uri: record.image_url }} 
+            <Image
+              source={{ uri: record.image_url }}
               style={styles.image}
               resizeMode="contain"
             />
@@ -57,12 +75,12 @@ const PhotoViewScreen = () => {
 
       <View style={styles.pagination}>
         {[photoUrl].map((record, index) => (
-          <View 
-            key={index} 
+          <View
+            key={index}
             style={[
               styles.paginationDot,
-              index === currentIndex && styles.activeDot
-            ]} 
+              index === currentIndex && styles.activeDot,
+            ]}
           />
         ))}
       </View>
@@ -88,7 +106,7 @@ const styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: 20,
-    right: 20,
+    right: 10,
     zIndex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
     borderRadius: 20,

@@ -246,18 +246,10 @@ function App() {
       BackHandler.exitApp();
     } else {
       // iOS: 调用原生方法返回
+      console.log('handleBack ');
       AuthBridge.dismissReactNative?.();
     }
   };
-
-  const fadeAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: fadeIn.value,
-    transform: [
-      {
-        translateY: interpolate(fadeIn.value, [0, 1], [50, 0]),
-      },
-    ],
-  }));
 
   if (isLoading) {
     return (
@@ -450,6 +442,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     borderBottomWidth: 0.5,
+    backgroundColor: '#ffffff',
     borderColor: '#DDD',
   },
   subtitle: {

@@ -7,6 +7,7 @@
 
 import Foundation
 import React
+import UIKit
 
 @objc(AuthBridge)
 class AuthBridge: NSObject {
@@ -51,11 +52,18 @@ class AuthBridge: NSObject {
 
   @objc
   func dismissReactNative() {
+    // 打印日志以确认此方法是否被调用
+    print("[AuthBridge] dismissReactNative called")
+    NSLog("[AuthBridge] dismissReactNative called")
+
     DispatchQueue.main.async {
       if let keyWindow = UIApplication.shared.keyWindow,
         let rootViewController = keyWindow.rootViewController
       {
+        NSLog("[AuthBridge] will dismiss rootViewController")
         rootViewController.dismiss(animated: true, completion: nil)
+      } else {
+        NSLog("[AuthBridge] no keyWindow or rootViewController found")
       }
     }
   }

@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black  // 或者其他深色
+        view.backgroundColor = .white  // 或者其他深色
 
         let button = UIButton(type: .system)
         button.setTitle("打开 TimePrint", for: .normal)
