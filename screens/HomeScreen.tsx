@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable no-catch-shadow */
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -125,7 +127,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
       if (sessionString) {
         const session = JSON.parse(sessionString);
         const teamData = await createTeam(session, formData);
-        if (teamData.status == 200) {
+        if (teamData.status === 200) {
           Alert.alert(t('success'), t('teamCreatedSuccess'));
           setHasTeam(true);
           loadHomeData(); //重新获取数据
@@ -133,7 +135,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
           Alert.alert(t('error'), t('teamSearchFailed'));
         }
       }
-    } catch (error) {
+    } catch (err) {
       Alert.alert(t('error'), t('teamCreatedFailed'));
     } finally {
       setCreateLoading(false);

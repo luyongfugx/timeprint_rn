@@ -55,16 +55,34 @@ class AuthBridge: NSObject {
     // 打印日志以确认此方法是否被调用
     print("[AuthBridge] dismissReactNative called")
     NSLog("[AuthBridge] dismissReactNative called")
-
+//    DispatchQueue.main.async {
+//          guard let window = UIApplication.shared.windows.first else { return }
+//
+//          // ✅ 改成你原生的首页或你想返回的 VC
+//          let nativeVC = HomeViewController()
+//
+//          window.rootViewController = nativeVC
+//          window.makeKeyAndVisible()
+//      }
     DispatchQueue.main.async {
-      if let keyWindow = UIApplication.shared.keyWindow,
-        let rootViewController = keyWindow.rootViewController
-      {
-        NSLog("[AuthBridge] will dismiss rootViewController")
-        rootViewController.dismiss(animated: true, completion: nil)
-      } else {
-        NSLog("[AuthBridge] no keyWindow or rootViewController found")
-      }
+        let app = UIApplication.shared.delegate as! AppDelegate
+        guard let window = UIApplication.shared.windows.first else { return }
+        
+        if let oldVC = app.savedNativeVC {
+            window.rootViewController = oldVC
+            window.makeKeyAndVisible()
+        }
     }
+    
+//    DispatchQueue.main.async {
+//      if let keyWindow = UIApplication.shared.keyWindow,
+//        let rootViewController = keyWindow.rootViewController
+//      {
+//        NSLog("[AuthBridge] will dismiss rootViewController")
+//        rootViewController.dismiss(animated: true, completion: nil)
+//      } else {
+//        NSLog("[AuthBridge] no keyWindow or rootViewController found")
+//      }
+//    }
   }
 }

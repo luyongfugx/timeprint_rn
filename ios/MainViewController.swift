@@ -37,13 +37,15 @@ class MainViewController: UIViewController {
     }
 
     @objc private func openReactNative() {
+        let app = UIApplication.shared.delegate as! AppDelegate
         guard let factory = reactNativeFactory else { return }
-
         let window = UIApplication.shared.windows.first
-        factory.startReactNative(
-            withModuleName: "timeprint_rn",
-            in: window,
-            launchOptions: nil
-        )
+        app.savedNativeVC = window?.rootViewController
+
+         factory.startReactNative(
+             withModuleName: "timeprint_rn",
+             in: window,
+             launchOptions: nil
+         )
     }
 }
