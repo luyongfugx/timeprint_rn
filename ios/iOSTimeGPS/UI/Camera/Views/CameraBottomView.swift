@@ -38,7 +38,7 @@ class CameraBottomView: GPContentView {
         btn.addSubview(folderImageView)
         folderImageView.centerX = CameraBottomView.refreshWidth/2.0
         folderImageView.centerY = CameraBottomView.refreshWidth/2.0
-        btn.addTarget(nil, action: #selector(CameraVC.folderBtnAction), for: .touchUpInside)
+        btn.addTarget(nil, action: #selector(CameraVC.teamBtnAction), for: .touchUpInside)
         return btn
     }()
     
@@ -106,9 +106,9 @@ class CameraBottomView: GPContentView {
         teamButton.backgroundColor = UIColor(red: 28/255.0, green: 28/255.0, blue: 28/255.0, alpha: 1)
         
         // 计算右侧区域的宽度（从拍照按钮中心到屏幕右边）
-        let rightAreaWidth = GPApp.screenWidth/2.0
+        let areaWidth = GPApp.screenWidth/2.0
         // 计算两个按钮之间的间距（考虑按钮宽度和均匀分布）
-        let rightSpacing = 0 - (rightAreaWidth - CameraBottomView.refreshWidth * 2) / 3
+        let rightSpacing = 0 - (areaWidth - CameraBottomView.refreshWidth * 2) / 3
        // let rightSpacing = (rightAreaWidth - CameraBottomView.albumWidth - CameraBottomView.refreshWidth) / 3
        
 
@@ -118,7 +118,7 @@ class CameraBottomView: GPContentView {
             make.right.equalToSuperview().offset(rightSpacing)
             make.centerY.equalTo(takePhotoButton.snp.centerY)
         }
-//        
+//
         refreshButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: CameraBottomView.refreshWidth, height: CameraBottomView.refreshWidth))
             make.right.equalTo(teamButton.snp.left).offset(rightSpacing/2)
@@ -126,9 +126,9 @@ class CameraBottomView: GPContentView {
         }
         
         // 计算左侧区域的宽度（从屏幕左边到拍照按钮的中心）
-        let leftAreaWidth = GPApp.screenWidth/2.0
+       // let leftAreaWidth = GPApp.screenWidth/2.0
         // 计算两个按钮之间的间距（考虑按钮宽度和均匀分布）
-        let spacing = (leftAreaWidth - CameraBottomView.albumWidth - CameraBottomView.refreshWidth) / 3
+        let spacing = (areaWidth - CameraBottomView.albumWidth - CameraBottomView.refreshWidth) / 3
         
         addSubview(albumButton)
         albumButton.backgroundColor = UIColor.clear
@@ -281,7 +281,7 @@ class CameraTabView: GPView {
 //        if mode == .video {
 //
 //            if flashlightMode  != .off, flashlightMode != .always {
-//                
+//
 //                self.flashlightMode =  .off
 //            }
 //        }

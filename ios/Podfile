@@ -2,13 +2,27 @@
 
 #source 'https://cdn.cocoapods.org'
 
-platform :ios, '14.0'
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
+
+platform :ios, min_ios_version_supported
+
+prepare_react_native_project!
+#linkage = ENV['USE_FRAMEWORKS']
+#if linkage != nil
+#  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+#  use_frameworks! :linkage => linkage.to_sym
+#end
+
 
 target 'iOSTimeGPS' do
-  
+
   source 'https://github.com/CocoaPods/Specs.git'
 
-  
+
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks! :linkage => :static
   inhibit_all_warnings!
@@ -20,7 +34,7 @@ target 'iOSTimeGPS' do
   pod 'Kingfisher', '6.3.1'
   pod 'DeviceKit', '~> 5.2'
   # firebase
-  pod 'FirebaseAnalytics', '10.24.0'
+  pod 'FirebaseAnalytics', '~> 12.5'
   # location
   pod 'SwiftLocation/Core'
   pod 'KeychainAccess', '4.2.2'
@@ -31,10 +45,23 @@ target 'iOSTimeGPS' do
   pod "Solar-dev", "~> 3.0"
   pod 'CocoaLumberjack/Swift', '3.7.4'
   pod 'Zip', '~> 2.1'
-
+  config = use_native_modules!
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+  
 end
 
 post_install do|installer|
+  config = use_native_modules!
+  react_native_post_install(
+    installer,
+    config[:reactNativePath],
+    :mac_catalyst_enabled => false,
+    # :ccache_enabled => true
+  )
    #解决问题一
    find_and_replace("Pods/FBRetainCycleDetector/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm",
        "layoutCache[currentClass] = ivars;", "layoutCache[(id)currentClass] = ivars;")
@@ -43,6 +70,7 @@ post_install do|installer|
    "indirect_symbol_bindings[i] = cur->rebindings[j].replacement;", "if (i < (sizeof(indirect_symbol_bindings) /
         sizeof(indirect_symbol_bindings[0]))) { \n indirect_symbol_bindings[i]=cur->rebindings[j].replacement; \n }")
 end
+
 
 def find_and_replace(dir, findstr, replacestr)
   Dir[dir].each do |name|

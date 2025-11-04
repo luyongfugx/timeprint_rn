@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -196,6 +196,20 @@
 		A32092312D098A05002A2A10 /* GPErrorUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32092302D098A05002A2A10 /* GPErrorUploadManager.swift */; };
 		A336A9A82D22D891002B2552 /* BCDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A336A9A72D22D891002B2552 /* BCDevice.swift */; };
 		A342F64B2E02E1BE009E30D3 /* GPRemoveBgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A342F64A2E02E1BE009E30D3 /* GPRemoveBgView.swift */; };
+		A36EAF1D2EB9B32100B36E6C /* ID12Timeview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF182EB9B32100B36E6C /* ID12Timeview.swift */; };
+		A36EAF1E2EB9B32100B36E6C /* WatermarkId12Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF192EB9B32100B36E6C /* WatermarkId12Cell.swift */; };
+		A36EAF1F2EB9B32100B36E6C /* WatermarkID12TopTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF1A2EB9B32100B36E6C /* WatermarkID12TopTableView.swift */; };
+		A36EAF202EB9B32100B36E6C /* WatermarkID12View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF1B2EB9B32100B36E6C /* WatermarkID12View.swift */; };
+		A36EAF232EB9B32600B36E6C /* WatermarkID11View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF212EB9B32600B36E6C /* WatermarkID11View.swift */; };
+		A36EAF262EB9B32E00B36E6C /* WatermarkID10View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF242EB9B32E00B36E6C /* WatermarkID10View.swift */; };
+		A36EAF2E2EB9B33200B36E6C /* CircularCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF272EB9B33200B36E6C /* CircularCharacterView.swift */; };
+		A36EAF2F2EB9B33200B36E6C /* WatermarkID16BottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF282EB9B33200B36E6C /* WatermarkID16BottomCell.swift */; };
+		A36EAF302EB9B33200B36E6C /* WatermarkID16BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF292EB9B33200B36E6C /* WatermarkID16BottomView.swift */; };
+		A36EAF312EB9B33200B36E6C /* WatermarkID16TopLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF2A2EB9B33200B36E6C /* WatermarkID16TopLineCell.swift */; };
+		A36EAF322EB9B33200B36E6C /* WatermarkID16TopLineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF2B2EB9B33200B36E6C /* WatermarkID16TopLineTableView.swift */; };
+		A36EAF332EB9B33200B36E6C /* WatermarkID16View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF2C2EB9B33200B36E6C /* WatermarkID16View.swift */; };
+		A36EAF3B2EB9B5D700B36E6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF392EB9B5D700B36E6C /* CalendarView.swift */; };
+		A36EAF3C2EB9B5D700B36E6C /* CalendarPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF382EB9B5D700B36E6C /* CalendarPhotoCell.swift */; };
 		A38423922CEE12A200AA345C /* LanuchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38423912CEE12A200AA345C /* LanuchVC.swift */; };
 		A3B79BD32CEF89E000C748A4 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B79BD12CEF89E000C748A4 /* FolderViewController.swift */; };
 		A3CEF2522D13F1E20067C720 /* BaseIconWatermarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEF2512D13F1E20067C720 /* BaseIconWatermarkView.swift */; };
@@ -607,6 +621,20 @@
 		A365F86A2CC728EE00C9534D /* am */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = am; path = am.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A365F86D2CC7291B00C9534D /* sw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A365F86E2CC7291B00C9534D /* sw */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sw; path = sw.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A36EAF182EB9B32100B36E6C /* ID12Timeview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID12Timeview.swift; sourceTree = "<group>"; };
+		A36EAF192EB9B32100B36E6C /* WatermarkId12Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkId12Cell.swift; sourceTree = "<group>"; };
+		A36EAF1A2EB9B32100B36E6C /* WatermarkID12TopTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID12TopTableView.swift; sourceTree = "<group>"; };
+		A36EAF1B2EB9B32100B36E6C /* WatermarkID12View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID12View.swift; sourceTree = "<group>"; };
+		A36EAF212EB9B32600B36E6C /* WatermarkID11View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID11View.swift; sourceTree = "<group>"; };
+		A36EAF242EB9B32E00B36E6C /* WatermarkID10View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID10View.swift; sourceTree = "<group>"; };
+		A36EAF272EB9B33200B36E6C /* CircularCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCharacterView.swift; sourceTree = "<group>"; };
+		A36EAF282EB9B33200B36E6C /* WatermarkID16BottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID16BottomCell.swift; sourceTree = "<group>"; };
+		A36EAF292EB9B33200B36E6C /* WatermarkID16BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID16BottomView.swift; sourceTree = "<group>"; };
+		A36EAF2A2EB9B33200B36E6C /* WatermarkID16TopLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID16TopLineCell.swift; sourceTree = "<group>"; };
+		A36EAF2B2EB9B33200B36E6C /* WatermarkID16TopLineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID16TopLineTableView.swift; sourceTree = "<group>"; };
+		A36EAF2C2EB9B33200B36E6C /* WatermarkID16View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkID16View.swift; sourceTree = "<group>"; };
+		A36EAF382EB9B5D700B36E6C /* CalendarPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPhotoCell.swift; sourceTree = "<group>"; };
+		A36EAF392EB9B5D700B36E6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		A38423912CEE12A200AA345C /* LanuchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanuchVC.swift; sourceTree = "<group>"; };
 		A3A980672CD9CA180056C911 /* km-KH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "km-KH"; path = "km-KH.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A3A980682CD9CA190056C911 /* km-KH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "km-KH"; path = "km-KH.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -836,14 +864,6 @@
 		EBFE7BC62CAFCC230066CEAF /* EditAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressVC.swift; sourceTree = "<group>"; };
 		EBFE7BC82CAFD54F0066CEAF /* WatermarkAddressItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkAddressItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		A3BF1D612E0A2BEB00BDD55D /* BaseID16 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BaseID16; sourceTree = "<group>"; };
-		A3C3D24E2D6E1F4C0014796D /* BaseID12 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BaseID12; sourceTree = "<group>"; };
-		A3CEF24C2D12B2F50067C720 /* BaseID10 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BaseID10; sourceTree = "<group>"; };
-		A3CEF2532D13FA0B0067C720 /* BaseID11 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BaseID11; sourceTree = "<group>"; };
-		A3DEFF9D2D0FB97E002A2D71 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EBA88E4F2C69AC7C00212700 /* Frameworks */ = {
@@ -1398,13 +1418,62 @@
 			path = BaseID13;
 			sourceTree = "<group>";
 		};
+		A36EAF1C2EB9B32100B36E6C /* BaseID12 */ = {
+			isa = PBXGroup;
+			children = (
+				A36EAF182EB9B32100B36E6C /* ID12Timeview.swift */,
+				A36EAF192EB9B32100B36E6C /* WatermarkId12Cell.swift */,
+				A36EAF1A2EB9B32100B36E6C /* WatermarkID12TopTableView.swift */,
+				A36EAF1B2EB9B32100B36E6C /* WatermarkID12View.swift */,
+			);
+			path = BaseID12;
+			sourceTree = "<group>";
+		};
+		A36EAF222EB9B32600B36E6C /* BaseID11 */ = {
+			isa = PBXGroup;
+			children = (
+				A36EAF212EB9B32600B36E6C /* WatermarkID11View.swift */,
+			);
+			path = BaseID11;
+			sourceTree = "<group>";
+		};
+		A36EAF252EB9B32E00B36E6C /* BaseID10 */ = {
+			isa = PBXGroup;
+			children = (
+				A36EAF242EB9B32E00B36E6C /* WatermarkID10View.swift */,
+			);
+			path = BaseID10;
+			sourceTree = "<group>";
+		};
+		A36EAF2D2EB9B33200B36E6C /* BaseID16 */ = {
+			isa = PBXGroup;
+			children = (
+				A36EAF272EB9B33200B36E6C /* CircularCharacterView.swift */,
+				A36EAF282EB9B33200B36E6C /* WatermarkID16BottomCell.swift */,
+				A36EAF292EB9B33200B36E6C /* WatermarkID16BottomView.swift */,
+				A36EAF2A2EB9B33200B36E6C /* WatermarkID16TopLineCell.swift */,
+				A36EAF2B2EB9B33200B36E6C /* WatermarkID16TopLineTableView.swift */,
+				A36EAF2C2EB9B33200B36E6C /* WatermarkID16View.swift */,
+			);
+			path = BaseID16;
+			sourceTree = "<group>";
+		};
+		A36EAF3A2EB9B5D700B36E6C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A36EAF382EB9B5D700B36E6C /* CalendarPhotoCell.swift */,
+				A36EAF392EB9B5D700B36E6C /* CalendarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A3B79BD22CEF89E000C748A4 /* Folder */ = {
 			isa = PBXGroup;
 			children = (
-				A3DEFF9D2D0FB97E002A2D71 /* Views */,
 				A3B79BD12CEF89E000C748A4 /* FolderViewController.swift */,
 				A3DEFF7D2D0F0E63002A2D71 /* CalendarViewController.swift */,
 				A3DEFF7F2D0F0F87002A2D71 /* FolderHomeViewController.swift */,
+				A36EAF3A2EB9B5D700B36E6C /* Views */,
 			);
 			path = Folder;
 			sourceTree = "<group>";
@@ -1492,7 +1561,7 @@
 		EB380D5D2C70708A006789B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A3BF1D612E0A2BEB00BDD55D /* BaseID16 */,
+				A36EAF2D2EB9B33200B36E6C /* BaseID16 */,
 				0410E9A72DC7D0CA00B78C42 /* BaseWatermark */,
 				EB5EA2D42C8FDC2200DA9AC1 /* EditWatermark */,
 				0462C1512CB23B3B00ECA16B /* Logo */,
@@ -1501,9 +1570,9 @@
 				0410E91C2DBE7A9F00B78C42 /* BaseID15 */,
 				045EA4EB2D9FC7C8001023F3 /* BaseID14 */,
 				04E3C6422D9A51D3001FC4EB /* BaseID13 */,
-				A3C3D24E2D6E1F4C0014796D /* BaseID12 */,
-				A3CEF2532D13FA0B0067C720 /* BaseID11 */,
-				A3CEF24C2D12B2F50067C720 /* BaseID10 */,
+				A36EAF1C2EB9B32100B36E6C /* BaseID12 */,
+				A36EAF222EB9B32600B36E6C /* BaseID11 */,
+				A36EAF252EB9B32E00B36E6C /* BaseID10 */,
 				EB100C0D2C8020B90083F867 /* BaseID1 */,
 				0462C1662CBB66E800ECA16B /* BaseID2 */,
 				0462C1C62CC416AF00ECA16B /* BaseID3 */,
@@ -2028,17 +2097,11 @@
 				EBA88E4F2C69AC7C00212700 /* Frameworks */,
 				EBA88E502C69AC7C00212700 /* Resources */,
 				6D492C666D2843283DD27C88 /* [CP] Copy Pods Resources */,
+				67FABF93F4ABEAC737C52039 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				A3BF1D612E0A2BEB00BDD55D /* BaseID16 */,
-				A3C3D24E2D6E1F4C0014796D /* BaseID12 */,
-				A3CEF24C2D12B2F50067C720 /* BaseID10 */,
-				A3CEF2532D13FA0B0067C720 /* BaseID11 */,
-				A3DEFF9D2D0FB97E002A2D71 /* Views */,
 			);
 			name = iOSTimeGPS;
 			productName = test001;
@@ -2174,6 +2237,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		67FABF93F4ABEAC737C52039 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSTimeGPS/Pods-iOSTimeGPS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSTimeGPS/Pods-iOSTimeGPS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOSTimeGPS/Pods-iOSTimeGPS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6D492C666D2843283DD27C88 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2212,6 +2292,8 @@
 				0412ECEF2CA70D710074D7E2 /* WeatherManger.swift in Sources */,
 				EBBADF4D2C78900100CF7096 /* ZLFilter.swift in Sources */,
 				040F3DE72D0DD0C40030ACD4 /* ID8TimeView.swift in Sources */,
+				A36EAF3B2EB9B5D700B36E6C /* CalendarView.swift in Sources */,
+				A36EAF3C2EB9B5D700B36E6C /* CalendarPhotoCell.swift in Sources */,
 				EBBADF402C78900100CF7096 /* UIViewController+ZLPhotoBrowser.swift in Sources */,
 				EBA4F01F2C6B90180061C579 /* GPDataCacheManader.swift in Sources */,
 				045EA4EF2D9FDE17001023F3 /* IconTextView.swift in Sources */,
@@ -2235,6 +2317,7 @@
 				EBBADF3D2C78900100CF7096 /* UIScrollView+ZLPhotoBrowser.swift in Sources */,
 				04BDC6952CAE9A09008E4CC5 /* GPWideAngleTipView.swift in Sources */,
 				EBBADF182C78900100CF7096 /* ZLAlbumListController.swift in Sources */,
+				A36EAF232EB9B32600B36E6C /* WatermarkID11View.swift in Sources */,
 				EBBADF452C78900100CF7096 /* ZLInputTextViewController.swift in Sources */,
 				04B1097D2CAF213600A21E8E /* Double+Extension.swift in Sources */,
 				EB100C0C2C800F050083F867 /* CameraConfig.swift in Sources */,
@@ -2310,6 +2393,10 @@
 				EB380D702C731EFF006789B6 /* GPApp.swift in Sources */,
 				EBBADF702C7AFAAC00CF7096 /* Toast+Custom.swift in Sources */,
 				045B16F22CE97BA70074D507 /* HmacSha1Utils.swift in Sources */,
+				A36EAF1D2EB9B32100B36E6C /* ID12Timeview.swift in Sources */,
+				A36EAF1E2EB9B32100B36E6C /* WatermarkId12Cell.swift in Sources */,
+				A36EAF1F2EB9B32100B36E6C /* WatermarkID12TopTableView.swift in Sources */,
+				A36EAF202EB9B32100B36E6C /* WatermarkID12View.swift in Sources */,
 				042C55372D0A08E200EC3351 /* UIAlertController+Extension.swift in Sources */,
 				04BDC68B2CAE3F04008E4CC5 /* GPGesture.swift in Sources */,
 				EBBADF2A2C78900100CF7096 /* ZLProgressView.swift in Sources */,
@@ -2380,6 +2467,7 @@
 				EBBADF252C78900100CF7096 /* ZLVideoManager.swift in Sources */,
 				040F3DDA2D0D8A310030ACD4 /* WatermarkID9View.swift in Sources */,
 				0462C17E2CBBBB7800ECA16B /* FeedbackVC.swift in Sources */,
+				A36EAF262EB9B32E00B36E6C /* WatermarkID10View.swift in Sources */,
 				EBBADF332C78900100CF7096 /* ZLClipImageDismissAnimatedTransition.swift in Sources */,
 				EB0556A32CE72272002E91FB /* CameracAccessView.swift in Sources */,
 				04A915C72C711FC70073AB3F /* UIView+BCFrame.swift in Sources */,
@@ -2533,6 +2621,12 @@
 				EBBB8CF02C9AA19600EFC4B4 /* GPPlacemarkModel.swift in Sources */,
 				04A618B72DF524A0005110A6 /* BaseWatermark+OfficialLogo.swift in Sources */,
 				0462C1DA2CCC6A5A00ECA16B /* WatemrarkID5Cell.swift in Sources */,
+				A36EAF2E2EB9B33200B36E6C /* CircularCharacterView.swift in Sources */,
+				A36EAF2F2EB9B33200B36E6C /* WatermarkID16BottomCell.swift in Sources */,
+				A36EAF302EB9B33200B36E6C /* WatermarkID16BottomView.swift in Sources */,
+				A36EAF312EB9B33200B36E6C /* WatermarkID16TopLineCell.swift in Sources */,
+				A36EAF322EB9B33200B36E6C /* WatermarkID16TopLineTableView.swift in Sources */,
+				A36EAF332EB9B33200B36E6C /* WatermarkID16View.swift in Sources */,
 				0462C1D82CCC5EF000ECA16B /* WatermarkID5View.swift in Sources */,
 				0409C7922CD63895007D9D5A /* Optional+Helper.swift in Sources */,
 				A3D08B3D2CFAC13C00480FDB /* GpImageManager.swift in Sources */,
@@ -2669,7 +2763,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2714,14 +2808,28 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)  ";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -2733,7 +2841,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -2772,12 +2880,26 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)  ";
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2808,7 +2930,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2854,7 +2976,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

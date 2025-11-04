@@ -44,6 +44,15 @@ extension CameraVC {
         LogDebug("folderBtnAction click")
     }
     
+    @objc func teamBtnAction() {
+        //let folderVC = FolderViewController()
+//        let folderVC = FolderHomeViewController()
+//        navigationController?.pushViewController(folderVC, animated: true)
+        LogDebug("teamBtnAction click")
+    }
+    
+    
+    
     @objc func flashBtnAction(sender: UIButton) {
         
         var titleArray = ["i_flash_close".localized(), "i_flash_auto".localized(), "i_flash_open".localized(), "i_flashlight".localized(), "i_nighmode".localized()]
@@ -520,7 +529,7 @@ extension CameraVC {
       
 //                        let errorText = "\(GPErrorUploadManager.getReportStatusDesc()) \(GPErrorUploadManager.getStorageInfo())"
 //                        GPErrorUploadManager.uploadError(fileName:#file,lineNumber :#line,functionName :#function,errorText: errorText)
-//            
+//
                         //GPFirebaseManager.add_logo();
                         DispatchQueue.main.async {
                             if let error = error {
