@@ -9,6 +9,9 @@ import UIKit
 import GPCam
 import MediaPlayer
 
+import React
+import ReactAppDependencyProvider
+import React_RCTAppDelegate
 // 相机模式
 enum CameraMode: Int {
     case photo = 0
@@ -38,6 +41,18 @@ class CameraVC: UIViewController {
     let bottomHeight = GPApp.tabBarBottomHeight + 162
     
     var tmpVideoFileName: String?
+    //
+    //rn
+    var reactNativeFactory: RCTReactNativeFactory?
+
+    init(reactNativeFactory: RCTReactNativeFactory) {
+        self.reactNativeFactory = reactNativeFactory
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // 是否正在录制视频
     var isRecording = false {
         didSet {

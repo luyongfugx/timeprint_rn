@@ -212,6 +212,8 @@
 		A36EAF3C2EB9B5D700B36E6C /* CalendarPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EAF382EB9B5D700B36E6C /* CalendarPhotoCell.swift */; };
 		A38423922CEE12A200AA345C /* LanuchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38423912CEE12A200AA345C /* LanuchVC.swift */; };
 		A3B79BD32CEF89E000C748A4 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B79BD12CEF89E000C748A4 /* FolderViewController.swift */; };
+		A3BF10A12EB9E05F0080FAB0 /* AuthBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF10A02EB9E05F0080FAB0 /* AuthBridge.swift */; };
+		A3BF10A32EB9E1CE0080FAB0 /* AuthBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BF10A22EB9E1CE0080FAB0 /* AuthBridge.m */; };
 		A3CEF2522D13F1E20067C720 /* BaseIconWatermarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEF2512D13F1E20067C720 /* BaseIconWatermarkView.swift */; };
 		A3D08B372CFABE1600480FDB /* UIImage+Exif.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D08B2F2CFABE1600480FDB /* UIImage+Exif.swift */; };
 		A3D08B3D2CFAC13C00480FDB /* GpImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D08B3C2CFAC13C00480FDB /* GpImageManager.swift */; };
@@ -659,6 +661,8 @@
 		A3A9817F2CEAD04B0056C911 /* zu-ZA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zu-ZA"; path = "zu-ZA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A3A981802CEAD04B0056C911 /* zu-ZA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zu-ZA"; path = "zu-ZA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A3B79BD12CEF89E000C748A4 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
+		A3BF10A02EB9E05F0080FAB0 /* AuthBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBridge.swift; sourceTree = "<group>"; };
+		A3BF10A22EB9E1CE0080FAB0 /* AuthBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthBridge.m; sourceTree = "<group>"; };
 		A3CEF2512D13F1E20067C720 /* BaseIconWatermarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseIconWatermarkView.swift; sourceTree = "<group>"; };
 		A3D08B2F2CFABE1600480FDB /* UIImage+Exif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Exif.swift"; sourceTree = "<group>"; };
 		A3D08B3C2CFAC13C00480FDB /* GpImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpImageManager.swift; sourceTree = "<group>"; };
@@ -1478,6 +1482,15 @@
 			path = Folder;
 			sourceTree = "<group>";
 		};
+		A3BF109F2EB9E03F0080FAB0 /* RN */ = {
+			isa = PBXGroup;
+			children = (
+				A3BF10A22EB9E1CE0080FAB0 /* AuthBridge.m */,
+				A3BF10A02EB9E05F0080FAB0 /* AuthBridge.swift */,
+			);
+			path = RN;
+			sourceTree = "<group>";
+		};
 		A3D08B292CFABDEA00480FDB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1785,6 +1798,7 @@
 		EBA88E542C69AC7C00212700 /* iOSTimeGPS */ = {
 			isa = PBXGroup;
 			children = (
+				A3BF109F2EB9E03F0080FAB0 /* RN */,
 				EBA88E712C69BA1000212700 /* UI */,
 				EBF975B12C9BA97D00A0A0F8 /* iOSTimeGPS.entitlements */,
 				EBA88E552C69AC7C00212700 /* AppDelegate.swift */,
@@ -2510,6 +2524,7 @@
 				EBBADF2B2C78900100CF7096 /* ZLPhotoConfiguration.swift in Sources */,
 				0409C7862CD62DD8007D9D5A /* GPBaseCollectionViewCell.swift in Sources */,
 				040F3DDE2D0D95280030ACD4 /* ID9TimeView.swift in Sources */,
+				A3BF10A32EB9E1CE0080FAB0 /* AuthBridge.m in Sources */,
 				04BDC6962CAE9A09008E4CC5 /* GPWideAngleListView.swift in Sources */,
 				0462C1E72CCEB65700ECA16B /* XHID100WatermarkCell.swift in Sources */,
 				04B109772CAF17DA00A21E8E /* CameraVC+Watermark.swift in Sources */,
@@ -2580,6 +2595,7 @@
 				EBBADF132C78900100CF7096 /* ZLAnimationUtils.swift in Sources */,
 				EB7DF0D92C7C5FEB000F2326 /* AlbumViewController+Action.swift in Sources */,
 				04A915792C70C2D90073AB3F /* SpeedyModel.swift in Sources */,
+				A3BF10A12EB9E05F0080FAB0 /* AuthBridge.swift in Sources */,
 				04BDC66F2CAB9627008E4CC5 /* GPPopPresentationController.swift in Sources */,
 				04BDC6722CAB9627008E4CC5 /* GPPresentationController.swift in Sources */,
 				04BD50B12C976FA600A52814 /* GPGlobal.swift in Sources */,

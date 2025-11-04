@@ -44,14 +44,26 @@ extension CameraVC {
         LogDebug("folderBtnAction click")
     }
     
-    @objc func teamBtnAction() {
-        //let folderVC = FolderViewController()
-//        let folderVC = FolderHomeViewController()
-//        navigationController?.pushViewController(folderVC, animated: true)
+//    @objc func teamBtnAction() {
+//        //let folderVC = FolderViewController()
+////        let folderVC = FolderHomeViewController()
+////        navigationController?.pushViewController(folderVC, animated: true)
+//        LogDebug("teamBtnAction click")
+//    }
+    
+    @objc  func teamBtnAction() {
         LogDebug("teamBtnAction click")
+        let app = UIApplication.shared.delegate as! AppDelegate
+        guard let factory = reactNativeFactory else { return }
+        let window = UIApplication.shared.windows.first
+        app.savedNativeVC = window?.rootViewController
+
+         factory.startReactNative(
+             withModuleName: "timeprint_rn",
+             in: window,
+             launchOptions: nil
+         )
     }
-    
-    
     
     @objc func flashBtnAction(sender: UIButton) {
         

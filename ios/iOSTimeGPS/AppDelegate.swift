@@ -7,25 +7,40 @@
 
 import UIKit
 import GPCam
+import React
+import ReactAppDependencyProvider
+import React_RCTAppDelegate
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    //react-native
+    var reactNativeFactory: RCTReactNativeFactory?
+    var savedNativeVC: UIViewController?
+    var reactNativeDelegate: ReactNativeDelegate?
+    
     var window: UIWindow?
     var launchWindow: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .black
+        //rn
+        let delegate = ReactNativeDelegate()
+        let factory = RCTReactNativeFactory(delegate: delegate)
+        delegate.dependencyProvider = RCTAppDependencyProvider()
+        reactNativeDelegate = delegate
+        reactNativeFactory = factory
+        
         LaunchManager.launchTimeCount += 1
 //        if LaunchManager.launchTimeCount > 1 {
 //            GPLaunchManager.shared.addNewLaunch()
 //        }
         
+        
         // 初始化日志
         configLog()
-
-        let cameraVC = CameraVC()
+        // add param reactNativeFactory: factory
+        let cameraVC = CameraVC(reactNativeFactory: factory)
         let nav = UINavigationController(rootViewController: cameraVC)
         nav.isNavigationBarHidden = true
         window?.rootViewController = nav
@@ -86,4 +101,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
     }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+  override func sourceURL(for bridge: RCTBridge) -> URL? {
+    self.bundleURL()
+  }
+
+  
+  override func bundleURL() -> URL? {
+    #if DEBUG
+      RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    #else
+      Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    #endif
+  }
 }

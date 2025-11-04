@@ -11,3 +11,7 @@
 #import "GPLocationConverter.h"
 #import "UITextView+Placeholder.h"
 #import "GPActivityViewController.h"
+#import <React/RCTBridgeModule.h>
+//add rn 
+#import <React/RCTEventEmitter.h>
+#import <GoogleSignIn/GoogleSignIn.h>
